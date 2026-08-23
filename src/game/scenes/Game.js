@@ -12,6 +12,12 @@ export class Game extends Scene
         const { width, height } = this.scale;
 
         // =========================================================
+        // GAME STATE
+        // =========================================================
+
+        this.cupContents = [];
+
+        // =========================================================
         // BACKGROUND
         // =========================================================
 
@@ -66,7 +72,10 @@ export class Game extends Scene
             color: '#6b3e26'
         }).setOrigin(0.5);
 
-        // Order ticket
+        // =========================================================
+        // ORDER TICKET
+        // =========================================================
+
         this.add.rectangle(
             330,
             230,
@@ -122,8 +131,11 @@ export class Game extends Scene
             }
         ).setOrigin(0.5);
 
-        // Cup
-        this.add.rectangle(
+        // =========================================================
+        // CUP
+        // =========================================================
+
+        this.cup = this.add.rectangle(
             700,
             550,
             150,
@@ -135,6 +147,16 @@ export class Game extends Scene
             fontFamily: 'Arial Black',
             fontSize: 26,
             color: '#d19a76'
+        }).setOrigin(0.5);
+
+        // =========================================================
+        // CUP STATUS
+        // =========================================================
+
+        this.cupStatusText = this.add.text(700, 610, '0 SCOOP', {
+            fontFamily: 'Arial Black',
+            fontSize: 20,
+            color: '#6b3e26'
         }).setOrigin(0.5);
 
         // =========================================================
@@ -174,6 +196,10 @@ export class Game extends Scene
         );
     }
 
+    // =============================================================
+    // INGREDIENT BUTTON
+    // =============================================================
+
     createIngredientButton (x, y, label, color)
     {
         const button = this.add.rectangle(
@@ -192,7 +218,9 @@ export class Game extends Scene
             strokeThickness: 4
         }).setOrigin(0.5);
 
-        button.setInteractive({ useHandCursor: true });
+        button.setInteractive({
+            useHandCursor: true
+        });
 
         button.on('pointerover', () =>
         {
@@ -208,7 +236,82 @@ export class Game extends Scene
 
         button.on('pointerdown', () =>
         {
-            console.log(`Ingredient selected: ${label}`);
+            if (label === 'VANILLA')
+            {
+                this.createVanillaScoop();
+            }
+        });
+    }
+
+    // =============================================================
+    // CREATE VANILLA SCOOP
+    // =============================================================
+
+    createVanillaScoop ()
+    {
+        const scoop = this.add.circle(
+            700,
+            470,
+            35,
+            0xfff5d6
+        );
+
+        scoop.setStrokeStyle(
+            4,
+            0xd19a76
+        );
+
+        scoop.setInteractive();
+
+        this.input.setDraggable(scoop);
+
+        scoop.on('dragstart', () =>
+        {
+            scoop.setScale(1.15);
+        });
+
+        scoop.on('drag', (pointer, dragX, dragY) =>
+        {
+            scoop.x = dragX;
+            scoop.y = dragY;
+        });
+
+        scoop.on('dragend', () =>
+        {
+            scoop.setScale(1);
+
+            const cupX = 700;
+            const cupY = 550;
+
+            const distance = Math.hypot(
+                scoop.x - cupX,
+                scoop.y - cupY
+            );
+
+            if (distance < 90)
+            {
+                // Masukkan scoop ke cup
+                scoop.x = cupX;
+                scoop.y = 520;
+
+                // Simpan data scoop
+                this.cupContents.push('vanilla');
+
+                // Update status cup
+                this.cupStatusText.setText(
+                    `${this.cupContents.length} SCOOP`
+                );
+
+                console.log(
+                    'Cup contents:',
+                    this.cupContents
+                );
+            }
+            else
+            {
+                // Scoop dilepas di luar cup
+                scoop.destroy();
+            }
         });
     }
 }

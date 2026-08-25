@@ -1,81 +1,81 @@
-# Handoff — Creamy Sundae
+Handoff — Creamy Sundae
 
-**Project:** Creamy Sundae  
-**Genre:** 2D casual cooking / time-management / ice cream shop  
-**Platform awal:** Web browser, dengan target desktop + mobile/touch  
-**Framework:** Phaser 4  
-**Bundler:** Vite  
-**Language:** JavaScript  
-**Repository:** https://github.com/RizkyNs/creamy-sundae  
-**Branch:** `main`
+Project: Creamy Sundae
+Genre: 2D casual cooking / time-management / ice cream shop
+Platform awal: Web browser, dengan target desktop + mobile/touch
+Framework: Phaser 4
+Bundler: Vite
+Language: JavaScript
+Repository: https://github.com/RizkyNs/creamy-sundae
+Branch: "main"
 
-## Tujuan proyek
+Tujuan proyek
 
 Membangun game 2D tentang mengelola gerai es krim.
 
 Gameplay inti:
 
 Customer datang
-    ↓
+↓
 Customer memberikan order
-    ↓
+↓
 Pemain memilih bahan
-    ↓
+↓
 Pemain membuat es krim sesuai order
-    ↓
+↓
 Pemain menambahkan topping / komponen lain
-    ↓
+↓
 Pemain menyajikan pesanan
-    ↓
+↓
 Pesanan divalidasi
-    ↓
+↓
 Pemain mendapat uang / score
-    ↓
+↓
 Customer pergi
-    ↓
+↓
 Customer berikutnya
 
-Game harus terasa seperti **menjaga gerai**, bukan sekadar game matching atau puzzle.
+Game harus terasa seperti menjaga gerai, bukan sekadar game matching atau puzzle.
 
 ---
 
-# Target desain gameplay
+Target desain gameplay
 
 Core loop yang diinginkan:
 
 ORDER
-  ↓
+↓
 MAKE
-  ↓
+↓
 VALIDATE
-  ↓
+↓
 SERVE
-  ↓
+↓
 REWARD
-  ↓
+↓
 NEXT CUSTOMER
 
 Progression jangka panjang:
 
 Hari
- ↓
+↓
 Pendapatan
- ↓
+↓
 Upgrade gerai
- ↓
+↓
 Flavor baru
- ↓
+↓
 Topping baru
- ↓
+↓
 Customer lebih kompleks
- ↓
+↓
 Order lebih sulit
- ↓
+↓
 Hari berikutnya
 
 ---
 
-# Konsep visual
+Konsep visual
 
 Target visual awal:
 
@@ -87,177 +87,207 @@ Target visual awal:
 - cocok untuk browser/mobile
 - kemungkinan besar akhirnya menggunakan pixel art / stylized 2D
 
-Namun **prototype awal sengaja tidak menggunakan asset final**.
+Namun prototype awal sengaja tidak menggunakan asset final.
 
 Saat ini visual gameplay dibuat memakai:
 
-- `rectangle`
-- `circle`
-- `text`
+- "rectangle"
+- "circle"
+- "text"
 
 Tujuannya agar gameplay bisa divalidasi dulu sebelum asset polish.
 
 ---
 
-# Struktur scene yang direncanakan
+Environment utama
 
-Template awal Phaser:
+Environment resmi project saat ini adalah VPS Ubuntu 24.04 LTS.
 
-Boot
- ↓
-Preloader
- ↓
-MainMenu
- ↓
-Game
- ↓
-GameOver
+Project path:
 
-Untuk game final kemungkinan berkembang menjadi:
+"/root/creamy-sundae"
 
-Boot
- ↓
-Preloader
- ↓
-MainMenu
- ↓
-Shop / Gameplay
- ↓
-DayResult
- ↓
-Upgrade
- ↓
-Next Day
+Development, build, testing, dan penggunaan Antigravity CLI semuanya ditargetkan dilakukan di environment VPS ini.
 
-Namun **jangan memecah scene terlalu dini**. Untuk prototype gunakan `Game` sebagai gameplay utama sampai kompleksitas memang membutuhkan pemisahan.
+Jangan menggunakan Termux/Android sebagai environment build utama untuk project ini.
+
+Sebelumnya project sempat diclone/di-install di Termux Android ARM64. "npm install" berhasil, tetapi "npm run build" gagal ketika Rollup mencoba memuat native module "@rollup/rollup-android-arm64" karena incompatibility dengan runtime/linker Termux/Android.
+
+Kesimpulan:
+
+- source code project tidak bermasalah
+- package project tidak perlu dirombak hanya demi Termux
+- Termux bukan environment build utama
+- VPS Linux adalah environment utama
 
 ---
 
-# Struktur project saat ini
+# Antigravity CLI
 
-creamy-sundae/
- public/
-   ├── assets/
-   │   ├── bg.png
-   │   └── logo.png
-   ├── favicon.png
-   └── style.css
+Antigravity CLI sudah terinstall pada environment VPS.
 
- src/
-   ├── main.js
-   └── game/
-       ├── main.js
-       └── scenes/
-           ├── Boot.js
-           ├── Preloader.js
-           ├── MainMenu.js
-           ├── Game.js
-           └── GameOver.js
+Command:
 
- vite/
-   ├── config.dev.mjs
-   └── config.prod.mjs
+`agy`
 
- index.html
- package.json
- package-lock.json
- log.js
- README.md
- LICENSE
- .gitignore
+Versi terpasang saat handoff ini dibuat:
 
-Template resmi yang menjadi dasar project memang menggunakan struktur seperti ini dan mendukung hot reload lewat Vite. ([github.com](https://github.com/RizkyNs/creamy-sundae))
+`1.1.20`
 
----
+Binary:
 
-# Environment
+`/root/.local/bin/agy`
 
-Awalnya project dibuat langsung di VPS:
+PATH `/root/.local/bin` sudah dikonfigurasi pada:
 
-/root/creamy-sundae
+- `/root/.bashrc`
+- `/root/.profile`
 
-VPS:
+Antigravity CLI digunakan sebagai coding agent utama untuk project ini.
 
-OS: Ubuntu 24.04 LTS
+Workspace utama:
 
-Node/npm sudah tersedia.
+`/root/creamy-sundae`
 
-Project menggunakan:
+Jalankan dari project:
 
-{
-  "type": "module",
-  "dependencies": {
-    "phaser": "4.0.0"
-  },
-  "devDependencies": {
-    "vite": "^6.3.1",
-    "terser": "^5.39.0"
-  }
-}
+`cd /root/creamy-sundae`
 
-Template repo menyatakan bahwa project ini memakai Phaser 4.0.0 dan Vite. ([github.com](https://github.com/RizkyNs/creamy-sundae))
+lalu:
 
-**Penting:** jangan otomatis migrasi ke Phaser 3.
+`agy`
 
-Project ini memang **Phaser 4**. Phaser 4.0.0 resmi dirilis April 2026. ([github.com](https://github.com/phaserjs/phaser/discussions/7274?utm_source=chatgpt.com))
+Untuk sesi SSH/remote, gunakan workflow autentikasi yang disediakan Antigravity CLI. Jika URL otorisasi ditampilkan di terminal, buka URL tersebut dari perangkat lokal dan selesaikan autentikasi.
 
-Phaser 4 juga sudah memiliki perubahan arsitektur/rendering dibanding v3, jadi gunakan dokumentasi/contoh Phaser 4 bila API berbeda. ([github.com](https://github.com/phaserjs/phaser/blob/master/skills/v4-new-features/SKILL.md?utm_source=chatgpt.com))
+**Jangan menganggap versi Antigravity CLI dari environment lain sebagai versi project ini. Gunakan versi yang terpasang pada VPS atau update melalui installer resmi bila diperlukan.**
 
 ---
 
-# Development command
-
-Install:
-
-npm install
-
-Development:
-
-npm run dev
-
-Karena game diuji dari HP melalui jaringan/NAT:
-
-npm run dev -- --host 0.0.0.0
-
-Default template Vite menggunakan port:
-
-8080
-
-Template resminya memang mendokumentasikan `npm run dev` sebagai development server dan `npm run build` sebagai production build. ([github.com](https://github.com/RizkyNs/creamy-sundae))
-
-Build:
-
-npm run build
-
----
-
-# Development access saat ini
+Network / development access
 
 VPS private IP:
 
-192.168.11.168
+"192.168.11.168"
 
 Public IP:
 
-139.99.122.214
+"139.99.122.214"
 
-NAT mapping dibuat untuk development:
+NAT mapping development:
 
 TCP
-public: 20043
-internal: 192.168.11.168:8080
+public: "20043"
+internal: "192.168.11.168:8080"
 
-Jadi perangkat luar dapat mengakses development server melalui:
+Development server dapat diakses dari perangkat luar melalui:
 
-http://139.99.122.214:20043
+"http://139.99.122.214:20043"
 
-Ini hanya untuk development/testing. Jangan jadikan Vite dev server sebagai deployment production permanen.
+Gunakan host binding:
 
-WebbyLab memakai port/domain lain, jadi **jangan mengganggu konfigurasi WebbyLab**.
+"npm run dev -- --host 0.0.0.0"
+
+Ini hanya untuk development/testing.
+
+Jangan menjadikan Vite dev server sebagai deployment production permanen.
+
+WebbyLab memakai port/domain lain.
+
+Jangan mengganggu atau mengubah konfigurasi WebbyLab.
 
 ---
 
-# Git
+Project structure
+
+creamy-sundae/
+├── public/
+│   ├── assets/
+│   │   ├── bg.png
+│   │   └── logo.png
+│   ├── favicon.png
+│   └── style.css
+│
+├── src/
+│   ├── main.js
+│   └── game/
+│       ├── main.js
+│       └── scenes/
+│           ├── Boot.js
+│           ├── Preloader.js
+│           ├── MainMenu.js
+│           ├── Game.js
+│           └── GameOver.js
+│
+├── vite/
+│   ├── config.dev.mjs
+│   └── config.prod.mjs
+│
+├── index.html
+├── package.json
+├── package-lock.json
+├── log.js
+├── README.md
+├── LICENSE
+└── .gitignore
+
+Do not restructure everything prematurely.
+
+---
+
+Technology
+
+Phaser:
+
+"4.0.0"
+
+Vite:
+
+"6.3.x"
+
+Node/npm are available on the VPS.
+
+Project package configuration currently uses:
+
+{
+"type": "module",
+"dependencies": {
+"phaser": "4.0.0"
+},
+"devDependencies": {
+"vite": "^6.3.1",
+"terser": "^5.39.0"
+}
+}
+
+Do not migrate Phaser 4 → Phaser 3.
+
+Do not replace Vite with another bundler without a concrete technical reason.
+
+Use Phaser 4-compatible documentation/examples whenever an API differs from old Phaser 3 examples.
+
+---
+
+Development commands
+
+From "/root/creamy-sundae":
+
+Install dependencies:
+
+"npm install"
+
+Development:
+
+"npm run dev -- --host 0.0.0.0"
+
+Build:
+
+"npm run build"
+
+The build must succeed before committing a feature.
+
+---
+
+Git
 
 Repository:
 
@@ -265,15 +295,15 @@ https://github.com/RizkyNs/creamy-sundae
 
 Branch:
 
-main
+"main"
 
 Remote:
 
-origin
+"origin"
 
-Repo bersifat **public**.
+Repository is public.
 
-`.gitignore` saat ini dimaksudkan untuk memastikan source code saja yang masuk:
+".gitignore" must exclude:
 
 node_modules/
 dist/
@@ -286,60 +316,57 @@ Thumbs.db
 .vscode/
 .idea/
 
-Jangan commit:
+Never commit:
 
-node_modules/
-dist/
-.env
-secrets
-PAT
-API keys
-password
-private keys
+- "node_modules/"
+- "dist/"
+- ".env"
+- secrets
+- PAT
+- API keys
+- passwords
+- private keys
+- VPS credentials
 
-`package-lock.json` **harus tetap di Git**.
-
----
-
-# Git checkpoints
-
-Saat ini repo sudah memiliki **2 commits**. Repo publik juga menunjukkan 2 commit. ([github.com](https://github.com/RizkyNs/creamy-sundae))
-
-Checkpoint awal:
-
-feat: create initial ice cream shop screen
-
-Checkpoint kedua:
-
-feat: add draggable vanilla scoop
-
-Checkpoint kedua sudah berhasil di-push.
-
-Jadi **state gameplay terakhir yang valid adalah draggable Vanilla Scoop**.
+"package-lock.json" must remain committed.
 
 ---
 
-# Fitur yang SUDAH dibuat
+Git checkpoints
 
-## Main Menu
+Existing checkpoints:
 
-Main Menu awal sudah dibuat ulang.
+"feat: create initial ice cream shop screen"
+
+"feat: add draggable vanilla scoop"
+
+The latest valid gameplay checkpoint is:
+
+draggable Vanilla Scoop
+
+Any agent continuing development should inspect the actual repository state and Git history instead of assuming a roadmap feature is already implemented.
+
+---
+
+Features already implemented
+
+Main Menu
 
 Flow:
 
 Main Menu
-   ↓
+↓
 START DAY
-   ↓
+↓
 Game
 
-Main Menu tidak lagi bergantung pada `background` / `logo` untuk layout utamanya.
+The custom Main Menu no longer depends on the template's original background/logo layout.
 
 ---
 
-## Shop layout
+Shop layout
 
-Scene `Game` sudah memiliki:
+Scene "Game" currently contains:
 
 - top bar
 - game title
@@ -354,155 +381,130 @@ Scene `Game` sudah memiliki:
 - chocolate button
 - strawberry button
 
-Saat ini:
-
-Chocolate
-Strawberry
-
-belum memiliki gameplay.
+Chocolate and Strawberry do not yet have gameplay.
 
 ---
 
-## Vanilla scoop
+Vanilla scoop
 
-Vanilla sudah bisa:
+Vanilla interaction currently works:
 
 tap VANILLA
-      ↓
-scoop muncul
-      ↓
+↓
+scoop appears
+↓
 drag scoop
-      ↓
-drop ke cup
-      ↓
-cup menerima scoop
+↓
+drop into cup
+↓
+cup receives scoop
 
-Scoop dibuat sebagai Phaser Circle/Game Object.
-
-Scoop menggunakan:
-
-setInteractive()
-
-dan:
-
-this.input.setDraggable(scoop)
-
-Kemudian event:
-
-dragstart
-drag
-dragend
-
-digunakan untuk interaksi.
+Scoop uses Phaser interaction and drag behavior.
 
 ---
 
-# State yang SUDAH mulai dipakai
+Current gameplay state
 
-Di `Game`:
+"Game" currently has:
 
-this.cupContents = [];
+"this.cupContents = [];"
 
-Ketika Vanilla berhasil masuk cup:
+When Vanilla is successfully placed into the cup:
 
-this.cupContents.push('vanilla');
+"this.cupContents.push('vanilla');"
 
-Jadi game sudah mulai memiliki perbedaan antara:
-
-visual
-
-dan:
-
-game state
-
-Contoh:
+Example state:
 
 [
-  'vanilla'
+'vanilla'
 ]
 
----
+This establishes the important principle:
 
-# State yang BELUM dibuat
+Data/state is the source of truth.
 
-Belum ada sistem formal untuk:
-
-Order object
-Recipe object
-Ingredient definitions
-Toppings
-Serving
-Money state
-Customer state
-Patience
-Timer
-Combo
-Scoring
-Day progression
-Upgrade
-Save/load
+Visual UI must not become the authoritative representation of gameplay state.
 
 ---
 
-# GDD/PRD — target gameplay
+State/systems not yet implemented
 
-## Customer
+Not yet implemented as proper gameplay systems:
 
-Customer nantinya:
-
-- datang ke gerai
-- berada di waiting/customer area
-- mempunyai order
-- mempunyai patience
-- menerima hasil
-- pergi setelah dilayani
+- formal Order object
+- Recipe object
+- Ingredient definitions
+- Toppings
+- Serving
+- Money/economy state
+- Customer state
+- Patience
+- Timer
+- Combo
+- Scoring
+- Day progression
+- Upgrade system
+- Save/load
 
 ---
 
-## Order
+GDD/PRD gameplay targets
 
-Order harus menjadi data, bukan hanya text.
+Customer
 
-Contoh konsep:
+Customer should eventually:
+
+- arrive at the shop
+- enter the waiting/customer area
+- have an order
+- have patience
+- receive the finished order
+- leave after being served
+
+---
+
+Order
+
+Order must be represented as data, not only UI text.
+
+Example:
 
 {
-    scoops: ['vanilla'],
-    toppings: []
+scoops: ['vanilla'],
+toppings: []
 }
 
-Contoh order lebih kompleks:
+More complex:
 
 {
-    scoops: ['vanilla', 'chocolate'],
-    toppings: ['sprinkles']
+scoops: ['vanilla', 'chocolate'],
+toppings: ['sprinkles']
 }
 
 ---
 
-## Cup
+Cup
 
-Cup harus menyimpan:
+Cup should eventually store:
 
 {
-    scoops: [],
-    toppings: []
+scoops: [],
+toppings: []
 }
 
-Jangan menjadikan text/UI sebagai sumber kebenaran gameplay.
-
-**Data adalah source of truth.**
+Never make UI text the source of truth.
 
 ---
 
-## Recipe validation
+Recipe validation
 
-Game harus mampu membandingkan:
+Game must compare:
 
 Customer Order
-       vs
+vs
 Player Cup
 
-Contoh:
+Example:
 
 Order:
 vanilla
@@ -512,7 +514,7 @@ vanilla
 
 => MATCH
 
-dan:
+Example:
 
 Order:
 vanilla
@@ -524,392 +526,413 @@ vanilla + vanilla
 
 ---
 
-# Roadmap
+Roadmap
 
-Urutan yang direkomendasikan:
+Milestone 1 — Core interaction
 
-## Milestone 1 — Core interaction
+Completed:
 
-Sudah selesai:
-
- Main Menu
- Shop layout
- Cup
- Ingredient buttons
- Vanilla scoop
- Drag & drop
- cupContents
+✅ Main Menu
+✅ Shop layout
+✅ Cup
+✅ Ingredient buttons
+✅ Vanilla scoop
+✅ Drag & drop
+✅ cupContents
 
 ---
 
-## Milestone 2 — Recipe system
+Milestone 2 — Recipe system
 
-Berikutnya:
+Next:
 
 Order data
- ↓
+↓
 Cup data
- ↓
+↓
 Recipe validator
- ↓
+↓
 ORDER READY / WRONG ORDER
 
 Target:
 
 this.currentOrder = {
-    scoops: ['vanilla'],
-    toppings: []
+scoops: ['vanilla'],
+toppings: []
 };
 
-dan:
+When:
 
 cupContents = ['vanilla'];
 
-harus menghasilkan:
+the result should be:
 
 ORDER READY
 
+Wrong or incomplete recipes should receive appropriate validation feedback.
+
 ---
 
-## Milestone 3 — Serve
+Milestone 3 — Serve
 
-Tambahkan:
+Add:
 
 SERVE
 
 Flow:
 
 Order
- ↓
+↓
 Make
- ↓
+↓
 Validate
- ↓
+↓
 Serve
- ↓
+↓
 Reward
 
 ---
 
-## Milestone 4 — Money
+Milestone 4 — Money
 
-Setelah berhasil serve:
+After successful serving:
 
 $0.00
- ↓
+↓
 +$2.50
- ↓
+↓
 $2.50
 
-Harga sebaiknya berasal dari data/config, jangan hardcode di banyak tempat.
+Prices should come from data/config instead of being hardcoded everywhere.
+
+"$2.50" is only a temporary prototype value unless later specified as a final design decision.
 
 ---
 
-## Milestone 5 — Customer system
+Milestone 5 — Customer system
 
-Implementasi:
+Implement:
 
-Customer queue
-Order generation
-Customer state
-Serve interaction
-Customer departure
-Next customer
+- customer queue
+- order generation
+- customer state
+- serve interaction
+- customer departure
+- next customer
 
 ---
 
-## Milestone 6 — Patience
+Milestone 6 — Patience
 
-Customer punya:
+Customer should have a patience state.
 
-patience
-
-Flow:
+Example progression:
 
 100%
- ↓
+↓
 80%
- ↓
+↓
 50%
- ↓
+↓
 20%
- ↓
+↓
 0%
 
-Patience memengaruhi reward / satisfaction.
+Patience may influence reward/satisfaction.
 
-Jangan implement timer sebelum loop basic `order → make → validate → serve` stabil.
+Do not add the timer before the basic:
+
+order → make → validate → serve
+
+loop is stable.
 
 ---
 
-## Milestone 7 — Multiple ingredients
+Milestone 7 — Multiple ingredients
 
-Tambahkan:
+Add:
 
 Vanilla
 Chocolate
 Strawberry
 
-Kemudian:
+Then:
 
-toppings
-syrups
-cone/cup
-
----
-
-## Milestone 8 — Complex recipes
-
-Contoh:
-
-Vanilla Sundae
-Chocolate Sundae
-Strawberry Sundae
-Vanilla + Chocolate
-Vanilla + Sprinkles
-Chocolate + Chocolate Syrup
+- toppings
+- syrups
+- cone/cup variants
 
 ---
 
-## Milestone 9 — Day system
+Milestone 8 — Complex recipes
+
+Potential recipes:
+
+- Vanilla Sundae
+- Chocolate Sundae
+- Strawberry Sundae
+- Vanilla + Chocolate
+- Vanilla + Sprinkles
+- Chocolate + Chocolate Syrup
+
+These are prototype examples, not final locked GDD decisions.
+
+---
+
+Milestone 9 — Day system
 
 Day 1
- ↓
+↓
 Daily target
- ↓
+↓
 End Day
- ↓
+↓
 Result
- ↓
+↓
 Upgrade
- ↓
+↓
 Day 2
 
 ---
 
-## Milestone 10 — Shop upgrades
+Milestone 10 — Shop upgrades
 
-Contoh:
+Potential upgrades:
 
-More flavor
-More topping
-Faster serving
-More customer capacity
-Higher patience
-Better equipment
+- more flavors
+- more toppings
+- faster serving
+- more customer capacity
+- higher patience
+- better equipment
 
----
-
-## Milestone 11 — Polish
-
-Setelah gameplay stabil:
-
-Pixel art
-Animation
-Sound
-Particles
-Screen feedback
-Tween
-UI polish
-Juice
+These are design possibilities, not final locked values.
 
 ---
 
-## Milestone 12 — Mobile optimization
+Milestone 11 — Polish
 
-Pastikan:
+Only after gameplay is stable:
 
-touch input
-responsive layout
-large touch targets
-device orientation
-performance
+- pixel art
+- animation
+- sound
+- particles
+- feedback
+- tween
+- UI polish
+- game feel / juice
 
 ---
 
-# Prinsip arsitektur yang harus diikuti Agent
+Milestone 12 — Mobile optimization
 
-**Jangan membuat seluruh game di satu file `Game.js` selamanya.**
+Ensure:
 
-Prototype boleh begitu.
+- touch input
+- responsive layout
+- large touch targets
+- device orientation handling
+- acceptable performance
 
-Ketika kompleksitas meningkat, pecah menjadi:
+---
+
+Architecture principles
+
+Do not keep the entire final game inside "Game.js".
+
+Prototype code can remain there temporarily.
+
+As complexity increases, split systems only when they are actually needed.
+
+Possible future structure:
 
 src/game/
- main.js
- scenes/
-   ├── Boot.js
-   ├── Preloader.js
-   ├── MainMenu.js
-   ├── Game.js
-   ├── DayResult.js
-   └── Upgrade.js
+├── main.js
+├── scenes/
+│   ├── Boot.js
+│   ├── Preloader.js
+│   ├── MainMenu.js
+│   ├── Game.js
+│   ├── DayResult.js
+│   └── Upgrade.js
+│
+├── systems/
+│   ├── OrderSystem.js
+│   ├── RecipeSystem.js
+│   ├── CustomerSystem.js
+│   └── EconomySystem.js
+│
+├── data/
+│   ├── ingredients.js
+│   ├── recipes.js
+│   └── customers.js
+│
+└── objects/
+├── Cup.js
+├── Customer.js
+└── Ingredient.js
 
- systems/
-   ├── OrderSystem.js
-   ├── RecipeSystem.js
-   ├── CustomerSystem.js
-   └── EconomySystem.js
+Do not create all of these files immediately.
 
- data/
-   ├── ingredients.js
-   ├── recipes.js
-   └── customers.js
-
- objects/
-    ├── Cup.js
-    ├── Customer.js
-    └── Ingredient.js
-
-Tapi **jangan membuat semua file tersebut sekarang**.
-
-Buat ketika memang dibutuhkan.
-
----
-
-# Asset strategy
-
-Untuk prototype:
-
-Use Phaser shapes/text
-
-Untuk final:
-
-custom pixel art / properly licensed assets
-
-Jangan mengambil asset internet sembarangan.
-
-Kode template Phaser memiliki lisensi MIT, tetapi asset pihak ketiga belum tentu memiliki lisensi yang sama. Repo contoh Phaser juga membedakan source code dengan asset. ([github.com](https://github.com/phaserjs/examples?utm_source=chatgpt.com))
+Create abstractions when the current implementation genuinely needs them.
 
 ---
 
-# Hal yang JANGAN dilakukan Agent tanpa alasan kuat
+Asset strategy
 
-Jangan:
+Prototype:
 
- migrasi Phaser 4 → Phaser 3
- mengganti Vite tanpa kebutuhan
- mengganti framework ke React
- membuat ulang project dari nol
- menghapus .git
- force push main
- commit node_modules
- commit dist
- commit secrets
- mengubah WebbyLab
- mengubah atau menghapus file yang tidak terkait dengan fitur yang sedang dikerjakan
- melakukan dependency upgrade besar hanya untuk “membersihkan” warning sebelum ada kebutuhan
+Use Phaser shapes/text.
 
-Project sudah berhasil:
+Final:
 
-npm install
-npm run build
+Use custom pixel art or properly licensed assets.
+
+Do not copy random internet assets without checking their license.
 
 ---
 
-# Cara kerja Git yang diinginkan
+Rules for the Agent
 
-Setelah satu fitur selesai dan dites:
+Before modifying code:
 
-npm run build
-git status
-git add .
-git commit -m "feat: ..."
-git push
+1. Inspect the current repository state.
+2. Read the relevant existing files.
+3. Never assume a roadmap item is already implemented.
+4. Keep changes scoped to the current feature.
+5. Preserve working features unless a change intentionally replaces them.
+6. Do not rewrite the project from scratch.
+7. Do not delete ".git".
+8. Do not force-push "main".
+9. Do not modify WebbyLab.
+10. Do not expose or commit secrets.
+11. Do not perform broad dependency upgrades without a concrete reason.
+12. Use the current Phaser 4 project as the foundation.
 
-Commit harus kecil dan logis.
+After implementing a logical feature:
 
-Contoh:
+1. Run "npm run build".
+2. Test the feature.
+3. Inspect "git status".
+4. Commit only the relevant files.
+5. Push the commit to "main".
 
-feat: add recipe validation
-feat: add serve button
-feat: add customer order generation
-feat: add customer patience
-feat: add economy system
+Preferred commit style:
 
-Jangan satu commit berisi 15 sistem sekaligus.
+"feat: add recipe validation"
+
+"feat: add serve button"
+
+"feat: add customer order generation"
+
+"feat: add customer patience"
+
+"feat: add economy system"
+
+Avoid giant commits containing unrelated systems.
 
 ---
 
-# Current task
+Current task
 
-**Task terakhir yang BELUM dilakukan:**
-
-Implementasikan:
+The next feature is:
 
 Recipe / Order Validation
 
-Target minimal:
+Implement the minimum system:
 
 this.currentOrder = {
-    scoops: ['vanilla'],
-    toppings: []
+scoops: ['vanilla'],
+toppings: []
 };
 
-Cup:
+Cup state:
 
 this.cupContents = [];
 
-Ketika player memasukkan Vanilla:
+When the player successfully places Vanilla into the cup:
 
 cupContents = ['vanilla']
 
-jalankan validator.
+the recipe validator should run.
 
-Hasil:
+Results:
 
 correct → ORDER READY
 incorrect → WRONG ORDER
 incomplete → KEEP BUILDING
 
-Setelah sistem ini stabil:
+After the feature is stable:
 
-commit
-push
+npm run build
 
-Baru lanjut ke:
+Then:
+
+git status
+git add ...
+git commit -m "feat: add recipe validation"
+git push
+
+Only after that should development proceed to:
 
 Serve
- ↓
+↓
 Money
- ↓
+↓
 Customer departure
- ↓
+↓
 Next order
 
 ---
 
-# Important handoff note
+Important GDD/PRD note
 
-**Jangan mengklaim GDD/PRD lengkap sudah tersedia sebagai dokumen final.**
+Do not claim that a complete final GDD/PRD document exists.
 
-Yang tersedia dari konteks ini adalah **konsep gameplay dan roadmap desain yang dirumuskan selama development**. Detail angka seperti harga, jumlah customer per hari, durasi patience, biaya upgrade, jumlah level, dan daftar final recipe **belum dikunci**.
+What currently exists is a gameplay concept and roadmap developed incrementally during implementation.
 
-Agent boleh mengusulkan angka sementara untuk prototype, tetapi harus menandainya sebagai:
+The following are NOT final locked values/design decisions:
 
-temporary prototype value
+- prices
+- customer count per day
+- patience duration
+- upgrade costs
+- level count
+- final recipes
+- final progression numbers
 
-dan jangan menganggapnya sebagai keputusan final GDD.
+Temporary values are allowed for prototyping, but clearly mark them as:
 
----
+"temporary prototype value"
 
-# Current source-of-truth
-
-Gunakan repository ini sebagai sumber kebenaran kode:
-
-**https://github.com/RizkyNs/creamy-sundae**
-
-Saat ini repository publik dan branch utamanya `main`. GitHub juga menunjukkan struktur Phaser/Vite dan dua commit yang sudah dibuat. ([github.com](https://github.com/RizkyNs/creamy-sundae))
-
-Untuk Phaser 4 references:
-
-**https://github.com/phaserjs/examples**
-
-Repo contoh Phaser saat ini juga sudah mencantumkan bahwa examples tersebut dapat digunakan sebagai referensi lokal dan mengikuti Phaser 4. ([github.com](https://github.com/phaserjs/examples?utm_source=chatgpt.com))
+Do not treat temporary values as final GDD decisions.
 
 ---
 
-### Kondisi paling singkatnya
+Source of truth
+
+Primary code source:
+
+https://github.com/RizkyNs/creamy-sundae
+
+Primary Phaser reference:
+
+https://github.com/phaserjs/phaser
+
+Phaser examples/reference:
+
+https://github.com/phaserjs/examples
+
+Cooking-system inspiration/reference:
+
+https://github.com/TriForMine/Delixia
+
+Delixia is only a gameplay/design reference and is NOT the codebase for Creamy Sundae.
+
+---
+
+Final current state
 
 CREAMY SUNDAE
 
@@ -917,31 +940,47 @@ Phaser 4.0.0
 JavaScript
 Vite
 
- repo GitHub
- main menu
- shop layout
- cup
- vanilla button
- draggable vanilla scoop
- cupContents state
+✅ GitHub repository
+✅ Main Menu
+✅ Shop layout
+✅ Cup
+✅ Vanilla button
+✅ Draggable Vanilla scoop
+✅ cupContents state
+✅ VPS Linux development environment
+✅ VPS build environment
 
-NEXT:
+NOT YET IMPLEMENTED:
+
 Order state
-
+↓
 Recipe validation
-
+↓
 Serve
-
+↓
 Money
-
+↓
 Customer
-
+↓
 Patience
-
+↓
 Multiple recipes
-
+↓
 Day system
-
+↓
 Upgrade
-
+↓
 Polish
+
+Current source-of-truth workspace:
+
+"/root/creamy-sundae"
+
+Current target environment:
+
+VPS Ubuntu 24.04 LTS
+
+**Antigravity CLI:**
+
+Installed and configured.
+Version: 1.1.20

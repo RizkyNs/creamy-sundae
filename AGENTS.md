@@ -814,9 +814,10 @@ After implementing a logical feature:
 
 1. Run "npm run build".
 2. Test the feature.
-3. Inspect "git status".
-4. Commit only the relevant files.
-5. Push the commit to "main".
+3. Update "AGENTS.md" dynamically to reflect the new project state, milestone progress, and current task.
+4. Inspect "git status".
+5. Commit only the relevant files (including "AGENTS.md").
+6. Push the commit to "main".
 
 Preferred commit style:
 
@@ -838,30 +839,14 @@ Current task
 
 The next feature is:
 
-Recipe / Order Validation
+Customer System
 
-Implement the minimum system:
-
-this.currentOrder = {
-scoops: ['vanilla'],
-toppings: []
-};
-
-Cup state:
-
-this.cupContents = [];
-
-When the player successfully places Vanilla into the cup:
-
-cupContents = ['vanilla']
-
-the recipe validator should run.
-
-Results:
-
-correct → ORDER READY
-incorrect → WRONG ORDER
-incomplete → KEEP BUILDING
+Implement the customer logic:
+1. Customers arrive and have a specific order.
+2. The UI placeholder for "Customer" becomes dynamic (e.g. replacing placeholder with generic character or text, and updating the order ticket dynamically).
+3. Wait for the player to press "SERVE".
+4. When served, check the recipe, process payment, and then the customer leaves.
+5. The next customer in the queue arrives.
 
 After the feature is stable:
 
@@ -871,18 +856,14 @@ Then:
 
 git status
 git add ...
-git commit -m "feat: add recipe validation"
+git commit -m "feat: add customer system"
 git push
 
 Only after that should development proceed to:
 
-Serve
+Patience
 ↓
-Money
-↓
-Customer departure
-↓
-Next order
+Multiple recipes
 
 ---
 
@@ -947,19 +928,15 @@ Vite
 ✅ Vanilla button
 ✅ Draggable Vanilla scoop
 ✅ cupContents state
+✅ Order state
+✅ Recipe validation
+✅ Serve
+✅ Money
 ✅ VPS Linux development environment
 ✅ VPS build environment
 
 NOT YET IMPLEMENTED:
 
-Order state
-↓
-Recipe validation
-↓
-Serve
-↓
-Money
-↓
 Customer
 ↓
 Patience

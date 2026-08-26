@@ -15,7 +15,9 @@ export class Game extends Scene
         // GAME STATE
         // =========================================================
 
+        this.money = 0;
         this.cupContents = [];
+        this.cupScoopObjects = [];
         this.currentOrder = {
             scoops: ['vanilla'],
             toppings: []
@@ -45,7 +47,7 @@ export class Game extends Scene
             color: '#6b3e26'
         }).setOrigin(0, 0.5);
 
-        this.add.text(width - 30, 40, '$0.00', {
+        this.moneyText = this.add.text(width - 30, 40, '$0.00', {
             fontFamily: 'Arial Black',
             fontSize: 28,
             color: '#6b3e26'
@@ -174,6 +176,37 @@ export class Game extends Scene
         }).setOrigin(0.5);
 
         // =========================================================
+        // SERVE BUTTON
+        // =========================================================
+
+        const serveButton = this.add.rectangle(880, 550, 140, 60, 0x4caf50);
+        const serveText = this.add.text(880, 550, 'SERVE', {
+            fontFamily: 'Arial Black',
+            fontSize: 22,
+            color: '#ffffff'
+        }).setOrigin(0.5);
+
+        serveButton.setInteractive({ useHandCursor: true });
+
+        serveButton.on('pointerover', () => {
+            serveButton.setScale(1.05);
+            serveText.setScale(1.05);
+        });
+
+        serveButton.on('pointerout', () => {
+            serveButton.setScale(1);
+            serveText.setScale(1);
+        });
+
+        serveButton.on('pointerdown', () => {
+            if (this.validationText.text === 'ORDER READY') {
+                this.serveOrder();
+            } else {
+                this.cameras.main.shake(100, 0.01);
+            }
+        });
+
+        // =========================================================
         // INGREDIENT PANEL
         // =========================================================
 
@@ -255,6 +288,31 @@ export class Game extends Scene
                 this.createVanillaScoop();
             }
         });
+    }
+
+    // =============================================================
+    // SERVE ORDER
+    // =============================================================
+
+    serveOrder ()
+    {
+        // Add money
+        this.money += 2.50;
+        this.moneyText.setText('$' + this.money.toFixed(2));
+
+        // Clear data
+        this.cupContents = [];
+        
+        // Clear visual objects
+        this.cupScoopObjects.forEach(scoop => scoop.destroy());
+        this.cupScoopObjects = [];
+
+        // Reset UI
+        this.cupStatusText.setText('0 SCOOP');
+        this.validationText.setText('KEEP BUILDING');
+        this.validationText.setColor('#c28c65');
+        
+        console.log('Order served! Money:', this.money);
     }
 
     // =============================================================
@@ -348,10 +406,14 @@ export class Game extends Scene
             {
                 // Masukkan scoop ke cup
                 scoop.x = cupX;
-                scoop.y = 520;
+                scoop.y = 520 - (this.cupContents.length * 30); // Stack them slightly higher if multiple
+
+                // Disable dragging once in cup
+                this.input.setDraggable(scoop, false);
 
                 // Simpan data scoop
                 this.cupContents.push('vanilla');
+                this.cupScoopObjects.push(scoop);
 
                 // Update status cup
                 this.cupStatusText.setText(

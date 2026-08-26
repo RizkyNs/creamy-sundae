@@ -18,10 +18,14 @@ export class Game extends Scene
         this.money = 0;
         this.cupContents = [];
         this.cupScoopObjects = [];
-        this.currentOrder = {
-            scoops: ['vanilla'],
-            toppings: []
-        };
+        
+        this.customerQueue = [
+            { name: 'Customer 1', order: { name: '1 × Vanilla Sundae', scoops: ['vanilla'] } },
+            { name: 'Customer 2', order: { name: '2 × Vanilla Scoop', scoops: ['vanilla', 'vanilla'] } },
+            { name: 'Customer 3', order: { name: '1 × Vanilla Sundae', scoops: ['vanilla'] } }
+        ];
+        this.currentCustomerIndex = 0;
+        this.currentOrder = null; // Will be set by showNextCustomer
 
         // =========================================================
         // BACKGROUND
@@ -70,9 +74,9 @@ export class Game extends Scene
         }).setOrigin(0.5);
 
         // Temporary customer placeholder
-        this.add.circle(120, 240, 45, 0xf1c27d);
+        this.customerVisual = this.add.circle(120, 240, 45, 0xf1c27d);
 
-        this.add.text(120, 305, 'Customer', {
+        this.customerNameText = this.add.text(120, 305, 'Customer', {
             fontFamily: 'Arial',
             fontSize: 18,
             color: '#6b3e26'
@@ -82,7 +86,7 @@ export class Game extends Scene
         // ORDER TICKET
         // =========================================================
 
-        this.add.rectangle(
+        this.orderTicketBg = this.add.rectangle(
             330,
             230,
             260,
@@ -90,25 +94,25 @@ export class Game extends Scene
             0xffffff
         );
 
-        this.add.text(330, 175, 'ORDER', {
+        this.orderTitleText = this.add.text(330, 175, 'ORDER', {
             fontFamily: 'Arial Black',
             fontSize: 24,
             color: '#6b3e26'
         }).setOrigin(0.5);
 
-        this.add.text(330, 235, '1 × Vanilla Sundae', {
+        this.orderNameText = this.add.text(330, 235, '...', {
             fontFamily: 'Arial',
             fontSize: 22,
             color: '#6b3e26'
         }).setOrigin(0.5);
 
-        this.add.text(330, 280, 'Vanilla', {
+        this.orderDetailText = this.add.text(330, 280, '...', {
             fontFamily: 'Arial',
             fontSize: 20,
             color: '#9b6b43'
         }).setOrigin(0.5);
 
-        this.add.text(330, 325, 'No toppings', {
+        this.orderToppingText = this.add.text(330, 325, 'No toppings', {
             fontFamily: 'Arial',
             fontSize: 18,
             color: '#9b6b43'
@@ -241,6 +245,9 @@ export class Game extends Scene
             'STRAWBERRY',
             0xffa6b6
         );
+
+        // Start first customer
+        this.showNextCustomer();
     }
 
     // =============================================================
@@ -291,6 +298,51 @@ export class Game extends Scene
     }
 
     // =============================================================
+    // CUSTOMER SYSTEM
+    // =============================================================
+
+    showNextCustomer ()
+    {
+        if (this.currentCustomerIndex < this.customerQueue.length)
+        {
+            const customer = this.customerQueue[this.currentCustomerIndex];
+            
+            // Set current order
+            this.currentOrder = customer.order;
+            
+            // Update UI
+            this.customerNameText.setText(customer.name);
+            this.orderNameText.setText(customer.order.name);
+            
+            let detailText = customer.order.scoops.join(', ');
+            this.orderDetailText.setText(detailText);
+
+            // Make customer visible
+            this.customerVisual.setVisible(true);
+            this.customerNameText.setVisible(true);
+            this.orderTicketBg.setVisible(true);
+            this.orderTitleText.setVisible(true);
+            this.orderNameText.setVisible(true);
+            this.orderDetailText.setVisible(true);
+            this.orderToppingText.setVisible(true);
+        }
+        else
+        {
+            // End of day or queue empty
+            this.customerNameText.setText('No more customers');
+            this.orderNameText.setText('-');
+            this.orderDetailText.setText('-');
+            this.orderToppingText.setText('-');
+            this.customerVisual.setVisible(false);
+            
+            this.currentOrder = { scoops: [], toppings: [] };
+        }
+
+        // Validate any existing cup contents against the new order (should be empty, but just in case)
+        this.validateRecipe();
+    }
+
+    // =============================================================
     // SERVE ORDER
     // =============================================================
 
@@ -313,6 +365,10 @@ export class Game extends Scene
         this.validationText.setColor('#c28c65');
         
         console.log('Order served! Money:', this.money);
+
+        // Next customer
+        this.currentCustomerIndex++;
+        this.showNextCustomer();
     }
 
     // =============================================================

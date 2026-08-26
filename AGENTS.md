@@ -839,14 +839,13 @@ Current task
 
 The next feature is:
 
-Customer System
+Patience
 
-Implement the customer logic:
-1. Customers arrive and have a specific order.
-2. The UI placeholder for "Customer" becomes dynamic (e.g. replacing placeholder with generic character or text, and updating the order ticket dynamically).
-3. Wait for the player to press "SERVE".
-4. When served, check the recipe, process payment, and then the customer leaves.
-5. The next customer in the queue arrives.
+Implement the patience system:
+1. Customers have a patience meter or timer.
+2. Patience decreases over time.
+3. When served, the reward might depend on the remaining patience.
+4. If patience runs out, the customer leaves angrily.
 
 After the feature is stable:
 
@@ -856,7 +855,7 @@ Then:
 
 git status
 git add ...
-git commit -m "feat: add customer system"
+git commit -m "feat: add customer patience"
 git push
 
 Only after that should development proceed to:
@@ -932,13 +931,12 @@ Vite
 ✅ Recipe validation
 ✅ Serve
 ✅ Money
+✅ Customer
 ✅ VPS Linux development environment
 ✅ VPS build environment
 
 NOT YET IMPLEMENTED:
 
-Customer
-↓
 Patience
 ↓
 Multiple recipes

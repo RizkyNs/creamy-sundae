@@ -16,6 +16,10 @@ export class Game extends Scene
         // =========================================================
 
         this.cupContents = [];
+        this.currentOrder = {
+            scoops: ['vanilla'],
+            toppings: []
+        };
 
         // =========================================================
         // BACKGROUND
@@ -106,6 +110,16 @@ export class Game extends Scene
             fontFamily: 'Arial',
             fontSize: 18,
             color: '#9b6b43'
+        }).setOrigin(0.5);
+
+        // =========================================================
+        // VALIDATION STATUS
+        // =========================================================
+
+        this.validationText = this.add.text(330, 400, 'KEEP BUILDING', {
+            fontFamily: 'Arial Black',
+            fontSize: 22,
+            color: '#c28c65'
         }).setOrigin(0.5);
 
         // =========================================================
@@ -244,6 +258,48 @@ export class Game extends Scene
     }
 
     // =============================================================
+    // RECIPE VALIDATION
+    // =============================================================
+
+    validateRecipe ()
+    {
+        let status = 'ORDER READY';
+
+        if (this.cupContents.length > this.currentOrder.scoops.length)
+        {
+            status = 'WRONG ORDER';
+        }
+        else
+        {
+            for (let i = 0; i < this.cupContents.length; i++)
+            {
+                if (this.cupContents[i] !== this.currentOrder.scoops[i])
+                {
+                    status = 'WRONG ORDER';
+                    break;
+                }
+            }
+
+            if (status !== 'WRONG ORDER' && this.cupContents.length < this.currentOrder.scoops.length)
+            {
+                status = 'KEEP BUILDING';
+            }
+        }
+
+        this.validationText.setText(status);
+
+        if (status === 'ORDER READY') {
+            this.validationText.setColor('#4caf50');
+        } else if (status === 'WRONG ORDER') {
+            this.validationText.setColor('#f44336');
+        } else {
+            this.validationText.setColor('#c28c65');
+        }
+
+        console.log('Recipe Status:', status);
+    }
+
+    // =============================================================
     // CREATE VANILLA SCOOP
     // =============================================================
 
@@ -306,6 +362,8 @@ export class Game extends Scene
                     'Cup contents:',
                     this.cupContents
                 );
+
+                this.validateRecipe();
             }
             else
             {

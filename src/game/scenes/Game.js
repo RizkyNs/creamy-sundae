@@ -20,12 +20,15 @@ export class Game extends Scene
         this.cupScoopObjects = [];
         
         this.customerQueue = [
-            { name: 'Customer 1', order: { name: '1 × Vanilla Sundae', scoops: ['vanilla'] } },
-            { name: 'Customer 2', order: { name: '2 × Vanilla Scoop', scoops: ['vanilla', 'vanilla'] } },
-            { name: 'Customer 3', order: { name: '1 × Vanilla Sundae', scoops: ['vanilla'] } }
+            { name: 'Customer 1', maxPatience: 25, order: { name: '1 × Vanilla Sundae', scoops: ['vanilla'] } },
+            { name: 'Customer 2', maxPatience: 20, order: { name: '2 × Vanilla Scoop', scoops: ['vanilla', 'vanilla'] } },
+            { name: 'Customer 3', maxPatience: 30, order: { name: '1 × Vanilla Sundae', scoops: ['vanilla'] } }
         ];
         this.currentCustomerIndex = 0;
         this.currentOrder = null; // Will be set by showNextCustomer
+        this.currentPatience = 0;
+        this.maxPatience = 0;
+        this.patienceActive = false;
 
         // =========================================================
         // BACKGROUND
@@ -79,6 +82,15 @@ export class Game extends Scene
         this.customerNameText = this.add.text(120, 305, 'Customer', {
             fontFamily: 'Arial',
             fontSize: 18,
+            color: '#6b3e26'
+        }).setOrigin(0.5);
+
+        // Patience Meter (Bar)
+        this.patienceBarBg = this.add.rectangle(120, 335, 100, 14, 0xdddddd).setOrigin(0.5);
+        this.patienceBarFill = this.add.rectangle(70, 335, 100, 14, 0x4caf50).setOrigin(0, 0.5);
+        this.patienceText = this.add.text(120, 355, '100%', {
+            fontFamily: 'Arial',
+            fontSize: 14,
             color: '#6b3e26'
         }).setOrigin(0.5);
 
@@ -310,6 +322,12 @@ export class Game extends Scene
             // Set current order
             this.currentOrder = customer.order;
             
+            // Setup Patience
+            this.maxPatience = customer.maxPatience || 20;
+            this.currentPatience = this.maxPatience;
+            this.patienceActive = true;
+            this.updatePatienceUI();
+
             // Update UI
             this.customerNameText.setText(customer.name);
             this.orderNameText.setText(customer.order.name);
@@ -320,6 +338,10 @@ export class Game extends Scene
             // Make customer visible
             this.customerVisual.setVisible(true);
             this.customerNameText.setVisible(true);
+            this.patienceBarBg.setVisible(true);
+            this.patienceBarFill.setVisible(true);
+            this.patienceText.setVisible(true);
+
             this.orderTicketBg.setVisible(true);
             this.orderTitleText.setVisible(true);
             this.orderNameText.setVisible(true);
@@ -329,11 +351,15 @@ export class Game extends Scene
         else
         {
             // End of day or queue empty
+            this.patienceActive = false;
             this.customerNameText.setText('No more customers');
             this.orderNameText.setText('-');
             this.orderDetailText.setText('-');
             this.orderToppingText.setText('-');
             this.customerVisual.setVisible(false);
+            this.patienceBarBg.setVisible(false);
+            this.patienceBarFill.setVisible(false);
+            this.patienceText.setVisible(false);
             
             this.currentOrder = { scoops: [], toppings: [] };
         }
@@ -342,14 +368,86 @@ export class Game extends Scene
         this.validateRecipe();
     }
 
+    updatePatienceUI ()
+    {
+        const ratio = Math.max(0, this.currentPatience / this.maxPatience);
+        this.patienceBarFill.setSize(100 * ratio, 14);
+
+        const percent = Math.ceil(ratio * 100);
+        this.patienceText.setText(`${percent}%`);
+
+        if (ratio > 0.5)
+        {
+            this.patienceBarFill.setFillStyle(0x4caf50); // Green
+        }
+        else if (ratio > 0.25)
+        {
+            this.patienceBarFill.setFillStyle(0xff9800); // Orange
+        }
+        else
+        {
+            this.patienceBarFill.setFillStyle(0xf44336); // Red
+        }
+    }
+
+    customerLeavesAngrily ()
+    {
+        this.patienceActive = false;
+        console.log('Customer ran out of patience and left!');
+
+        // Flash red & shake camera
+        this.cameras.main.shake(200, 0.015);
+        this.customerVisual.setFillStyle(0xf44336);
+
+        // Clear cup contents if player had prepared something
+        this.cupContents = [];
+        this.cupScoopObjects.forEach(scoop => scoop.destroy());
+        this.cupScoopObjects = [];
+        this.cupStatusText.setText('0 SCOOP');
+        this.validationText.setText('CUSTOMER LEFT');
+        this.validationText.setColor('#f44336');
+
+        this.time.delayedCall(1000, () => {
+            this.customerVisual.setFillStyle(0xf1c27d);
+            this.currentCustomerIndex++;
+            this.showNextCustomer();
+        });
+    }
+
+    update (time, delta)
+    {
+        if (this.patienceActive && this.currentPatience > 0)
+        {
+            this.currentPatience -= (delta / 1000); // delta is in ms
+            this.updatePatienceUI();
+
+            if (this.currentPatience <= 0)
+            {
+                this.currentPatience = 0;
+                this.customerLeavesAngrily();
+            }
+        }
+    }
+
     // =============================================================
     // SERVE ORDER
     // =============================================================
 
     serveOrder ()
     {
-        // Add money
-        this.money += 2.50;
+        this.patienceActive = false;
+
+        // Base reward + Tip based on patience ratio
+        const patienceRatio = this.currentPatience / this.maxPatience;
+        let tip = 0;
+        if (patienceRatio > 0.7) {
+            tip = 1.00; // fast service tip
+        } else if (patienceRatio > 0.4) {
+            tip = 0.50;
+        }
+
+        const totalEarned = 2.50 + tip;
+        this.money += totalEarned;
         this.moneyText.setText('$' + this.money.toFixed(2));
 
         // Clear data
@@ -361,14 +459,16 @@ export class Game extends Scene
 
         // Reset UI
         this.cupStatusText.setText('0 SCOOP');
-        this.validationText.setText('KEEP BUILDING');
-        this.validationText.setColor('#c28c65');
+        this.validationText.setText(tip > 0 ? `SERVED! +$${totalEarned.toFixed(2)} (+$${tip.toFixed(2)} tip)` : `SERVED! +$${totalEarned.toFixed(2)}`);
+        this.validationText.setColor('#4caf50');
         
-        console.log('Order served! Money:', this.money);
+        console.log(`Order served! Earned: $${totalEarned.toFixed(2)}. Total Money:`, this.money);
 
-        // Next customer
-        this.currentCustomerIndex++;
-        this.showNextCustomer();
+        // Next customer after brief delay
+        this.time.delayedCall(600, () => {
+            this.currentCustomerIndex++;
+            this.showNextCustomer();
+        });
     }
 
     // =============================================================

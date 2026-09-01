@@ -839,13 +839,13 @@ Current task
 
 The next feature is:
 
-Patience
+Multiple recipes
 
-Implement the patience system:
-1. Customers have a patience meter or timer.
-2. Patience decreases over time.
-3. When served, the reward might depend on the remaining patience.
-4. If patience runs out, the customer leaves angrily.
+Implement multiple flavors and complex recipe validation:
+1. Enable Chocolate and Strawberry scoop buttons.
+2. Allow draggable scoops for Chocolate and Strawberry.
+3. Support orders with combinations of flavors (e.g. Vanilla + Chocolate, Strawberry Sundae).
+4. Update recipe validation to handle multiple ingredient types.
 
 After the feature is stable:
 
@@ -855,14 +855,14 @@ Then:
 
 git status
 git add ...
-git commit -m "feat: add customer patience"
+git commit -m "feat: add multiple recipes and flavors"
 git push
 
 Only after that should development proceed to:
 
-Patience
-↓
 Multiple recipes
+↓
+Day system
 
 ---
 
@@ -932,13 +932,12 @@ Vite
 ✅ Serve
 ✅ Money
 ✅ Customer
+✅ Patience
 ✅ VPS Linux development environment
 ✅ VPS build environment
 
 NOT YET IMPLEMENTED:
 
-Patience
-↓
 Multiple recipes
 ↓
 Day system

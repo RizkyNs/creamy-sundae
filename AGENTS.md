@@ -835,6 +835,18 @@ Avoid giant commits containing unrelated systems.
 
 ---
 
+Planned Future Mechanics (Pengerjaan Masa Depan)
+
+Alur Baru Pembuatan Es Krim (Realistic Scooping Flow):
+1. Pemain memegang / menggerakkan alat sekop (scooper).
+2. Sekop diarahkan ke bak es krim (3 varian: Vanilla, Chocolate, Strawberry).
+3. Animasi menyekop es krim dari dalam bak.
+4. Sekop yang kini berisi es krim diarahkan ke wadah penyajian (Waffle Cone atau Cup).
+5. Animasi menaruh es krim ke dalam wadah.
+*(Catatan: Fitur ini direncanakan untuk diimplementasikan saat aset visual/animasi siap).*
+
+---
+
 Current task
 
 The next feature is:
@@ -862,6 +874,8 @@ Only after that should development proceed to:
 Shop upgrades
 ↓
 Cone vs Cup variants
+↓
+Realistic Scooping Flow (Future Animation)
 ↓
 Polish
 

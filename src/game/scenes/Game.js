@@ -46,203 +46,115 @@ export class Game extends Scene
 
         this.add.rectangle(
             width / 2,
-            40,
+            35,
             width,
-            80,
+            70,
             0xffd9b8
         );
 
-        this.add.text(30, 40, 'CREAMY SUNDAE', {
+        this.add.text(30, 35, 'CREAMY SUNDAE', {
             fontFamily: 'Arial Black',
-            fontSize: 28,
+            fontSize: 24,
             color: '#6b3e26'
         }).setOrigin(0, 0.5);
 
-        this.moneyText = this.add.text(width - 30, 40, '$0.00', {
+        this.dayText = this.add.text(width - 180, 35, 'DAY 1', {
             fontFamily: 'Arial Black',
-            fontSize: 28,
-            color: '#6b3e26'
-        }).setOrigin(1, 0.5);
-
-        this.dayText = this.add.text(width - 120, 40, 'DAY 1', {
-            fontFamily: 'Arial',
-            fontSize: 20,
+            fontSize: 18,
             color: '#8b6045'
         }).setOrigin(1, 0.5);
 
+        this.moneyText = this.add.text(width - 30, 35, '$0.00', {
+            fontFamily: 'Arial Black',
+            fontSize: 24,
+            color: '#2e7d32'
+        }).setOrigin(1, 0.5);
+
         // =========================================================
-        // CUSTOMER / ORDER AREA
+        // CUSTOMER AREA (Top-Left)
         // =========================================================
 
-        this.add.text(120, 155, 'CUSTOMER', {
+        this.add.text(140, 95, 'CUSTOMER', {
             fontFamily: 'Arial Black',
-            fontSize: 22,
+            fontSize: 16,
             color: '#6b3e26'
         }).setOrigin(0.5);
 
-        // Temporary customer placeholder
-        this.customerVisual = this.add.circle(120, 240, 45, 0xf1c27d);
+        // Customer Avatar Placeholder
+        this.customerVisual = this.add.circle(140, 175, 45, 0xf1c27d);
 
-        this.customerNameText = this.add.text(120, 305, 'Customer', {
+        this.customerNameText = this.add.text(140, 235, 'Customer', {
             fontFamily: 'Arial',
-            fontSize: 18,
+            fontSize: 16,
             color: '#6b3e26'
         }).setOrigin(0.5);
 
         // Patience Meter (Bar)
-        this.patienceBarBg = this.add.rectangle(120, 335, 100, 14, 0xdddddd).setOrigin(0.5);
-        this.patienceBarFill = this.add.rectangle(70, 335, 100, 14, 0x4caf50).setOrigin(0, 0.5);
-        this.patienceText = this.add.text(120, 355, '100%', {
+        this.patienceBarBg = this.add.rectangle(140, 265, 110, 14, 0xdddddd).setOrigin(0.5);
+        this.patienceBarFill = this.add.rectangle(85, 265, 110, 14, 0x4caf50).setOrigin(0, 0.5);
+        this.patienceText = this.add.text(140, 285, '100%', {
             fontFamily: 'Arial',
-            fontSize: 14,
+            fontSize: 13,
             color: '#6b3e26'
         }).setOrigin(0.5);
 
         // =========================================================
-        // ORDER TICKET
+        // ORDER TICKET (Top-Center)
         // =========================================================
 
         this.orderTicketBg = this.add.rectangle(
-            330,
-            240,
-            270,
-            190,
+            460,
+            205,
+            340,
+            195,
             0xffffff
         );
+        this.orderTicketBg.setStrokeStyle(3, 0x6b3e26);
 
-        this.orderTitleText = this.add.text(330, 165, 'ORDER', {
+        this.orderTitleText = this.add.text(460, 135, 'ORDER TICKET', {
             fontFamily: 'Arial Black',
-            fontSize: 24,
+            fontSize: 18,
             color: '#6b3e26'
         }).setOrigin(0.5);
 
-        this.orderNameText = this.add.text(330, 210, '...', {
+        this.orderNameText = this.add.text(460, 175, '...', {
+            fontFamily: 'Arial Black',
+            fontSize: 17,
+            color: '#4a2810'
+        }).setOrigin(0.5);
+
+        this.orderDetailText = this.add.text(460, 215, '...', {
             fontFamily: 'Arial',
+            fontSize: 16,
+            color: '#795548'
+        }).setOrigin(0.5);
+
+        this.orderDrinkText = this.add.text(460, 250, 'Drink: None', {
+            fontFamily: 'Arial',
+            fontSize: 16,
+            color: '#795548'
+        }).setOrigin(0.5);
+
+        // =========================================================
+        // STATUS & SERVE ACTION (Top-Right)
+        // =========================================================
+
+        this.add.text(820, 110, 'ORDER STATUS', {
+            fontFamily: 'Arial Black',
+            fontSize: 16,
+            color: '#6b3e26'
+        }).setOrigin(0.5);
+
+        this.validationText = this.add.text(820, 150, 'KEEP BUILDING', {
+            fontFamily: 'Arial Black',
             fontSize: 20,
-            color: '#6b3e26'
-        }).setOrigin(0.5);
-
-        this.orderDetailText = this.add.text(330, 250, '...', {
-            fontFamily: 'Arial',
-            fontSize: 18,
-            color: '#9b6b43'
-        }).setOrigin(0.5);
-
-        this.orderDrinkText = this.add.text(330, 290, 'Drink: None', {
-            fontFamily: 'Arial',
-            fontSize: 18,
-            color: '#9b6b43'
-        }).setOrigin(0.5);
-
-        // =========================================================
-        // VALIDATION STATUS
-        // =========================================================
-
-        this.validationText = this.add.text(330, 390, 'KEEP BUILDING', {
-            fontFamily: 'Arial Black',
-            fontSize: 22,
             color: '#c28c65'
         }).setOrigin(0.5);
 
-        // =========================================================
-        // WORK AREA
-        // =========================================================
-
-        this.add.rectangle(
-            width / 2 + 120,
-            500,
-            650,
-            250,
-            0xe8c49d
-        );
-
-        this.add.text(
-            width / 2 + 120,
-            410,
-            'WORK AREA',
-            {
-                fontFamily: 'Arial Black',
-                fontSize: 24,
-                color: '#6b3e26'
-            }
-        ).setOrigin(0.5);
-
-        // =========================================================
-        // DRINK STATION
-        // =========================================================
-
-        this.add.text(460, 440, 'SODA DISPENSER', {
+        const serveButton = this.add.rectangle(820, 225, 180, 60, 0x4caf50);
+        const serveText = this.add.text(820, 225, 'SERVE ORDER', {
             fontFamily: 'Arial Black',
-            fontSize: 14,
-            color: '#6b3e26'
-        }).setOrigin(0.5);
-
-        // Cola Dispenser Button
-        this.createDrinkButton(415, 475, 'COLA', 0x3d1d11);
-
-        // Lemon Soda Dispenser Button
-        this.createDrinkButton(505, 475, 'LEMON', 0xfbc02d, '#333333');
-
-        // Drink Cup Slot
-        this.drinkCupBg = this.add.rectangle(460, 560, 75, 80, 0xffffff);
-        this.drinkCupBg.setStrokeStyle(3, 0x6b3e26);
-
-        this.drinkCupFill = this.add.rectangle(460, 565, 65, 60, 0x3d1d11);
-        this.drinkCupFill.setVisible(false);
-
-        this.drinkStatusText = this.add.text(460, 560, 'NO DRINK', {
-            fontFamily: 'Arial Black',
-            fontSize: 13,
-            color: '#8b6045',
-            align: 'center'
-        }).setOrigin(0.5);
-
-        // Clear Drink Button
-        const clearDrinkBtn = this.add.rectangle(518, 560, 24, 24, 0xef5350);
-        const clearDrinkTxt = this.add.text(518, 560, '✕', {
-            fontFamily: 'Arial Black',
-            fontSize: 14,
-            color: '#ffffff'
-        }).setOrigin(0.5);
-        clearDrinkBtn.setInteractive({ useHandCursor: true });
-        clearDrinkBtn.on('pointerdown', () => this.clearDrink());
-
-        // =========================================================
-        // CUP
-        // =========================================================
-
-        this.cup = this.add.rectangle(
-            690,
-            550,
-            140,
-            110,
-            0xffffff
-        );
-
-        this.add.text(690, 550, 'CUP', {
-            fontFamily: 'Arial Black',
-            fontSize: 26,
-            color: '#d19a76'
-        }).setOrigin(0.5);
-
-        // =========================================================
-        // CUP STATUS
-        // =========================================================
-
-        this.cupStatusText = this.add.text(690, 610, '0 SCOOP', {
-            fontFamily: 'Arial Black',
-            fontSize: 20,
-            color: '#6b3e26'
-        }).setOrigin(0.5);
-
-        // =========================================================
-        // SERVE BUTTON
-        // =========================================================
-
-        const serveButton = this.add.rectangle(870, 550, 130, 60, 0x4caf50);
-        const serveText = this.add.text(870, 550, 'SERVE', {
-            fontFamily: 'Arial Black',
-            fontSize: 22,
+            fontSize: 18,
             color: '#ffffff'
         }).setOrigin(0.5);
 
@@ -259,7 +171,7 @@ export class Game extends Scene
         });
 
         serveButton.on('pointerdown', () => {
-            if (this.validationText.text === 'ORDER READY') {
+            if (this.validationText.text.startsWith('ORDER READY')) {
                 this.serveOrder();
             } else {
                 this.cameras.main.shake(100, 0.01);
@@ -267,40 +179,99 @@ export class Game extends Scene
         });
 
         // =========================================================
-        // INGREDIENT PANEL
+        // COUNTER TABLE (Bottom Half)
         // =========================================================
 
-        this.add.text(
+        // Counter surface
+        this.add.rectangle(
             width / 2,
-            height - 165,
-            'INGREDIENTS',
-            {
-                fontFamily: 'Arial Black',
-                fontSize: 24,
-                color: '#6b3e26'
-            }
-        ).setOrigin(0.5);
-
-        this.createIngredientButton(
-            250,
-            height - 85,
-            'VANILLA',
-            0xfff5d6
+            550,
+            width,
+            440,
+            0xe8c49d
         );
 
-        this.createIngredientButton(
-            510,
-            height - 85,
-            'CHOCOLATE',
-            0x8b5a3c
+        // Wood trim separator
+        this.add.rectangle(
+            width / 2,
+            335,
+            width,
+            10,
+            0xa26941
         );
 
-        this.createIngredientButton(
-            770,
-            height - 85,
-            'STRAWBERRY',
-            0xffa6b6
-        );
+        // ---------------------------------------------------------
+        // 1. ICE CREAM DISPLAY CASE (Left/Center Counter)
+        // ---------------------------------------------------------
+        const displayBox = this.add.rectangle(350, 545, 560, 370, 0xfdf6ec);
+        displayBox.setStrokeStyle(3, 0x8b5a3c);
+
+        this.add.text(350, 385, '🍦 ICE CREAM DISPLAY CASE', {
+            fontFamily: 'Arial Black',
+            fontSize: 17,
+            color: '#6b3e26'
+        }).setOrigin(0.5);
+
+        // 3 Flavor Tubs
+        this.createIngredientButton(180, 460, 'VANILLA', 0xfff5d6);
+        this.createIngredientButton(350, 460, 'CHOCOLATE', 0x8b5a3c);
+        this.createIngredientButton(520, 460, 'STRAWBERRY', 0xffa6b6);
+
+        // Cup Slot (inside display workstation)
+        this.cup = this.add.rectangle(350, 620, 150, 95, 0xffffff);
+        this.cup.setStrokeStyle(3, 0x6b3e26);
+
+        this.add.text(350, 620, 'CUP', {
+            fontFamily: 'Arial Black',
+            fontSize: 22,
+            color: '#d19a76'
+        }).setOrigin(0.5);
+
+        this.cupStatusText = this.add.text(350, 680, '0 SCOOP', {
+            fontFamily: 'Arial Black',
+            fontSize: 16,
+            color: '#6b3e26'
+        }).setOrigin(0.5);
+
+        // ---------------------------------------------------------
+        // 2. SODA FOUNTAIN (Right Counter)
+        // ---------------------------------------------------------
+        const sodaBox = this.add.rectangle(820, 545, 270, 370, 0xfdf6ec);
+        sodaBox.setStrokeStyle(3, 0x8b5a3c);
+
+        this.add.text(820, 385, '🥤 SODA FOUNTAIN', {
+            fontFamily: 'Arial Black',
+            fontSize: 17,
+            color: '#6b3e26'
+        }).setOrigin(0.5);
+
+        // Dispenser buttons
+        this.createDrinkButton(755, 460, 'COLA', 0x3d1d11);
+        this.createDrinkButton(865, 460, 'LEMON', 0xfbc02d, '#333333');
+
+        // Drink Cup Slot
+        this.drinkCupBg = this.add.rectangle(810, 615, 80, 90, 0xffffff);
+        this.drinkCupBg.setStrokeStyle(3, 0x6b3e26);
+
+        this.drinkCupFill = this.add.rectangle(810, 620, 70, 75, 0x3d1d11);
+        this.drinkCupFill.setVisible(false);
+
+        this.drinkStatusText = this.add.text(810, 615, 'NO DRINK', {
+            fontFamily: 'Arial Black',
+            fontSize: 13,
+            color: '#8b6045',
+            align: 'center'
+        }).setOrigin(0.5);
+
+        // Clear Drink Button
+        const clearDrinkBtn = this.add.rectangle(885, 615, 26, 26, 0xef5350);
+        const clearDrinkTxt = this.add.text(885, 615, '✕', {
+            fontFamily: 'Arial Black',
+            fontSize: 14,
+            color: '#ffffff'
+        }).setOrigin(0.5);
+        clearDrinkBtn.setInteractive({ useHandCursor: true });
+        clearDrinkBtn.on('pointerdown', () => this.clearDrink());
 
         // Start first day
         this.startDay(1);
@@ -547,17 +518,19 @@ export class Game extends Scene
         const button = this.add.rectangle(
             x,
             y,
-            210,
-            80,
+            140,
+            75,
             color
         );
+        button.setStrokeStyle(3, 0x6b3e26);
 
+        const textColor = (label === 'VANILLA' || label === 'STRAWBERRY') ? '#4a2810' : '#ffffff';
         const text = this.add.text(x, y, label, {
             fontFamily: 'Arial Black',
-            fontSize: 20,
-            color: '#ffffff',
-            stroke: '#000000',
-            strokeThickness: 4
+            fontSize: 14,
+            color: textColor,
+            stroke: (label === 'CHOCOLATE') ? '#000000' : '#ffffff',
+            strokeThickness: 2
         }).setOrigin(0.5);
 
         button.setInteractive({
@@ -579,7 +552,7 @@ export class Game extends Scene
         button.on('pointerdown', () =>
         {
             const flavor = label.toLowerCase();
-            this.createScoop(flavor);
+            this.createScoop(flavor, x, y);
         });
     }
 
@@ -643,7 +616,7 @@ export class Game extends Scene
     updatePatienceUI ()
     {
         const ratio = Math.max(0, this.currentPatience / this.maxPatience);
-        this.patienceBarFill.setSize(100 * ratio, 14);
+        this.patienceBarFill.setSize(110 * ratio, 14);
 
         const percent = Math.ceil(ratio * 100);
         this.patienceText.setText(`${percent}%`);
@@ -840,7 +813,7 @@ export class Game extends Scene
     // CREATE SCOOP (ALL FLAVORS)
     // =============================================================
 
-    createScoop (flavor)
+    createScoop (flavor, spawnX = 350, spawnY = 460)
     {
         const flavorConfigs = {
             vanilla: {
@@ -860,14 +833,14 @@ export class Game extends Scene
         const config = flavorConfigs[flavor] || flavorConfigs.vanilla;
 
         const scoop = this.add.circle(
-            700,
-            470,
-            35,
+            spawnX,
+            spawnY,
+            33,
             config.color
         );
 
         scoop.setStrokeStyle(
-            4,
+            3,
             config.stroke
         );
 
@@ -890,8 +863,8 @@ export class Game extends Scene
         {
             scoop.setScale(1);
 
-            const cupX = 700;
-            const cupY = 550;
+            const cupX = 350;
+            const cupY = 620;
 
             const distance = Math.hypot(
                 scoop.x - cupX,
@@ -902,7 +875,7 @@ export class Game extends Scene
             {
                 // Masukkan scoop ke cup
                 scoop.x = cupX;
-                scoop.y = 520 - (this.cupContents.length * 30); // Stack them slightly higher if multiple
+                scoop.y = 590 - (this.cupContents.length * 25); // Stack them neatly inside cup
 
                 // Disable dragging once in cup
                 this.input.setDraggable(scoop, false);

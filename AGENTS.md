@@ -839,13 +839,12 @@ Current task
 
 The next feature is:
 
-Day system
+Shop upgrades
 
-Implement day loop and progression:
-1. Day starts with a target customer count or goal.
-2. End of Day screen / summary when all customers in queue are served.
-3. Show stats (total money earned, customers served, tips received).
-4. Transition to next day (e.g. Day 2) with new customer queue / orders.
+Implement shop upgrade system:
+1. Upgrade scene or shop modal accessible after day summary.
+2. Purchasable upgrades with earned money (e.g. Faster customer patience, extra tip multiplier, new decorations).
+3. Apply upgrade bonuses to gameplay loop.
 
 After the feature is stable:
 
@@ -855,14 +854,14 @@ Then:
 
 git status
 git add ...
-git commit -m "feat: add day progression system"
+git commit -m "feat: add shop upgrade system"
 git push
 
 Only after that should development proceed to:
 
-Day system
-↓
 Shop upgrades
+↓
+Toppings & Sauces
 
 ---
 
@@ -934,13 +933,12 @@ Vite
 ✅ Customer
 ✅ Patience
 ✅ Multiple recipes
+✅ Day system
 ✅ VPS Linux development environment
 ✅ VPS build environment
 
 NOT YET IMPLEMENTED:
 
-Day system
-↓
 Shop upgrades
 ↓
 Polish

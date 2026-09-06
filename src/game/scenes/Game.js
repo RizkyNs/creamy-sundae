@@ -16,16 +16,17 @@ export class Game extends Scene
         // =========================================================
 
         this.money = 0;
+        this.day = 1;
         this.cupContents = [];
         this.cupScoopObjects = [];
         
-        this.customerQueue = [
-            { name: 'Customer 1', maxPatience: 25, order: { name: '1 × Vanilla Scoop', scoops: ['vanilla'] } },
-            { name: 'Customer 2', maxPatience: 25, order: { name: '1 × Chocolate Scoop', scoops: ['chocolate'] } },
-            { name: 'Customer 3', maxPatience: 25, order: { name: '1 × Strawberry Scoop', scoops: ['strawberry'] } },
-            { name: 'Customer 4', maxPatience: 30, order: { name: '1 × Choco-Vanilla Duo', scoops: ['chocolate', 'vanilla'] } },
-            { name: 'Customer 5', maxPatience: 35, order: { name: '1 × Neapolitan Trio', scoops: ['chocolate', 'vanilla', 'strawberry'] } }
-        ];
+        // Day stats
+        this.dayEarnings = 0;
+        this.dayServedCount = 0;
+        this.dayLostCount = 0;
+        this.dayTips = 0;
+
+        this.customerQueue = [];
         this.currentCustomerIndex = 0;
         this.currentOrder = null; // Will be set by showNextCustomer
         this.currentPatience = 0;
@@ -62,7 +63,7 @@ export class Game extends Scene
             color: '#6b3e26'
         }).setOrigin(1, 0.5);
 
-        this.add.text(width - 120, 40, 'DAY 1', {
+        this.dayText = this.add.text(width - 120, 40, 'DAY 1', {
             fontFamily: 'Arial',
             fontSize: 20,
             color: '#8b6045'
@@ -260,8 +261,165 @@ export class Game extends Scene
             0xffa6b6
         );
 
-        // Start first customer
+        // Start first day
+        this.startDay(1);
+    }
+
+    // =============================================================
+    // DAY SYSTEM
+    // =============================================================
+
+    startDay (dayNumber)
+    {
+        this.day = dayNumber;
+        this.dayText.setText(`DAY ${this.day}`);
+
+        // Reset day stats
+        this.dayEarnings = 0;
+        this.dayServedCount = 0;
+        this.dayLostCount = 0;
+        this.dayTips = 0;
+
+        // Generate day customer queue
+        this.customerQueue = this.generateCustomerQueue(this.day);
+        this.currentCustomerIndex = 0;
+
+        // Hide day summary if open
+        if (this.daySummaryContainer) {
+            this.daySummaryContainer.destroy();
+            this.daySummaryContainer = null;
+        }
+
+        console.log(`Starting Day ${this.day} with ${this.customerQueue.length} customers!`);
         this.showNextCustomer();
+    }
+
+    generateCustomerQueue (day)
+    {
+        const possibleOrders = [
+            { name: '1 × Vanilla Scoop', scoops: ['vanilla'] },
+            { name: '1 × Chocolate Scoop', scoops: ['chocolate'] },
+            { name: '1 × Strawberry Scoop', scoops: ['strawberry'] },
+            { name: '1 × Choco-Vanilla Duo', scoops: ['chocolate', 'vanilla'] },
+            { name: '1 × Strawberry-Vanilla Duo', scoops: ['strawberry', 'vanilla'] },
+            { name: '1 × Neapolitan Trio', scoops: ['chocolate', 'vanilla', 'strawberry'] }
+        ];
+
+        // Customer count increases slightly per day (prototype: 3 + day)
+        const count = Math.min(8, 3 + day);
+        const queue = [];
+
+        for (let i = 1; i <= count; i++) {
+            // Pick available order based on day difficulty
+            let maxOrderIndex = Math.min(possibleOrders.length, 2 + day);
+            const randomOrder = possibleOrders[Math.floor(Math.random() * maxOrderIndex)];
+            
+            // Patience: 20 - 30 seconds
+            const patience = Math.max(15, 30 - (day * 2) + Math.floor(Math.random() * 6));
+
+            queue.push({
+                name: `Customer ${i}`,
+                maxPatience: patience,
+                order: { ...randomOrder, toppings: [] }
+            });
+        }
+
+        return queue;
+    }
+
+    endDay ()
+    {
+        this.patienceActive = false;
+        console.log(`Day ${this.day} ended! Stats:`, {
+            earnings: this.dayEarnings,
+            served: this.dayServedCount,
+            lost: this.dayLostCount,
+            tips: this.dayTips
+        });
+
+        // Hide work UI elements
+        this.customerVisual.setVisible(false);
+        this.customerNameText.setVisible(false);
+        this.patienceBarBg.setVisible(false);
+        this.patienceBarFill.setVisible(false);
+        this.patienceText.setVisible(false);
+
+        this.orderTicketBg.setVisible(false);
+        this.orderTitleText.setVisible(false);
+        this.orderNameText.setVisible(false);
+        this.orderDetailText.setVisible(false);
+        this.orderToppingText.setVisible(false);
+
+        this.validationText.setText('DAY COMPLETED!');
+        this.validationText.setColor('#4caf50');
+
+        // Create End of Day Summary Modal
+        const { width, height } = this.scale;
+        this.daySummaryContainer = this.add.container(width / 2, height / 2);
+
+        // Modal backdrop overlay
+        const overlay = this.add.rectangle(0, 0, width, height, 0x000000, 0.5);
+        overlay.setInteractive(); // blocks clicks behind
+
+        // Modal window
+        const modalBox = this.add.rectangle(0, 0, 480, 420, 0xfff9ef);
+        modalBox.setStrokeStyle(6, 0x6b3e26);
+
+        // Header
+        const headerText = this.add.text(0, -160, `DAY ${this.day} SUMMARY`, {
+            fontFamily: 'Arial Black',
+            fontSize: 28,
+            color: '#6b3e26'
+        }).setOrigin(0.5);
+
+        // Stats Lines
+        const statsContent = [
+            `Customers Served:  ${this.dayServedCount}`,
+            `Customers Lost:    ${this.dayLostCount}`,
+            `Day Earnings:      $${this.dayEarnings.toFixed(2)}`,
+            `Tips Received:     $${this.dayTips.toFixed(2)}`,
+            `Total Savings:     $${this.money.toFixed(2)}`
+        ];
+
+        const statsText = this.add.text(0, -40, statsContent.join('\n\n'), {
+            fontFamily: 'Arial',
+            fontSize: 20,
+            color: '#5c3a21',
+            align: 'center'
+        }).setOrigin(0.5);
+
+        // Next Day Button
+        const nextDayBtn = this.add.rectangle(0, 140, 220, 55, 0x4caf50);
+        nextDayBtn.setInteractive({ useHandCursor: true });
+
+        const btnText = this.add.text(0, 140, `START DAY ${this.day + 1}`, {
+            fontFamily: 'Arial Black',
+            fontSize: 20,
+            color: '#ffffff'
+        }).setOrigin(0.5);
+
+        nextDayBtn.on('pointerover', () => {
+            nextDayBtn.setScale(1.05);
+            btnText.setScale(1.05);
+        });
+
+        nextDayBtn.on('pointerout', () => {
+            nextDayBtn.setScale(1);
+            btnText.setScale(1);
+        });
+
+        nextDayBtn.on('pointerdown', () => {
+            this.startDay(this.day + 1);
+        });
+
+        this.daySummaryContainer.add([
+            overlay,
+            modalBox,
+            headerText,
+            statsText,
+            nextDayBtn,
+            btnText
+        ]);
     }
 
     // =============================================================
@@ -350,18 +508,9 @@ export class Game extends Scene
         }
         else
         {
-            // End of day or queue empty
-            this.patienceActive = false;
-            this.customerNameText.setText('No more customers');
-            this.orderNameText.setText('-');
-            this.orderDetailText.setText('-');
-            this.orderToppingText.setText('-');
-            this.customerVisual.setVisible(false);
-            this.patienceBarBg.setVisible(false);
-            this.patienceBarFill.setVisible(false);
-            this.patienceText.setVisible(false);
-            
-            this.currentOrder = { scoops: [], toppings: [] };
+            // End of day
+            this.endDay();
+            return;
         }
 
         // Validate any existing cup contents against the new order (should be empty, but just in case)
@@ -394,6 +543,9 @@ export class Game extends Scene
     {
         this.patienceActive = false;
         console.log('Customer ran out of patience and left!');
+
+        // Stats tracking
+        this.dayLostCount++;
 
         // Flash red & shake camera
         this.cameras.main.shake(200, 0.015);
@@ -452,6 +604,10 @@ export class Game extends Scene
 
         const totalEarned = basePrice + tip;
         this.money += totalEarned;
+        this.dayEarnings += totalEarned;
+        this.dayTips += tip;
+        this.dayServedCount++;
+
         this.moneyText.setText('$' + this.money.toFixed(2));
 
         // Clear data

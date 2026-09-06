@@ -20,9 +20,11 @@ export class Game extends Scene
         this.cupScoopObjects = [];
         
         this.customerQueue = [
-            { name: 'Customer 1', maxPatience: 25, order: { name: '1 × Vanilla Sundae', scoops: ['vanilla'] } },
-            { name: 'Customer 2', maxPatience: 20, order: { name: '2 × Vanilla Scoop', scoops: ['vanilla', 'vanilla'] } },
-            { name: 'Customer 3', maxPatience: 30, order: { name: '1 × Vanilla Sundae', scoops: ['vanilla'] } }
+            { name: 'Customer 1', maxPatience: 25, order: { name: '1 × Vanilla Scoop', scoops: ['vanilla'] } },
+            { name: 'Customer 2', maxPatience: 25, order: { name: '1 × Chocolate Scoop', scoops: ['chocolate'] } },
+            { name: 'Customer 3', maxPatience: 25, order: { name: '1 × Strawberry Scoop', scoops: ['strawberry'] } },
+            { name: 'Customer 4', maxPatience: 30, order: { name: '1 × Choco-Vanilla Duo', scoops: ['chocolate', 'vanilla'] } },
+            { name: 'Customer 5', maxPatience: 35, order: { name: '1 × Neapolitan Trio', scoops: ['chocolate', 'vanilla', 'strawberry'] } }
         ];
         this.currentCustomerIndex = 0;
         this.currentOrder = null; // Will be set by showNextCustomer
@@ -302,10 +304,8 @@ export class Game extends Scene
 
         button.on('pointerdown', () =>
         {
-            if (label === 'VANILLA')
-            {
-                this.createVanillaScoop();
-            }
+            const flavor = label.toLowerCase();
+            this.createScoop(flavor);
         });
     }
 
@@ -437,6 +437,10 @@ export class Game extends Scene
     {
         this.patienceActive = false;
 
+        // Dynamic price per scoop (prototype value: $2.50 for 1 scoop, +$1.50 per additional scoop)
+        const scoopCount = (this.currentOrder && this.currentOrder.scoops) ? this.currentOrder.scoops.length : 1;
+        const basePrice = 2.50 + (scoopCount - 1) * 1.50;
+
         // Base reward + Tip based on patience ratio
         const patienceRatio = this.currentPatience / this.maxPatience;
         let tip = 0;
@@ -446,7 +450,7 @@ export class Game extends Scene
             tip = 0.50;
         }
 
-        const totalEarned = 2.50 + tip;
+        const totalEarned = basePrice + tip;
         this.money += totalEarned;
         this.moneyText.setText('$' + this.money.toFixed(2));
 
@@ -514,21 +518,38 @@ export class Game extends Scene
     }
 
     // =============================================================
-    // CREATE VANILLA SCOOP
+    // CREATE SCOOP (ALL FLAVORS)
     // =============================================================
 
-    createVanillaScoop ()
+    createScoop (flavor)
     {
+        const flavorConfigs = {
+            vanilla: {
+                color: 0xfff5d6,
+                stroke: 0xd19a76
+            },
+            chocolate: {
+                color: 0x8b5a3c,
+                stroke: 0x5a3824
+            },
+            strawberry: {
+                color: 0xffa6b6,
+                stroke: 0xd9657b
+            }
+        };
+
+        const config = flavorConfigs[flavor] || flavorConfigs.vanilla;
+
         const scoop = this.add.circle(
             700,
             470,
             35,
-            0xfff5d6
+            config.color
         );
 
         scoop.setStrokeStyle(
             4,
-            0xd19a76
+            config.stroke
         );
 
         scoop.setInteractive();
@@ -568,7 +589,7 @@ export class Game extends Scene
                 this.input.setDraggable(scoop, false);
 
                 // Simpan data scoop
-                this.cupContents.push('vanilla');
+                this.cupContents.push(flavor);
                 this.cupScoopObjects.push(scoop);
 
                 // Update status cup

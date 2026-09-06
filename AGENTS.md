@@ -839,13 +839,13 @@ Current task
 
 The next feature is:
 
-Multiple recipes
+Day system
 
-Implement multiple flavors and complex recipe validation:
-1. Enable Chocolate and Strawberry scoop buttons.
-2. Allow draggable scoops for Chocolate and Strawberry.
-3. Support orders with combinations of flavors (e.g. Vanilla + Chocolate, Strawberry Sundae).
-4. Update recipe validation to handle multiple ingredient types.
+Implement day loop and progression:
+1. Day starts with a target customer count or goal.
+2. End of Day screen / summary when all customers in queue are served.
+3. Show stats (total money earned, customers served, tips received).
+4. Transition to next day (e.g. Day 2) with new customer queue / orders.
 
 After the feature is stable:
 
@@ -855,14 +855,14 @@ Then:
 
 git status
 git add ...
-git commit -m "feat: add multiple recipes and flavors"
+git commit -m "feat: add day progression system"
 git push
 
 Only after that should development proceed to:
 
-Multiple recipes
-↓
 Day system
+↓
+Shop upgrades
 
 ---
 
@@ -933,16 +933,15 @@ Vite
 ✅ Money
 ✅ Customer
 ✅ Patience
+✅ Multiple recipes
 ✅ VPS Linux development environment
 ✅ VPS build environment
 
 NOT YET IMPLEMENTED:
 
-Multiple recipes
-↓
 Day system
 ↓
-Upgrade
+Shop upgrades
 ↓
 Polish
 

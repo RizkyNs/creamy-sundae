@@ -19,6 +19,7 @@ export class Game extends Scene
         this.day = 1;
         this.cupContents = [];
         this.cupScoopObjects = [];
+        this.drinkContent = null;
         
         // Day stats
         this.dayEarnings = 0;
@@ -103,31 +104,31 @@ export class Game extends Scene
 
         this.orderTicketBg = this.add.rectangle(
             330,
-            230,
-            260,
-            170,
+            240,
+            270,
+            190,
             0xffffff
         );
 
-        this.orderTitleText = this.add.text(330, 175, 'ORDER', {
+        this.orderTitleText = this.add.text(330, 165, 'ORDER', {
             fontFamily: 'Arial Black',
             fontSize: 24,
             color: '#6b3e26'
         }).setOrigin(0.5);
 
-        this.orderNameText = this.add.text(330, 235, '...', {
+        this.orderNameText = this.add.text(330, 210, '...', {
             fontFamily: 'Arial',
-            fontSize: 22,
+            fontSize: 20,
             color: '#6b3e26'
         }).setOrigin(0.5);
 
-        this.orderDetailText = this.add.text(330, 280, '...', {
+        this.orderDetailText = this.add.text(330, 250, '...', {
             fontFamily: 'Arial',
-            fontSize: 20,
+            fontSize: 18,
             color: '#9b6b43'
         }).setOrigin(0.5);
 
-        this.orderToppingText = this.add.text(330, 325, 'No toppings', {
+        this.orderDrinkText = this.add.text(330, 290, 'Drink: None', {
             fontFamily: 'Arial',
             fontSize: 18,
             color: '#9b6b43'
@@ -137,7 +138,7 @@ export class Game extends Scene
         // VALIDATION STATUS
         // =========================================================
 
-        this.validationText = this.add.text(330, 400, 'KEEP BUILDING', {
+        this.validationText = this.add.text(330, 390, 'KEEP BUILDING', {
             fontFamily: 'Arial Black',
             fontSize: 22,
             color: '#c28c65'
@@ -167,18 +168,58 @@ export class Game extends Scene
         ).setOrigin(0.5);
 
         // =========================================================
+        // DRINK STATION
+        // =========================================================
+
+        this.add.text(460, 440, 'SODA DISPENSER', {
+            fontFamily: 'Arial Black',
+            fontSize: 14,
+            color: '#6b3e26'
+        }).setOrigin(0.5);
+
+        // Cola Dispenser Button
+        this.createDrinkButton(415, 475, 'COLA', 0x3d1d11);
+
+        // Lemon Soda Dispenser Button
+        this.createDrinkButton(505, 475, 'LEMON', 0xfbc02d, '#333333');
+
+        // Drink Cup Slot
+        this.drinkCupBg = this.add.rectangle(460, 560, 75, 80, 0xffffff);
+        this.drinkCupBg.setStrokeStyle(3, 0x6b3e26);
+
+        this.drinkCupFill = this.add.rectangle(460, 565, 65, 60, 0x3d1d11);
+        this.drinkCupFill.setVisible(false);
+
+        this.drinkStatusText = this.add.text(460, 560, 'NO DRINK', {
+            fontFamily: 'Arial Black',
+            fontSize: 13,
+            color: '#8b6045',
+            align: 'center'
+        }).setOrigin(0.5);
+
+        // Clear Drink Button
+        const clearDrinkBtn = this.add.rectangle(518, 560, 24, 24, 0xef5350);
+        const clearDrinkTxt = this.add.text(518, 560, '✕', {
+            fontFamily: 'Arial Black',
+            fontSize: 14,
+            color: '#ffffff'
+        }).setOrigin(0.5);
+        clearDrinkBtn.setInteractive({ useHandCursor: true });
+        clearDrinkBtn.on('pointerdown', () => this.clearDrink());
+
+        // =========================================================
         // CUP
         // =========================================================
 
         this.cup = this.add.rectangle(
-            700,
+            690,
             550,
-            150,
+            140,
             110,
             0xffffff
         );
 
-        this.add.text(700, 550, 'CUP', {
+        this.add.text(690, 550, 'CUP', {
             fontFamily: 'Arial Black',
             fontSize: 26,
             color: '#d19a76'
@@ -188,7 +229,7 @@ export class Game extends Scene
         // CUP STATUS
         // =========================================================
 
-        this.cupStatusText = this.add.text(700, 610, '0 SCOOP', {
+        this.cupStatusText = this.add.text(690, 610, '0 SCOOP', {
             fontFamily: 'Arial Black',
             fontSize: 20,
             color: '#6b3e26'
@@ -198,8 +239,8 @@ export class Game extends Scene
         // SERVE BUTTON
         // =========================================================
 
-        const serveButton = this.add.rectangle(880, 550, 140, 60, 0x4caf50);
-        const serveText = this.add.text(880, 550, 'SERVE', {
+        const serveButton = this.add.rectangle(870, 550, 130, 60, 0x4caf50);
+        const serveText = this.add.text(870, 550, 'SERVE', {
             fontFamily: 'Arial Black',
             fontSize: 22,
             color: '#ffffff'
@@ -297,12 +338,20 @@ export class Game extends Scene
     generateCustomerQueue (day)
     {
         const possibleOrders = [
-            { name: '1 × Vanilla Scoop', scoops: ['vanilla'] },
-            { name: '1 × Chocolate Scoop', scoops: ['chocolate'] },
-            { name: '1 × Strawberry Scoop', scoops: ['strawberry'] },
-            { name: '1 × Choco-Vanilla Duo', scoops: ['chocolate', 'vanilla'] },
-            { name: '1 × Strawberry-Vanilla Duo', scoops: ['strawberry', 'vanilla'] },
-            { name: '1 × Neapolitan Trio', scoops: ['chocolate', 'vanilla', 'strawberry'] }
+            // Single scoops
+            { name: '1 × Vanilla Scoop', scoops: ['vanilla'], drink: null },
+            { name: '1 × Chocolate Scoop', scoops: ['chocolate'], drink: null },
+            { name: '1 × Strawberry Scoop', scoops: ['strawberry'], drink: null },
+            // Drinks only
+            { name: '1 × Iced Cola Soda', scoops: [], drink: 'cola' },
+            { name: '1 × Lemon Splash Soda', scoops: [], drink: 'lemon' },
+            // Combos (Scoop + Drink)
+            { name: '1 × Vanilla + Cola Combo', scoops: ['vanilla'], drink: 'cola' },
+            { name: '1 × Strawberry + Lemon Combo', scoops: ['strawberry'], drink: 'lemon' },
+            { name: '1 × Choco-Vanilla Duo', scoops: ['chocolate', 'vanilla'], drink: null },
+            { name: '1 × Duo Sundae + Cola', scoops: ['chocolate', 'vanilla'], drink: 'cola' },
+            { name: '1 × Neapolitan Trio', scoops: ['chocolate', 'vanilla', 'strawberry'], drink: null },
+            { name: '1 × Deluxe Trio + Lemon', scoops: ['chocolate', 'vanilla', 'strawberry'], drink: 'lemon' }
         ];
 
         // Customer count increases slightly per day (prototype: 3 + day)
@@ -311,10 +360,10 @@ export class Game extends Scene
 
         for (let i = 1; i <= count; i++) {
             // Pick available order based on day difficulty
-            let maxOrderIndex = Math.min(possibleOrders.length, 2 + day);
+            let maxOrderIndex = Math.min(possibleOrders.length, 3 + (day * 2));
             const randomOrder = possibleOrders[Math.floor(Math.random() * maxOrderIndex)];
             
-            // Patience: 20 - 30 seconds
+            // Patience: 20 - 35 seconds
             const patience = Math.max(15, 30 - (day * 2) + Math.floor(Math.random() * 6));
 
             queue.push({
@@ -325,6 +374,66 @@ export class Game extends Scene
         }
 
         return queue;
+    }
+
+    createDrinkButton (x, y, label, color, textColor = '#ffffff')
+    {
+        const button = this.add.rectangle(x, y, 80, 45, color);
+        button.setStrokeStyle(2, 0x6b3e26);
+
+        const text = this.add.text(x, y, label, {
+            fontFamily: 'Arial Black',
+            fontSize: 13,
+            color: textColor,
+            stroke: textColor === '#ffffff' ? '#000000' : '#ffffff',
+            strokeThickness: 2
+        }).setOrigin(0.5);
+
+        button.setInteractive({ useHandCursor: true });
+
+        button.on('pointerover', () => {
+            button.setScale(1.05);
+            text.setScale(1.05);
+        });
+
+        button.on('pointerout', () => {
+            button.setScale(1);
+            text.setScale(1);
+        });
+
+        button.on('pointerdown', () => {
+            const flavor = label.toLowerCase();
+            this.dispenseDrink(flavor);
+        });
+    }
+
+    dispenseDrink (flavor)
+    {
+        this.drinkContent = flavor;
+        this.drinkCupFill.setVisible(true);
+
+        if (flavor === 'cola') {
+            this.drinkCupFill.setFillStyle(0x3d1d11);
+            this.drinkStatusText.setText('COLA');
+            this.drinkStatusText.setColor('#ffffff');
+        } else if (flavor === 'lemon') {
+            this.drinkCupFill.setFillStyle(0xfbc02d);
+            this.drinkStatusText.setText('LEMON');
+            this.drinkStatusText.setColor('#333333');
+        }
+
+        console.log('Dispensed drink:', flavor);
+        this.validateRecipe();
+    }
+
+    clearDrink ()
+    {
+        this.drinkContent = null;
+        this.drinkCupFill.setVisible(false);
+        this.drinkStatusText.setText('NO DRINK');
+        this.drinkStatusText.setColor('#8b6045');
+        console.log('Drink cleared');
+        this.validateRecipe();
     }
 
     endDay ()
@@ -348,10 +457,17 @@ export class Game extends Scene
         this.orderTitleText.setVisible(false);
         this.orderNameText.setVisible(false);
         this.orderDetailText.setVisible(false);
-        this.orderToppingText.setVisible(false);
+        this.orderDrinkText.setVisible(false);
 
         this.validationText.setText('DAY COMPLETED!');
         this.validationText.setColor('#4caf50');
+
+        // Clear any items in work area
+        this.clearDrink();
+        this.cupContents = [];
+        this.cupScoopObjects.forEach(scoop => scoop.destroy());
+        this.cupScoopObjects = [];
+        this.cupStatusText.setText('0 SCOOP');
 
         // Create End of Day Summary Modal
         const { width, height } = this.scale;
@@ -490,8 +606,15 @@ export class Game extends Scene
             this.customerNameText.setText(customer.name);
             this.orderNameText.setText(customer.order.name);
             
-            let detailText = customer.order.scoops.join(', ');
+            let detailText = (customer.order.scoops && customer.order.scoops.length > 0)
+                ? 'Scoops: ' + customer.order.scoops.join(', ')
+                : 'No Ice Cream';
             this.orderDetailText.setText(detailText);
+
+            let drinkText = customer.order.drink
+                ? 'Drink: ' + customer.order.drink.toUpperCase()
+                : 'Drink: None';
+            this.orderDrinkText.setText(drinkText);
 
             // Make customer visible
             this.customerVisual.setVisible(true);
@@ -504,7 +627,7 @@ export class Game extends Scene
             this.orderTitleText.setVisible(true);
             this.orderNameText.setVisible(true);
             this.orderDetailText.setVisible(true);
-            this.orderToppingText.setVisible(true);
+            this.orderDrinkText.setVisible(true);
         }
         else
         {
@@ -551,7 +674,8 @@ export class Game extends Scene
         this.cameras.main.shake(200, 0.015);
         this.customerVisual.setFillStyle(0xf44336);
 
-        // Clear cup contents if player had prepared something
+        // Clear cup contents & drink if player had prepared something
+        this.clearDrink();
         this.cupContents = [];
         this.cupScoopObjects.forEach(scoop => scoop.destroy());
         this.cupScoopObjects = [];
@@ -589,9 +713,18 @@ export class Game extends Scene
     {
         this.patienceActive = false;
 
-        // Dynamic price per scoop (prototype value: $2.50 for 1 scoop, +$1.50 per additional scoop)
-        const scoopCount = (this.currentOrder && this.currentOrder.scoops) ? this.currentOrder.scoops.length : 1;
-        const basePrice = 2.50 + (scoopCount - 1) * 1.50;
+        // Dynamic price calculation
+        // Scoops: $2.50 for 1st scoop, +$1.50 per additional scoop. $0 if no scoop.
+        const scoopCount = (this.currentOrder && this.currentOrder.scoops) ? this.currentOrder.scoops.length : 0;
+        let basePrice = 0;
+        if (scoopCount > 0) {
+            basePrice += 2.50 + (scoopCount - 1) * 1.50;
+        }
+
+        // Drink price: +$1.75
+        if (this.currentOrder && this.currentOrder.drink) {
+            basePrice += 1.75;
+        }
 
         // Base reward + Tip based on patience ratio
         const patienceRatio = this.currentPatience / this.maxPatience;
@@ -612,6 +745,7 @@ export class Game extends Scene
 
         // Clear data
         this.cupContents = [];
+        this.clearDrink();
         
         // Clear visual objects
         this.cupScoopObjects.forEach(scoop => scoop.destroy());
@@ -637,9 +771,13 @@ export class Game extends Scene
 
     validateRecipe ()
     {
+        if (!this.currentOrder) return;
+
         let status = 'ORDER READY';
 
-        if (this.cupContents.length > this.currentOrder.scoops.length)
+        // 1. Validate Scoops
+        const targetScoops = this.currentOrder.scoops || [];
+        if (this.cupContents.length > targetScoops.length)
         {
             status = 'WRONG ORDER';
         }
@@ -647,16 +785,41 @@ export class Game extends Scene
         {
             for (let i = 0; i < this.cupContents.length; i++)
             {
-                if (this.cupContents[i] !== this.currentOrder.scoops[i])
+                if (this.cupContents[i] !== targetScoops[i])
                 {
                     status = 'WRONG ORDER';
                     break;
                 }
             }
 
-            if (status !== 'WRONG ORDER' && this.cupContents.length < this.currentOrder.scoops.length)
+            if (status !== 'WRONG ORDER' && this.cupContents.length < targetScoops.length)
             {
                 status = 'KEEP BUILDING';
+            }
+        }
+
+        // 2. Validate Drink
+        if (status !== 'WRONG ORDER')
+        {
+            const targetDrink = this.currentOrder.drink || null;
+            if (targetDrink)
+            {
+                if (!this.drinkContent)
+                {
+                    status = 'KEEP BUILDING';
+                }
+                else if (this.drinkContent !== targetDrink)
+                {
+                    status = 'WRONG ORDER';
+                }
+            }
+            else
+            {
+                // Customer did NOT order a drink, but player served one
+                if (this.drinkContent)
+                {
+                    status = 'WRONG ORDER';
+                }
             }
         }
 

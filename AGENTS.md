@@ -842,9 +842,9 @@ The next feature is:
 Shop upgrades
 
 Implement shop upgrade system:
-1. Upgrade scene or shop modal accessible after day summary.
-2. Purchasable upgrades with earned money (e.g. Faster customer patience, extra tip multiplier, new decorations).
-3. Apply upgrade bonuses to gameplay loop.
+1. Upgrade scene or modal accessible after day summary.
+2. Purchasable upgrades with earned money (e.g. Extra patience boost, faster tip multiplier, decorations).
+3. Apply upgrade effects to gameplay loop.
 
 After the feature is stable:
 
@@ -861,7 +861,9 @@ Only after that should development proceed to:
 
 Shop upgrades
 ↓
-Toppings & Sauces
+Cone vs Cup variants
+↓
+Polish
 
 ---
 
@@ -934,12 +936,15 @@ Vite
 ✅ Patience
 ✅ Multiple recipes
 ✅ Day system
+✅ Beverage / Drink Station
 ✅ VPS Linux development environment
 ✅ VPS build environment
 
 NOT YET IMPLEMENTED:
 
 Shop upgrades
+↓
+Cone vs Cup variants
 ↓
 Polish
 

@@ -1,0 +1,118 @@
+# 🧠 CREAMY SUNDAE — SESSION CONTEXT & CHRONOLOGICAL LOG
+
+> **Dokumen Rekam Jejak Percakapan, Keputusan Desain & Riwayat Sesi**  
+> Ditulis untuk memberikan *deep context* kepada AI Agent atau developer berikutnya mengenai riwayat diskusi, keputusan arsitektur, klarifikasi user, dan status git terakhir.
+
+---
+
+## 📜 1. KRONOLOGI DISKUSI & PERMINTAAN USER
+
+Berikut adalah riwayat percakapan dan evolusi pengerjaan project secara kronologis:
+
+### Sesi Awal: Setup & Recipe Validation
+- **User Request**: *"sekarang project game ini udah sampai mana?"* ➔ Memeriksa status repositori dan melanjutkan pengerjaan.
+- **Implementasi**: Validasi resep awal (`KEEP BUILDING`, `ORDER READY`, `WRONG ORDER`), tombol `SERVE`, serta penambahan saldo uang (`this.money += 2.50`).
+
+### Dynamic AGENTS.md Rule
+- **User Request**: Mengubah *rules* di `AGENTS.md` agar setiap AI Agent yang bekerja wajib memperbarui status checklist dan milestone secara dinamis setelah menyelesaikan fitur.
+- **Implementasi**: Aturan ditambahkan dan konsisten dijalankan pada setiap commit.
+
+### Media Context Folder & Referensi Mockup
+- **User Request**: Membuat folder khusus untuk upload aset referensi via SFTP (`media-context/`) dan menambahkan aturan ignore ke `.gitignore`.
+- **Media Uploaded**: `/root/creamy-sundae/media-context/dummy gameplay.png`.
+- **Klarifikasi User Mengenai Karakter**:
+  - Awalnya karakter di kanan gambar dikira customer.
+  - **Koreksi dari User**: Karakter perempuan (*Audrey*) di sebelah kanan adalah **maskot / tampilan pemain untuk Main Menu**, bukan customer in-game. Karakter customer in-game akan disediakan di file terpisah nantinya.
+
+### Pengerjaan Sistem Antrean Pelanggan (Customer Queue)
+- **User Request**: Melanjutkan progres ke antrean pelanggan.
+- **Implementasi**: Penambahan `this.customerQueue`, tiket pesanan dinamis (`ORDER TICKET`), serta alur pergantian pelanggan saat disajikan (`showNextCustomer()`).
+- **Commit**: `feat: add customer system` (`57eb0c7`).
+
+### Pengerjaan Sistem Kesabaran (Customer Patience & Dynamic Tips)
+- **User Request**: Melanjutkan ke sistem kesabaran.
+- **Implementasi**: Meteran kesabaran berbasis timer (`update(time, delta)`), bar visual dinamis dengan 3 warna (Hijau, Oranye, Merah), bonus tip untuk pelayanan cepat (+$1.00 / +$0.50), serta penanganan jika kesabaran habis (pelanggan pergi kecewa, kamera bergetar, dan antrean berganti).
+- **Commit**: `feat: add customer patience system` (`8a1da6b`).
+
+### Pengerjaan Banyak Rasa Es Krim (Multiple Flavors & Recipes)
+- **User Request**: Mengaktifkan seluruh varian rasa.
+- **Implementasi**: Mengaktifkan tombol **CHOCOLATE** (`0x8b5a3c`) dan **STRAWBERRY** (`0xffa6b6`), fungsi generik `createScoop(flavor)` dengan stroke warna khusus, serta antrean pesanan multi-scoop (Duo & Trio Neapolitan).
+- **Commit**: `feat: add multiple recipes and flavors` (`3390087`).
+
+### Pengerjaan Siklus Pergantian Hari (Day Progression & Summary)
+- **User Request**: Melanjutkan ke siklus hari.
+- **Implementasi**: Indikator `DAY X`, generator antrean pelanggan dinamis per hari (`generateCustomerQueue`), pencatatan statistik (Customers Served, Lost, Earnings, Tips), dan modal rekapitulasi akhir hari (`End of Day Summary Modal`) dengan tombol `START DAY [X+1]`.
+- **Commit**: `feat: add day progression system` (`46f6da9`).
+
+### Diskusi Menu Tambahan & Prioritas Minuman (Beverage Station)
+- **User Request**: Menunda sementara upgrade toko dan mendahulukan menu tambahan yang sesuai dengan gambar referensi `dummy gameplay.png`.
+- **Keputusan**: Memprioritaskan **Station Minuman (Soda Dispenser)** terlebih dahulu.
+- **Implementasi**: Dispenser **COLA** & **LEMON**, slot gelas minuman dengan visual cairan dinamis, tombol pembuang `✕ (Clear)`, tiket pesanan combo (es krim + minuman), serta validasi resep & pricing minuman.
+- **Commit**: `feat: add beverage drink station` (`e88512a`).
+
+### Penataan Ulang Tata Letak Konter (Shop Counter Layout Refactor)
+- **User Request**: Menata ulang layout prototype agar menyerupai gerai es krim di gambar referensi, dan mencatat alur menyekop baru sebagai rencana masa depan.
+- **Implementasi**:
+  - Top Bar diperkecil dan dirapikan.
+  - Customer Area & Order Ticket diletakkan di sisi atas meja.
+  - Meja Counter dibagi menjadi 2 zona utama: **Etalase Es Krim** (3 bak rasa + slot cup perakitan) di kiri, dan **Soda Fountain** di kanan.
+  - Tombol **SERVE ORDER** diletakkan di panel status kanan atas.
+  - Dokumentasi *Planned Future Mechanics* ditambahkan ke `AGENTS.md`.
+- **Commit**: `feat: refactor shop counter layout and document future scooping mechanic` (`27d768b`).
+
+---
+
+## 🔑 2. CATATAN PENTING & KEPUTUSAN DESAIN (DESIGN DECISIONS)
+
+1. **Alur Menyekop Es Krim Realistis (Pengerjaan Masa Depan)**:
+   - *Rencana*: Pemain menggerakkan sekop ➔ Menyekop dari bak ➔ Animasi terisi ➔ Mengarahkan ke wadah (Cup/Cone) ➔ Animasi menuang.
+   - *Status*: **Ditunda** hingga aset visual dan animasi frame siap dibuat. Jangan diimplementasikan sekarang.
+2. **Karakter Maskot vs Customer**:
+   - Maskot perempuan (*Audrey*) hanya untuk **Main Menu**.
+   - Pelanggan in-game saat ini menggunakan avatar lingkaran geometri placeholder (`this.customerVisual`).
+3. **Mata Uang & Saldo**:
+   - Saldo toko disimpan di `this.money` (float).
+   - Format tampilan: `$` dengan 2 angka di belakang koma (misal: `$15.25`).
+4. **Git Push Workflow**:
+   - Karena keterbatasan sesi otomatis pada remote HTTPS di VPS, agen coding menjalankan `git add` dan `git commit` di lokal.
+   - User kemudian melakukan `git push origin main` secara manual lewat terminalnya.
+
+---
+
+## 📊 3. SNAPSHOT STATUS TERAKHIR (COMMIT LOG)
+
+Berikut 8 commit terakhir pada branch `main`:
+
+```
+27d768b (HEAD -> main, origin/main) feat: refactor shop counter layout and document future scooping mechanic
+e88512a feat: add beverage drink station
+46f6da9 feat: add day progression system
+3390087 feat: add multiple recipes and flavors
+8a1da6b feat: add customer patience system
+57eb0c7 feat: add customer system
+c273bcf feat: add serve and money system
+fa7447e feat: add recipe validation
+```
+
+---
+
+## 🚀 4. PANDUAN CEPAT UNTUK AI AGENT / DEVELOPER BARU
+
+Jika Anda adalah AI Agent atau developer baru yang baru saja membuka project ini:
+
+1. **Periksa File Utama**:
+   - Baca [AGENTS.md](file:///root/creamy-sundae/AGENTS.md) untuk aturan kerja dan checklist status.
+   - Baca [HANDOVER.md](file:///root/creamy-sundae/HANDOVER.md) untuk arsitektur teknis dan detail sistem.
+   - Baca [Game.js](file:///root/creamy-sundae/src/game/scenes/Game.js) untuk melihat kode gameplay aktif.
+2. **Jalankan Dev Server**:
+   ```bash
+   npm run dev -- --host 0.0.0.0 --port 8080
+   ```
+   Akses via browser di: `http://139.99.122.214:20043`
+3. **Langkah Pengerjaan Selanjutnya**:
+   - Target saat ini di roadmap adalah: **Shop Upgrades System** (membuat modal upgrade toko menggunakan uang tabungan pemain).
+   - Setelah membuat fitur, jalankan `npm run build`, perbarui `AGENTS.md`, dan lakukan `git commit`.
+
+---
+
+*Dokumen ini diperbarui secara otomatis dan merefleksikan kondisi codebase paling mutakhir.* 🍨

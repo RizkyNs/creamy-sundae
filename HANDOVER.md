@@ -215,7 +215,12 @@ graph LR
 1. **Selalu Baca File Sebelum Mengedit**: Jangan berasumsi tentang isi file. Gunakan tool pembaca file untuk memeriksa kondisi aktual kode.
 2. **Pelihara Kode yang Bekerja**: Jangan merombak kode secara besar-besaran (*burn & rewrite*) kecuali ada alasan teknis yang kuat.
 3. **Wajib Build Sebelum Selesai**: Jalankan `npm run build` dan pastikan `exit code 0` sebelum melakukan commit atau mengakhiri turn.
-4. **Perbarui Dokumentasi Secara Dinamis**: Setiap kali menyelesaikan satu fitur logika, selalu perbarui checklist di `AGENTS.md` dan `HANDOVER.md`.
+4. **Wajib Memperbarui Dokumen Pewarisan Secara Dinamis (CRITICAL)**:
+   - Setiap kali ada fitur baru, perubahan logika, refactoring, atau perubahan alur pengerjaan pada project, **AI/Developer WAJIB memperbarui 3 file dokumentasi**:
+     - `AGENTS.md` (Checklist milestone & status tugas saat ini)
+     - `HANDOVER.md` (Arsitektur teknis, sistem selesai, dan roadmap)
+     - `SESSION_CONTEXT.md` (Riwayat kronologis keputusan desain & status sesi)
+   - Hal ini bertujuan agar seluruh dokumentasi project **selalu relevan, up-to-date, dan tidak pernah basi** di environment manapun dan oleh AI manapun.
 5. **Keamanan & Secrets**: JANGAN PERNAH men-commit file `.env`, Personal Access Token (PAT), password VPS, atau kredensial sensitif ke dalam Git.
 6. **Git Push**: Karena batasan autentikasi remote tanpa terminal interaktif, lakukan `git add` dan `git commit` di lokal, dan biarkan user melakukan `git push` secara manual (atau gunakan flow autentikasi yang sah).
 

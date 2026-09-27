@@ -111,8 +111,12 @@ Jika Anda adalah AI Agent atau developer baru yang baru saja membuka project ini
    Akses via browser di: `http://139.99.122.214:20043`
 3. **Langkah Pengerjaan Selanjutnya**:
    - Target saat ini di roadmap adalah: **Shop Upgrades System** (membuat modal upgrade toko menggunakan uang tabungan pemain).
-   - Setelah membuat fitur, jalankan `npm run build`, perbarui `AGENTS.md`, dan lakukan `git commit`.
+   - Setelah membuat/mengubah fitur, jalankan `npm run build`, lakukan `git commit`, dan **WAJIB memperbarui 3 file dokumentasi**:
+     1. [AGENTS.md](file:///root/creamy-sundae/AGENTS.md)
+     2. [HANDOVER.md](file:///root/creamy-sundae/HANDOVER.md)
+     3. [SESSION_CONTEXT.md](file:///root/creamy-sundae/SESSION_CONTEXT.md)
+   - Hal ini memastikan siapapun dan AI apapun yang melanjutkan project ini selalu mendapatkan informasi yang 100% akurat dan mutakhir.
 
 ---
 
-*Dokumen ini diperbarui secara otomatis dan merefleksikan kondisi codebase paling mutakhir.* 🍨
+*Dokumen ini wajib terus diperbarui pada setiap perubahan project agar selalu relevan.* 🍨

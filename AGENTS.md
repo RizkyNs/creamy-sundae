@@ -814,9 +814,9 @@ After implementing a logical feature:
 
 1. Run "npm run build".
 2. Test the feature.
-3. Update "AGENTS.md" dynamically to reflect the new project state, milestone progress, and current task.
+3. Update "AGENTS.md", "HANDOVER.md", and "SESSION_CONTEXT.md" dynamically to reflect the new project state, milestone progress, and current task.
 4. Inspect "git status".
-5. Commit only the relevant files (including "AGENTS.md").
+5. Commit only the relevant files (including documentation files).
 6. Push the commit to "main".
 
 Preferred commit style:

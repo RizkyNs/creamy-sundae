@@ -1,0 +1,78 @@
+{
+  "$schema": "https://opencode.ai/config.json",
+  "model": "zrouter/gpt-6-luna",
+
+  "provider": {
+    "zrouter": {
+      "npm": "@ai-sdk/openai-compatible",
+      "name": "Zrouter",
+
+      "options": {
+        "baseURL": "https://api.zrouter.dev/v1",
+          "apiKey": "{env:ZROUTER_API_KEY}"
+      },
+
+      "models": {
+        "gpt-6-luna": {
+          "name": "GPT-6 Luna — Cheap Default",
+          "cost": {
+            "input": 0.005,
+            "output": 0.025,
+            "cache_read": 0,
+            "cache_write": 0
+          }
+        },
+
+        "gpt-5.6-luna": {
+          "name": "GPT-5.6 Luna — General Workhorse",
+          "cost": {
+            "input": 0.01,
+            "output": 0.06,
+            "cache_read": 0,
+            "cache_write": 0
+          }
+        },
+
+        "deepseek-v4-pro": {
+          "name": "DeepSeek V4 Pro — Coding + Agentic",
+          "cost": {
+            "input": 0.033,
+            "output": 0.099,
+            "cache_read": 0,
+            "cache_write": 0
+          }
+        },
+
+        "kimi-k2.7-code": {
+          "name": "Kimi K2.7 Code — Coding Specialist",
+          "cost": {
+            "input": 0.0475,
+            "output": 0.20,
+            "cache_read": 0,
+            "cache_write": 0
+          }
+        },
+
+        "gpt-6-sol": {
+          "name": "GPT-6 Sol — Heavy Reasoning",
+          "cost": {
+            "input": 0.25,
+            "output": 1.50,
+            "cache_read": 0,
+            "cache_write": 0
+          }
+        },
+
+        "gemini-3.1-pro": {
+          "name": "Gemini 3.1 Pro — Multimodal + Review",
+          "cost": {
+            "input": 0.10,
+            "output": 0.60,
+            "cache_read": 0,
+            "cache_write": 0
+          }
+        }
+      }
+    }
+  }
+}

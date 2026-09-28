@@ -340,9 +340,11 @@ Existing checkpoints:
 
 "feat: add draggable vanilla scoop"
 
-The latest valid gameplay checkpoint is:
+The latest gameplay checkpoint in the current repository is:
 
-draggable Vanilla Scoop
+`feat: refactor shop counter layout and document future scooping mechanic`
+
+The latest local commit is `93d02b8 chore: add opencode.json to .gitignore`, which only changes ignore rules. Local `main` is currently one commit ahead of `origin/main`.
 
 Any agent continuing development should inspect the actual repository state and Git history instead of assuming a roadmap feature is already implemented.
 
@@ -381,7 +383,7 @@ Scene "Game" currently contains:
 - chocolate button
 - strawberry button
 
-Chocolate and Strawberry do not yet have gameplay.
+Chocolate and Strawberry are active ingredients in the current gameplay.
 
 ---
 
@@ -409,9 +411,9 @@ Current gameplay state
 
 "this.cupContents = [];"
 
-When Vanilla is successfully placed into the cup:
+When a scoop is successfully placed into the cup:
 
-"this.cupContents.push('vanilla');"
+"this.cupContents.push(flavor);"
 
 Example state:
 
@@ -431,20 +433,12 @@ State/systems not yet implemented
 
 Not yet implemented as proper gameplay systems:
 
-- formal Order object
-- Recipe object
-- Ingredient definitions
+- separated Order/Recipe/Ingredient modules
 - Toppings
-- Serving
-- Money/economy state
-- Customer state
-- Patience
-- Timer
-- Combo
-- Scoring
-- Day progression
 - Upgrade system
 - Save/load
+
+Serving, money/economy, customer state, patience/timer, combo-style orders, scoring, and day progression currently exist as prototype logic inside `Game.js`; they are not yet separated into dedicated systems.
 
 ---
 
@@ -544,7 +538,7 @@ Completed:
 
 Milestone 2 — Recipe system
 
-Next:
+Completed:
 
 Order data
 ↓
@@ -575,7 +569,7 @@ Wrong or incomplete recipes should receive appropriate validation feedback.
 
 Milestone 3 — Serve
 
-Add:
+Completed:
 
 SERVE
 
@@ -611,7 +605,7 @@ Prices should come from data/config instead of being hardcoded everywhere.
 
 Milestone 5 — Customer system
 
-Implement:
+Completed as prototype logic:
 
 - customer queue
 - order generation
@@ -624,7 +618,7 @@ Implement:
 
 Milestone 6 — Patience
 
-Customer should have a patience state.
+Implemented as a time-based customer patience state.
 
 Example progression:
 
@@ -640,7 +634,7 @@ Example progression:
 
 Patience may influence reward/satisfaction.
 
-Do not add the timer before the basic:
+The basic loop and timer are now present, but both remain prototype logic in `Game.js`:
 
 order → make → validate → serve
 
@@ -650,7 +644,7 @@ loop is stable.
 
 Milestone 7 — Multiple ingredients
 
-Add:
+Completed for the three base flavors:
 
 Vanilla
 Chocolate
@@ -666,7 +660,7 @@ Then:
 
 Milestone 8 — Complex recipes
 
-Potential recipes:
+Implemented prototype recipes include:
 
 - Vanilla Sundae
 - Chocolate Sundae
@@ -681,7 +675,7 @@ These are prototype examples, not final locked GDD decisions.
 
 Milestone 9 — Day system
 
-Day 1
+Implemented prototype day progression:
 ↓
 Daily target
 ↓
@@ -697,7 +691,7 @@ Day 2
 
 Milestone 10 — Shop upgrades
 
-Potential upgrades:
+Not implemented. Potential upgrade directions:
 
 - more flavors
 - more toppings

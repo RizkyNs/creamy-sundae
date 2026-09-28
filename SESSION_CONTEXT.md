@@ -60,6 +60,14 @@ Berikut adalah riwayat percakapan dan evolusi pengerjaan project secara kronolog
   - Dokumentasi *Planned Future Mechanics* ditambahkan ke `AGENTS.md`.
 - **Commit**: `feat: refactor shop counter layout and document future scooping mechanic` (`27d768b`).
 
+### Audit Sinkronisasi Dokumentasi — 28 September 2026
+- **Pemeriksaan**: Status Git, riwayat commit, seluruh file Markdown, source scene, dan build production diperiksa kembali.
+- **Temuan kode**: Core loop prototype sudah mencakup flavor, minuman, order, validasi, serve, uang/tip, customer queue, patience, dan day summary. Shop upgrades belum diimplementasikan.
+- **Temuan dokumentasi**: `AGENTS.md` masih memiliki checklist historis yang tertinggal, `SESSION_CONTEXT.md` memiliki snapshot Git lama, dan `README.md` masih merupakan README template Phaser.
+- **Sinkronisasi**: README diganti dengan dokumentasi Creamy Sundae; status milestone dan checkpoint di `AGENTS.md` diperbarui; batasan prototype dan audit status ditambahkan ke `HANDOVER.md`; catatan sesi ini menjadi snapshot terbaru.
+- **Verifikasi**: `npm run build` berhasil. Build masih memberikan warning ukuran chunk di atas 500 kB.
+- **Git saat audit**: `main` lokal berada satu commit di depan `origin/main` karena commit `93d02b8 chore: add opencode.json to .gitignore`; perubahan dokumentasi audit ini belum di-commit.
+
 ---
 
 ## 🔑 2. CATATAN PENTING & KEPUTUSAN DESAIN (DESIGN DECISIONS)
@@ -81,10 +89,12 @@ Berikut adalah riwayat percakapan dan evolusi pengerjaan project secara kronolog
 
 ## 📊 3. SNAPSHOT STATUS TERAKHIR (COMMIT LOG)
 
-Berikut 8 commit terakhir pada branch `main`:
+Snapshot commit sebelum sinkronisasi dokumentasi:
 
 ```
-27d768b (HEAD -> main, origin/main) feat: refactor shop counter layout and document future scooping mechanic
+93d02b8 (HEAD -> main) chore: add opencode.json to .gitignore
+540bc36 (origin/main) docs: add mandatory rule to keep HANDOVER.md and SESSION_CONTEXT.md updated
+27d768b feat: refactor shop counter layout and document future scooping mechanic
 e88512a feat: add beverage drink station
 46f6da9 feat: add day progression system
 3390087 feat: add multiple recipes and flavors

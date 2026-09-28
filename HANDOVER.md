@@ -122,7 +122,7 @@ creamy-sundae/
 
 ## 🎮 5. DETAIL SISTEM GAMEPLAY YANG SUDAH SELESAI (`Game.js`)
 
-Semua fitur di bawah ini sudah 100% diimplementasikan, diuji, dan lolos build:
+Semua fitur di bawah ini sudah diimplementasikan sebagai prototype di `Game.js` dan build production saat audit terakhir berhasil. Pengujian gameplay manual dan angka desain final masih perlu dilakukan sebelum fitur dianggap production-ready:
 
 ### A. Shop Counter Layout & Visual Zones
 - **Top Bar (y: 35)**: Menampilkan judul game `CREAMY SUNDAE`, indikator hari `DAY X`, dan saldo `this.money` (hijau).
@@ -173,9 +173,19 @@ Semua fitur di bawah ini sudah 100% diimplementasikan, diuji, dan lolos build:
   - *Total Savings*
   - Tombol **START DAY [X+1]** untuk lanjut ke hari berikutnya.
 
+### Batasan kondisi saat ini
+- Saldo, hari, antrean, dan upgrade belum disimpan ke local storage atau backend; state di-reset saat scene/game dimulai ulang.
+- Harga, jumlah customer, durasi patience, dan nilai progresi lain adalah **temporary prototype values**.
+- Logika gameplay masih terkonsentrasi di `Game.js`; belum ada modul systems/data/objects terpisah.
+- `GameOver.js` masih merupakan scene template dan belum menjadi bagian dari alur normal hari.
+
 ---
 
-## 🗺️ 6. ROADMAP & TARGET PENGERJAAN BERIKUTNYA
+## 📊 6. AUDIT STATUS & ROADMAP
+
+Audit terakhir: 28 September 2026. Sebelum sinkronisasi dokumentasi, working tree bersih, branch lokal `main` satu commit di depan `origin/main`, dan `npm run build` berhasil dengan warning ukuran chunk di atas 500 kB. Perubahan dokumentasi ini belum menjadi commit.
+
+## 🗺️ 7. ROADMAP & TARGET PENGERJAAN BERIKUTNYA
 
 ```mermaid
 graph LR
@@ -210,7 +220,7 @@ graph LR
 
 ---
 
-## 📜 7. ATURAN WAJIB BAGI DEVELOPER / AI AGENT PENERUS
+## 📜 8. ATURAN WAJIB BAGI DEVELOPER / AI AGENT PENERUS
 
 1. **Selalu Baca File Sebelum Mengedit**: Jangan berasumsi tentang isi file. Gunakan tool pembaca file untuk memeriksa kondisi aktual kode.
 2. **Pelihara Kode yang Bekerja**: Jangan merombak kode secara besar-besaran (*burn & rewrite*) kecuali ada alasan teknis yang kuat.

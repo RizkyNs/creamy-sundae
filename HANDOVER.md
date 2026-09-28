@@ -183,26 +183,29 @@ Semua fitur di bawah ini sudah diimplementasikan sebagai prototype di `Game.js` 
 
 ## 📊 6. AUDIT STATUS & ROADMAP
 
-Audit terakhir: 28 September 2026. Sebelum sinkronisasi dokumentasi, working tree bersih, branch lokal `main` satu commit di depan `origin/main`, dan `npm run build` berhasil dengan warning ukuran chunk di atas 500 kB. Perubahan dokumentasi ini belum menjadi commit.
+Audit dokumentasi terakhir: 28 September 2026. Shop upgrades kemudian diimplementasikan pada sesi yang sama. `npm run build` harus dijalankan sebelum commit fitur tersebut.
 
 ## 🗺️ 7. ROADMAP & TARGET PENGERJAAN BERIKUTNYA
 
 ```mermaid
 graph LR
     A[✅ Beverage Station] --> B[✅ Counter Layout Refactor]
-    B --> C[🎯 Shop Upgrades System]
+    B --> C[✅ Shop Upgrades System]
     C --> D[🍦 Container Variants: Cone vs Cup]
     D --> E[🥄 Realistic Scooping Flow: Animasi]
     E --> F[✨ Final Pixel Art & SFX Polish]
 ```
 
-### 🎯 Next Immediate Task: **Shop Upgrades System**
-1. Membuat antarmuka/modal upgrade toko yang dapat diakses dari End of Day Summary atau Main Menu.
-2. Upgrade yang dapat dibeli menggunakan uang tabungan (`this.money`):
-   - ⏰ **Customer Patience Boost** (menambah durasi waktu tunggu pelanggan).
-   - 💰 **Tip Multiplier / Charisma** (meningkatkan persentase perolehan tip).
-   - 🎨 **Shop Decor / Upgraded Counters** (menambah daya tarik toko).
-3. Mengintegrasikan efek upgrade tersebut ke dalam loop gameplay di `Game.js`.
+### ✅ Shop Upgrades System — Implemented
+- Modal upgrade tersedia pada End of Day Summary.
+- **Patient Customers**: biaya prototype `$10`, menambah 5 detik patience per level, maksimum level 2.
+- **Charming Service**: biaya prototype `$15`, menambah 25% nilai tip per level, maksimum level 2.
+- **Shop Decor**: biaya prototype `$20`, mengubah warna counter, maksimum level 1.
+- Pembelian mengurangi `this.money`, memperbarui saldo, dan efek langsung diterapkan ke customer berikutnya atau reward berikutnya.
+- Nilai biaya, efek, dan level adalah **temporary prototype values**; upgrade belum disimpan antar sesi.
+
+### 🎯 Next Immediate Task: **Container Variants: Cone vs Cup**
+Pilihan wadah perlu masuk ke data order, state penyajian, dan validasi resep sebelum alur scooping realistis dibuat.
 
 ### 🔮 Planned Future Mechanics (Pengerjaan Masa Depan):
 1. **Realistic Scooping Flow (Alur Sekop Realistis)**:

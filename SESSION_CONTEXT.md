@@ -68,6 +68,13 @@ Berikut adalah riwayat percakapan dan evolusi pengerjaan project secara kronolog
 - **Verifikasi**: `npm run build` berhasil. Build masih memberikan warning ukuran chunk di atas 500 kB.
 - **Git saat audit**: `main` lokal berada satu commit di depan `origin/main` karena commit `93d02b8 chore: add opencode.json to .gitignore`; perubahan dokumentasi audit ini belum di-commit.
 
+### Shop Upgrades — 28 September 2026
+- **Implementasi**: Modal upgrade ditambahkan ke End of Day Summary di `Game.js`.
+- **Upgrade**: Patient Customers (+5 detik patience per level, maksimum 2), Charming Service (+25% nilai tip per level, maksimum 2), dan Shop Decor (mengubah warna counter, maksimum 1).
+- **Ekonomi**: Pembelian memakai `this.money`, memperbarui saldo top bar, dan menolak pembelian jika saldo tidak cukup atau level sudah maksimum.
+- **Batasan**: Biaya, efek, dan level masih temporary prototype values. Upgrade belum dipersistenkan karena save/load belum ada.
+- **Verifikasi**: Build production dijalankan sebelum commit fitur.
+
 ---
 
 ## 🔑 2. CATATAN PENTING & KEPUTUSAN DESAIN (DESIGN DECISIONS)
@@ -120,7 +127,7 @@ Jika Anda adalah AI Agent atau developer baru yang baru saja membuka project ini
    ```
    Akses via browser di: `http://139.99.122.214:20043`
 3. **Langkah Pengerjaan Selanjutnya**:
-   - Target saat ini di roadmap adalah: **Shop Upgrades System** (membuat modal upgrade toko menggunakan uang tabungan pemain).
+    - Target sebelum sesi implementasi adalah **Shop Upgrades System**. Fitur tersebut sekarang sudah selesai; target berikutnya adalah **Container Variants: Cone vs Cup**.
    - Setelah membuat/mengubah fitur, jalankan `npm run build`, lakukan `git commit`, dan **WAJIB memperbarui 3 file dokumentasi**:
      1. [AGENTS.md](file:///root/creamy-sundae/AGENTS.md)
      2. [HANDOVER.md](file:///root/creamy-sundae/HANDOVER.md)

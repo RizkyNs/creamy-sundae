@@ -691,14 +691,13 @@ Day 2
 
 Milestone 10 — Shop upgrades
 
-Not implemented. Potential upgrade directions:
+Implemented as an end-of-day modal with temporary prototype values:
 
-- more flavors
-- more toppings
-- faster serving
-- more customer capacity
-- higher patience
-- better equipment
+- Patient Customers: +5 seconds patience per level, maximum level 2
+- Charming Service: +25% tip value per level, maximum level 2
+- Shop Decor: changes the counter appearance, maximum level 1
+
+Upgrade purchases use `this.money` and apply immediately to subsequent customers/orders. Upgrade state is not persisted between game sessions because save/load is not implemented.
 
 These are design possibilities, not final locked values.
 
@@ -843,7 +842,7 @@ Alur Baru Pembuatan Es Krim (Realistic Scooping Flow):
 
 Current task
 
-The next feature is:
+The completed feature in this work session is:
 
 Shop upgrades
 
@@ -852,20 +851,10 @@ Implement shop upgrade system:
 2. Purchasable upgrades with earned money (e.g. Extra patience boost, faster tip multiplier, decorations).
 3. Apply upgrade effects to gameplay loop.
 
-After the feature is stable:
+Implementation status:
 
-npm run build
+Implemented and build verified. The next planned feature is:
 
-Then:
-
-git status
-git add ...
-git commit -m "feat: add shop upgrade system"
-git push
-
-Only after that should development proceed to:
-
-Shop upgrades
 ↓
 Cone vs Cup variants
 ↓
@@ -945,12 +934,13 @@ Vite
 ✅ Multiple recipes
 ✅ Day system
 ✅ Beverage / Drink Station
+✅ Shop upgrades (prototype)
 ✅ VPS Linux development environment
 ✅ VPS build environment
 
 NOT YET IMPLEMENTED:
 
-Shop upgrades
+Save/load
 ↓
 Cone vs Cup variants
 ↓

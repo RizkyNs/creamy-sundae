@@ -26,9 +26,11 @@ Rasa yang tersedia: Vanilla, Chocolate, dan Strawberry. Order dapat berupa scoop
 
 ## Status project
 
-Sudah tersedia: main menu, layout counter, cup dan scoop drag-and-drop, tiga flavor, station minuman, order dan validasi resep, serve order, uang dan tip, customer queue, patience, serta siklus hari dengan rekapitulasi.
+Sudah tersedia: main menu, layout counter, cup dan scoop drag-and-drop, tiga flavor, station minuman, order dan validasi resep, serve order, uang dan tip, customer queue, patience, siklus hari dengan rekapitulasi, serta modal shop upgrades di akhir hari.
 
-Belum tersedia: shop upgrades, save/load, cone vs cup variants, topping dan saus, alur menyendok realistis, aset pixel art final, audio, dan polish visual.
+Upgrade prototype yang tersedia: Patient Customers (+5 detik patience per level), Charming Service (+25% nilai tip per level), dan Shop Decor (mengubah tampilan counter). Upgrade dibeli dengan saldo dan memiliki level maksimum prototype.
+
+Belum tersedia: save/load, cone vs cup variants, topping dan saus, alur menyendok realistis, aset pixel art final, audio, dan polish visual.
 
 Harga, jumlah customer, durasi kesabaran, dan angka progresi lainnya masih merupakan **temporary prototype values**, bukan keputusan desain final.
 

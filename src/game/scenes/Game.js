@@ -34,6 +34,13 @@ export class Game extends Scene
         this.maxPatience = 0;
         this.patienceActive = false;
 
+        // Shop upgrades (temporary prototype values; reset when the scene restarts)
+        this.upgrades = {
+            patience: 0,
+            tips: 0,
+            decor: 0
+        };
+
         // =========================================================
         // BACKGROUND
         // =========================================================
@@ -183,7 +190,7 @@ export class Game extends Scene
         // =========================================================
 
         // Counter surface
-        this.add.rectangle(
+        this.counterSurface = this.add.rectangle(
             width / 2,
             550,
             width,
@@ -334,8 +341,9 @@ export class Game extends Scene
             let maxOrderIndex = Math.min(possibleOrders.length, 3 + (day * 2));
             const randomOrder = possibleOrders[Math.floor(Math.random() * maxOrderIndex)];
             
-            // Patience: 20 - 35 seconds
-            const patience = Math.max(15, 30 - (day * 2) + Math.floor(Math.random() * 6));
+            // Patience: temporary prototype value, increased by the patience upgrade.
+            const patience = Math.max(15, 30 - (day * 2) + Math.floor(Math.random() * 6))
+                + (this.upgrades.patience * 5);
 
             queue.push({
                 name: `Customer ${i}`,
@@ -449,11 +457,11 @@ export class Game extends Scene
         overlay.setInteractive(); // blocks clicks behind
 
         // Modal window
-        const modalBox = this.add.rectangle(0, 0, 480, 420, 0xfff9ef);
+        const modalBox = this.add.rectangle(0, 0, 640, 570, 0xfff9ef);
         modalBox.setStrokeStyle(6, 0x6b3e26);
 
         // Header
-        const headerText = this.add.text(0, -160, `DAY ${this.day} SUMMARY`, {
+        const headerText = this.add.text(0, -245, `DAY ${this.day} SUMMARY`, {
             fontFamily: 'Arial Black',
             fontSize: 28,
             color: '#6b3e26'
@@ -468,18 +476,83 @@ export class Game extends Scene
             `Total Savings:     $${this.money.toFixed(2)}`
         ];
 
-        const statsText = this.add.text(0, -40, statsContent.join('\n\n'), {
+        const statsText = this.add.text(0, -145, statsContent.join('\n'), {
             fontFamily: 'Arial',
-            fontSize: 20,
+            fontSize: 17,
             color: '#5c3a21',
             align: 'center'
         }).setOrigin(0.5);
 
+        const upgradeTitle = this.add.text(0, -45, 'SHOP UPGRADES', {
+            fontFamily: 'Arial Black',
+            fontSize: 19,
+            color: '#6b3e26'
+        }).setOrigin(0.5);
+
+        const upgradeHint = this.add.text(0, -20, 'Buy upgrades with your savings', {
+            fontFamily: 'Arial',
+            fontSize: 14,
+            color: '#8b6045'
+        }).setOrigin(0.5);
+
+        const upgradeRows = [
+            {
+                key: 'patience',
+                y: 35,
+                label: 'PATIENT CUSTOMERS',
+                effect: '+5 seconds patience',
+                cost: 10
+            },
+            {
+                key: 'tips',
+                y: 95,
+                label: 'CHARMING SERVICE',
+                effect: '+25% tip value',
+                cost: 15
+            },
+            {
+                key: 'decor',
+                y: 155,
+                label: 'SHOP DECOR',
+                effect: 'Improve counter appearance',
+                cost: 20
+            }
+        ];
+
+        const upgradeObjects = [];
+
+        upgradeRows.forEach((upgrade) => {
+            const row = this.add.rectangle(-10, upgrade.y, 510, 48, 0xffead2);
+            row.setStrokeStyle(2, 0xd19a76);
+
+            const description = this.add.text(-245, upgrade.y, `${upgrade.label}\n${upgrade.effect}`, {
+                fontFamily: 'Arial Black',
+                fontSize: 12,
+                color: '#6b3e26'
+            }).setOrigin(0, 0.5);
+
+            const button = this.add.rectangle(190, upgrade.y, 120, 34, 0x4caf50);
+            const buttonText = this.add.text(190, upgrade.y, '', {
+                fontFamily: 'Arial Black',
+                fontSize: 12,
+                color: '#ffffff',
+                align: 'center'
+            }).setOrigin(0.5);
+
+            button.setInteractive({ useHandCursor: true });
+            button.on('pointerover', () => button.setScale(1.04));
+            button.on('pointerout', () => button.setScale(1));
+            button.on('pointerdown', () => this.purchaseUpgrade(upgrade.key, upgrade.cost, button, buttonText));
+
+            upgradeObjects.push(row, description, button, buttonText);
+            this.updateUpgradeButton(upgrade.key, upgrade.cost, button, buttonText);
+        });
+
         // Next Day Button
-        const nextDayBtn = this.add.rectangle(0, 140, 220, 55, 0x4caf50);
+        const nextDayBtn = this.add.rectangle(0, 235, 250, 55, 0x4caf50);
         nextDayBtn.setInteractive({ useHandCursor: true });
 
-        const btnText = this.add.text(0, 140, `START DAY ${this.day + 1}`, {
+        const btnText = this.add.text(0, 235, `START DAY ${this.day + 1}`, {
             fontFamily: 'Arial Black',
             fontSize: 20,
             color: '#ffffff'
@@ -504,9 +577,52 @@ export class Game extends Scene
             modalBox,
             headerText,
             statsText,
+            upgradeTitle,
+            upgradeHint,
+            ...upgradeObjects,
             nextDayBtn,
             btnText
         ]);
+    }
+
+    updateUpgradeButton (key, cost, button, buttonText)
+    {
+        const level = this.upgrades[key];
+        const maxLevel = key === 'decor' ? 1 : 2;
+
+        if (level >= maxLevel) {
+            button.setFillStyle(0x9e9e9e);
+            buttonText.setText('MAXED');
+            button.disableInteractive();
+        } else if (this.money < cost) {
+            button.setFillStyle(0xbdbdbd);
+            buttonText.setText(`$${cost} - NEED MORE`);
+        } else {
+            button.setFillStyle(0x4caf50);
+            buttonText.setText(`BUY $${cost}`);
+        }
+    }
+
+    purchaseUpgrade (key, cost, button, buttonText)
+    {
+        const maxLevel = key === 'decor' ? 1 : 2;
+
+        if (this.upgrades[key] >= maxLevel || this.money < cost) {
+            this.cameras.main.shake(100, 0.01);
+            return;
+        }
+
+        this.money -= cost;
+        this.upgrades[key]++;
+        this.moneyText.setText('$' + this.money.toFixed(2));
+
+        if (key === 'decor') {
+            this.counterSurface.setFillStyle(0xd4b5e8);
+            this.validationText.setColor('#7b4b9e');
+        }
+
+        this.updateUpgradeButton(key, cost, button, buttonText);
+        console.log(`Purchased ${key} upgrade level ${this.upgrades[key]}`);
     }
 
     // =============================================================
@@ -707,6 +823,8 @@ export class Game extends Scene
         } else if (patienceRatio > 0.4) {
             tip = 0.50;
         }
+
+        tip *= (1 + (this.upgrades.tips * 0.25));
 
         const totalEarned = basePrice + tip;
         this.money += totalEarned;

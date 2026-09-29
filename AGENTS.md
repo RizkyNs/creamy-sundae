@@ -949,6 +949,8 @@ Polish
 
 Final custom game art, sprite sheets, and animation frames are not yet created. Existing `bg.png` and `logo.png` remain the only registered runtime images.
 
+Uploaded Gemini-generated images under `assets-work/prompts/` are preference references only. The detailed visual translation is documented in `assets-work/prompts/STYLE_GUIDE.md`; do not treat the references as final art or locked character specifications.
+
 Current source-of-truth workspace:
 
 "/root/creamy-sundae"

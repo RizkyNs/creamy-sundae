@@ -6,6 +6,8 @@
 - Prototype boleh memakai bentuk dasar; asset final diarahkan ke pixel art/stylized 2D.
 - Gunakan outline dan arah cahaya yang konsisten.
 - Pertahankan palet warna hangat dengan aksen vanilla, chocolate, strawberry, cola, dan lemon.
+- Referensi Gemini di `assets-work/prompts/` adalah preferensi visual, bukan asset final atau spesifikasi karakter yang terkunci.
+- Detail lengkap bahasa visual, karakter, UI, pixel art, dan workflow produksi ada di `assets-work/prompts/STYLE_GUIDE.md`.
 
 ## Runtime conventions
 

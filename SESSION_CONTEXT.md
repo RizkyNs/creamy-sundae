@@ -83,6 +83,12 @@ Berikut adalah riwayat percakapan dan evolusi pengerjaan project secara kronolog
 - **Verifikasi**: `npm run assets:check`, `node --check`, `git diff --check`, dan `npm run build` berhasil. Build tetap menampilkan warning ukuran chunk >500 kB.
 - **Install**: `npm install` menambahkan tooling dan memperbarui lockfile; npm melaporkan 6 high severity vulnerabilities saat audit otomatis.
 
+### Visual Preference Style Guide — 29 September 2026
+- **Input**: User mengunggah referensi screen/UI dan beberapa referensi karakter/ekspresi/animasi hasil Gemini App ke `assets-work/prompts/`.
+- **Keputusan**: Gambar-gambar tersebut diperlakukan sebagai preferensi arah visual, bukan asset final, character sheet final, atau materi yang langsung dimuat runtime.
+- **Dokumentasi**: `assets-work/prompts/STYLE_GUIDE.md` menyusun target pixel-art, bahasa bentuk, outline, palet awal, material/lighting, UI hierarchy, arah karakter, ukuran sprite, workflow AI, provenance, dan definition of done.
+- **Batasan**: Identitas/role karakter, proporsi, ukuran sprite, dan animasi final belum dikunci. Asset pertama harus berupa small approved batch sebelum seluruh library dibuat.
+
 ---
 
 ## 🔑 2. CATATAN PENTING & KEPUTUSAN DESAIN (DESIGN DECISIONS)

@@ -91,12 +91,14 @@ creamy-sundae/
 │   ├── assets/
 │   │   ├── bg.png
 │   │   └── logo.png
+│   │   └── ASSET_GUIDELINES.md
 │   ├── favicon.png
 │   └── style.css
 ├── src/
 │   ├── main.js                  # Entry point bundler Vite & style import
 │   └── game/
 │       ├── main.js              # Konfigurasi Phaser.Game (Scale: 1024x768, AUTO, Scene list)
+│       ├── data/assets.js        # Registry asset runtime/Phaser keys
 │       └── scenes/
 │           ├── Boot.js          # Bootstrapping awal Phaser
 │           ├── Preloader.js     # Loading bar & asset preloader
@@ -109,6 +111,8 @@ creamy-sundae/
 │   ├── config.dev.mjs           # Konfigurasi Vite dev server
 │   └── config.prod.mjs          # Konfigurasi Vite production build (Terser minification)
 ├── AGENTS.md                    # Rule book & dynamic checklist coding agent
+├── assets-work/                 # Prompt, reviewed/processed staging dan panduan asset
+├── scripts/check-assets.mjs     # Validasi registry dan image runtime
 ├── HANDOVER.md                  # Dokumen master serah terima teknis (dokumen ini)
 ├── SESSION_CONTEXT.md           # Rangkuman kronologis dan konteks riwayat percakapan
 ├── index.html                   # HTML container game canvas
@@ -181,11 +185,21 @@ Semua fitur di bawah ini sudah diimplementasikan sebagai prototype di `Game.js` 
 
 ---
 
-## 📊 6. AUDIT STATUS & ROADMAP
+## 🧰 6. ASSET PIPELINE
+
+- Registry terpusat: `src/game/data/assets.js` (key, path, type, kategori, status, sumber, lisensi).
+- `Preloader.js` memuat image yang terdaftar di registry.
+- `npm run assets:check` memeriksa keberadaan file, duplikasi key, format/dimensi image, dan file runtime yang belum didaftarkan.
+- Tooling: `sharp` untuk inspeksi image dan `fast-glob` untuk discovery file.
+- `assets-work/raw/` dan `assets-work/rejected/` di-ignore oleh Git; hanya asset yang sudah direview dan disetujui dipindahkan ke `public/assets/`.
+- Standar visual, format, dimensi awal, penamaan, dan provenance ada di `public/assets/ASSET_GUIDELINES.md`.
+- Saat ini hanya `bg.png` (1024x768) dan `logo.png` (500x108) yang terdaftar. Asset final, sprite sheet, dan animasi belum dibuat.
+
+## 📊 7. AUDIT STATUS & ROADMAP
 
 Audit dokumentasi terakhir: 28 September 2026. Shop upgrades kemudian diimplementasikan pada sesi yang sama. `npm run build` harus dijalankan sebelum commit fitur tersebut.
 
-## 🗺️ 7. ROADMAP & TARGET PENGERJAAN BERIKUTNYA
+## 🗺️ 8. ROADMAP & TARGET PENGERJAAN BERIKUTNYA
 
 ```mermaid
 graph LR
@@ -223,7 +237,7 @@ Pilihan wadah perlu masuk ke data order, state penyajian, dan validasi resep seb
 
 ---
 
-## 📜 8. ATURAN WAJIB BAGI DEVELOPER / AI AGENT PENERUS
+## 📜 9. ATURAN WAJIB BAGI DEVELOPER / AI AGENT PENERUS
 
 1. **Selalu Baca File Sebelum Mengedit**: Jangan berasumsi tentang isi file. Gunakan tool pembaca file untuk memeriksa kondisi aktual kode.
 2. **Pelihara Kode yang Bekerja**: Jangan merombak kode secara besar-besaran (*burn & rewrite*) kecuali ada alasan teknis yang kuat.

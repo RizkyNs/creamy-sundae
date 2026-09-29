@@ -51,6 +51,17 @@ src/
 
 Sebagian besar logika gameplay masih berada di `src/game/scenes/Game.js`. Pemisahan ke systems/data/objects dilakukan ketika kompleksitas fitur membutuhkannya.
 
+## Asset pipeline
+
+- Runtime assets berada di `public/assets/`, dikelompokkan menurut kategori.
+- Registry asset dan Phaser keys dikelola di `src/game/data/assets.js`.
+- `Preloader` memuat image runtime dari registry tersebut.
+- File mentah dan file yang ditolak dari proses pembuatan disimpan lokal di `assets-work/raw/` dan `assets-work/rejected/` (di-ignore Git).
+- Gunakan `npm run assets:check` untuk memastikan file terdaftar tersedia, image terbaca, key unik, dan mendeteksi asset runtime yang belum didaftarkan.
+- Standar gaya, dimensi, penamaan, dan provenance ada di `public/assets/ASSET_GUIDELINES.md`.
+
+Tooling asset saat ini menggunakan `sharp` untuk membaca metadata/dimensi gambar dan `fast-glob` untuk menemukan file asset.
+
 ## Menjalankan project
 
 Dari `/root/creamy-sundae`:

@@ -75,6 +75,14 @@ Berikut adalah riwayat percakapan dan evolusi pengerjaan project secara kronolog
 - **Batasan**: Biaya, efek, dan level masih temporary prototype values. Upgrade belum dipersistenkan karena save/load belum ada.
 - **Verifikasi**: Build production dijalankan sebelum commit fitur.
 
+### Asset Pipeline Setup — 29 September 2026
+- **Struktur**: Ditambahkan `assets-work/` untuk prompt, reviewed, processed, dan staging asset. Raw/rejected di-ignore Git.
+- **Registry/loader**: `src/game/data/assets.js` menjadi manifest runtime dan `Preloader.js` memuat asset yang terdaftar.
+- **Tooling**: Ditambahkan `sharp`, `fast-glob`, script `npm run assets:check`, style guide, dan catatan provenance.
+- **Audit awal**: `bg.png` (1024x768) dan `logo.png` (500x108) valid serta sudah terdaftar. Asset final belum dibuat.
+- **Verifikasi**: `npm run assets:check`, `node --check`, `git diff --check`, dan `npm run build` berhasil. Build tetap menampilkan warning ukuran chunk >500 kB.
+- **Install**: `npm install` menambahkan tooling dan memperbarui lockfile; npm melaporkan 6 high severity vulnerabilities saat audit otomatis.
+
 ---
 
 ## 🔑 2. CATATAN PENTING & KEPUTUSAN DESAIN (DESIGN DECISIONS)

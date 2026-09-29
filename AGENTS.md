@@ -935,6 +935,7 @@ Vite
 ✅ Day system
 ✅ Beverage / Drink Station
 ✅ Shop upgrades (prototype)
+✅ Asset pipeline foundation (manifest, loader, checker, style guide)
 ✅ VPS Linux development environment
 ✅ VPS build environment
 
@@ -945,6 +946,8 @@ Save/load
 Cone vs Cup variants
 ↓
 Polish
+
+Final custom game art, sprite sheets, and animation frames are not yet created. Existing `bg.png` and `logo.png` remain the only registered runtime images.
 
 Current source-of-truth workspace:
 

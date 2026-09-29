@@ -9,3 +9,7 @@ Thumbs.db
 .vscode/
 .idea/
 /media-context/
+
+# Unprocessed/generated asset work files stay local until approved.
+/assets-work/raw/
+/assets-work/rejected/

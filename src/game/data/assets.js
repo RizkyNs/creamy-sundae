@@ -29,7 +29,7 @@ export const GAME_ASSETS = {
         type: 'image',
         category: 'containers',
         status: 'prototype-approved',
-        source: 'original-project-svg',
+        source: 'original-project-artwork',
         license: 'Creamy Sundae project asset'
     },
     vanillaScoop: {
@@ -38,7 +38,25 @@ export const GAME_ASSETS = {
         type: 'image',
         category: 'ingredients',
         status: 'prototype-approved',
-        source: 'original-project-svg',
+        source: 'original-project-artwork',
+        license: 'Creamy Sundae project asset'
+    },
+    chocolateScoop: {
+        key: 'ingredient-chocolate-scoop',
+        file: 'ingredients/ingredient_chocolate_scoop.png',
+        type: 'image',
+        category: 'ingredients',
+        status: 'prototype-approved',
+        source: 'original-project-artwork',
+        license: 'Creamy Sundae project asset'
+    },
+    strawberryScoop: {
+        key: 'ingredient-strawberry-scoop',
+        file: 'ingredients/ingredient_strawberry_scoop.png',
+        type: 'image',
+        category: 'ingredients',
+        status: 'prototype-approved',
+        source: 'original-project-artwork',
         license: 'Creamy Sundae project asset'
     }
 };

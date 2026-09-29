@@ -22,7 +22,7 @@ Prototype saat ini menggunakan bentuk dasar Phaser (`rectangle`, `circle`, dan `
 7. Customer berikutnya muncul sampai antrean hari selesai.
 8. Rekap akhir hari memungkinkan memulai hari berikutnya.
 
-Rasa yang tersedia: Vanilla, Chocolate, dan Strawberry. Order dapat berupa scoop tunggal, minuman saja, atau kombinasi beberapa scoop dan minuman.
+Rasa yang tersedia: Vanilla, Chocolate, dan Strawberry. Order dapat berupa scoop tunggal, minuman saja, atau kombinasi beberapa scoop dan minuman. Ketiga scoop flavor sekarang memakai prototype PNG pixel-art; scoop akan ditampilkan di depan bibir cup saat sudah dimasukkan.
 
 ## Status project
 

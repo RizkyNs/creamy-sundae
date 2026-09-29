@@ -232,17 +232,17 @@ export class Game extends Scene
         this.createIngredientButton(520, 460, 'STRAWBERRY', 0xffa6b6);
 
         // Cup Slot (inside display workstation)
-        this.cup = this.add.image(350, 620, 'container-paper-cup');
+        this.cup = this.add.image(350, 640, 'container-paper-cup');
         this.cup.setDisplaySize(130, 150);
         this.cup.setDepth(1);
 
-        this.add.text(350, 650, 'PAPER CUP', {
+        this.add.text(350, 695, 'PAPER CUP', {
             fontFamily: 'Arial Black',
             fontSize: 13,
             color: '#d19a76'
         }).setOrigin(0.5);
 
-        this.cupStatusText = this.add.text(350, 705, '0 SCOOP', {
+        this.cupStatusText = this.add.text(350, 730, '0 SCOOP', {
             fontFamily: 'Arial Black',
             fontSize: 16,
             color: '#6b3e26'
@@ -958,13 +958,13 @@ export class Game extends Scene
 
         const config = flavorConfigs[flavor] || flavorConfigs.vanilla;
 
-        const scoop = flavor === 'vanilla'
-            ? this.add.image(spawnX, spawnY, 'ingredient-vanilla-scoop').setDisplaySize(82, 82)
-            : this.add.circle(spawnX, spawnY, 33, config.color);
-
-        if (flavor !== 'vanilla') {
-            scoop.setStrokeStyle(3, config.stroke);
-        }
+        const scoopKeys = {
+            vanilla: 'ingredient-vanilla-scoop',
+            chocolate: 'ingredient-chocolate-scoop',
+            strawberry: 'ingredient-strawberry-scoop'
+        };
+        const scoop = this.add.image(spawnX, spawnY, scoopKeys[flavor]);
+        scoop.setDisplaySize(82, 82);
 
         scoop.setInteractive();
 
@@ -986,7 +986,7 @@ export class Game extends Scene
             scoop.setScale(1);
 
             const cupX = 350;
-            const cupY = 620;
+            const cupY = 640;
 
             const distance = Math.hypot(
                 scoop.x - cupX,
@@ -997,7 +997,9 @@ export class Game extends Scene
             {
                 // Masukkan scoop ke cup
                 scoop.x = cupX;
-                scoop.y = 590 - (this.cupContents.length * 25); // Stack them neatly inside cup
+                // Keep the scoop in front of the cup rim and visibly stacked.
+                scoop.y = 598 - (this.cupContents.length * 28);
+                scoop.setDepth(3);
 
                 // Disable dragging once in cup
                 this.input.setDraggable(scoop, false);

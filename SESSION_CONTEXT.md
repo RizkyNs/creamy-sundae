@@ -106,6 +106,12 @@ Berikut adalah riwayat percakapan dan evolusi pengerjaan project secara kronolog
 - **Diagnosis**: Browser kemungkinan mengakses server/checkout lama atau tidak ada dev server aktif pada mapping port; masalah belum terbukti berasal dari file PNG.
 - **Mitigasi**: Ditambahkan label runtime `ASSET BUILD: PNG PROTOTYPE` di Game scene untuk membedakan build terbaru secara visual.
 
+### Chocolate and Strawberry Scoop Batch — 29 September 2026
+- **Asset**: Dibuat `ingredient-chocolate-scoop.png` dan `ingredient-strawberry-scoop.png` dengan silhouette, highlight, shadow, outline, dan ukuran yang sama dengan Vanilla.
+- **Integrasi**: Semua flavor sekarang memakai image key dari manifest; tidak ada lagi fallback circle untuk scoop.
+- **Layout**: Cup digeser ke bawah dan scoop yang berhasil masuk diberi depth 3 serta posisi stack di depan bibir cup agar tidak tenggelam di belakang cup.
+- **Verifikasi**: Asset checker dan build perlu dijalankan sebelum commit.
+
 ---
 
 ## 🔑 2. CATATAN PENTING & KEPUTUSAN DESAIN (DESIGN DECISIONS)

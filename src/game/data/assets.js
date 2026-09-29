@@ -22,5 +22,23 @@ export const GAME_ASSETS = {
         status: 'approved',
         source: 'project-template',
         license: 'MIT/project template'
+    },
+    paperCup: {
+        key: 'container-paper-cup',
+        file: 'containers/container_paper_cup.svg',
+        type: 'image',
+        category: 'containers',
+        status: 'prototype-approved',
+        source: 'original-project-svg',
+        license: 'Creamy Sundae project asset'
+    },
+    vanillaScoop: {
+        key: 'ingredient-vanilla-scoop',
+        file: 'ingredients/ingredient_vanilla_scoop.svg',
+        type: 'image',
+        category: 'ingredients',
+        status: 'prototype-approved',
+        source: 'original-project-svg',
+        license: 'Creamy Sundae project asset'
     }
 };

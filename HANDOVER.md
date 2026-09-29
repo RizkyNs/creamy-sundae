@@ -193,7 +193,7 @@ Semua fitur di bawah ini sudah diimplementasikan sebagai prototype di `Game.js` 
 - Tooling: `sharp` untuk inspeksi image dan `fast-glob` untuk discovery file.
 - `assets-work/raw/` dan `assets-work/rejected/` di-ignore oleh Git; hanya asset yang sudah direview dan disetujui dipindahkan ke `public/assets/`.
 - Standar visual, format, dimensi awal, penamaan, dan provenance ada di `public/assets/ASSET_GUIDELINES.md`.
-- Saat ini hanya `bg.png` (1024x768) dan `logo.png` (500x108) yang terdaftar. Asset final, sprite sheet, dan animasi belum dibuat.
+- Asset registry saat ini berisi `bg.png` (1024x768), `logo.png` (500x108), serta prototype-approved `container-paper-cup` dan `ingredient-vanilla-scoop` (SVG 64x64). Asset final, sprite sheet, dan animasi belum dibuat.
 - Referensi visual Gemini yang diunggah user berada di `assets-work/prompts/` dan diperlakukan sebagai preference references, bukan asset final. Aturan hasil terjemahan visual ada di `assets-work/prompts/STYLE_GUIDE.md`.
 - Karakter pada referensi belum final; role, nama, proporsi, ukuran sprite, dan state animasi masih terbuka.
 

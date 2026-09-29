@@ -936,6 +936,7 @@ Vite
 ✅ Beverage / Drink Station
 ✅ Shop upgrades (prototype)
 ✅ Asset pipeline foundation (manifest, loader, checker, style guide)
+✅ First approved asset batch (prototype paper cup and vanilla scoop)
 ✅ VPS Linux development environment
 ✅ VPS build environment
 
@@ -947,7 +948,7 @@ Cone vs Cup variants
 ↓
 Polish
 
-Final custom game art, sprite sheets, and animation frames are not yet created. Existing `bg.png` and `logo.png` remain the only registered runtime images.
+Final custom game art, sprite sheets, and animation frames are not yet created. Runtime registry now contains `bg.png`, `logo.png`, plus prototype-approved SVG assets for a paper cup and vanilla scoop.
 
 Uploaded Gemini-generated images under `assets-work/prompts/` are preference references only. The detailed visual translation is documented in `assets-work/prompts/STYLE_GUIDE.md`; do not treat the references as final art or locked character specifications.
 

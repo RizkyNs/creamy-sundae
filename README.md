@@ -79,6 +79,13 @@ npm run build
 
 Untuk development melalui mapping VPS yang tercatat, gunakan `http://139.99.122.214:20043` jika server berjalan pada port 8080.
 
+Jika gameplay belum menampilkan label `ASSET BUILD: PNG PROTOTYPE`, browser masih menerima versi lama. Pastikan Vite dijalankan dari checkout terbaru pada VPS dan port 8080:
+
+```bash
+git pull --ff-only origin main
+npm run dev -- --host 0.0.0.0 --port 8080
+```
+
 ## Dokumentasi lanjutan
 
 - `AGENTS.md` — aturan kerja, status milestone, dan roadmap.

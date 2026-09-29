@@ -65,6 +65,13 @@ export class Game extends Scene
             color: '#6b3e26'
         }).setOrigin(0, 0.5);
 
+        // Small runtime marker to make it obvious which asset-integrated build is open.
+        this.add.text(30, 68, 'ASSET BUILD: PNG PROTOTYPE', {
+            fontFamily: 'Arial',
+            fontSize: 10,
+            color: '#8b6045'
+        }).setOrigin(0, 0.5);
+
         this.dayText = this.add.text(width - 180, 35, 'DAY 1', {
             fontFamily: 'Arial Black',
             fontSize: 18,

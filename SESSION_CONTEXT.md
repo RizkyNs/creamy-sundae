@@ -100,6 +100,12 @@ Berikut adalah riwayat percakapan dan evolusi pengerjaan project secara kronolog
 - **Perubahan**: Cup di `Game.js` sekarang menggunakan `container-paper-cup`; scoop Vanilla menggunakan `ingredient-vanilla-scoop`. Scoop Chocolate dan Strawberry masih memakai bentuk dasar.
 - **Status**: Asset contoh sekarang benar-benar terlihat di gameplay setelah dev server memuat perubahan/HMR.
 
+### Public Visual Verification Follow-up — 29 September 2026
+- **User report**: Screenshot public masih menampilkan bentuk bundar/kotak walaupun PNG asset dibuka manual dan terlihat benar.
+- **Audit**: Source `origin/main` sudah memuat `container-paper-cup.png`, `ingredient-vanilla-scoop.png`, dan pemakaian key tersebut di `Game.js`. Tidak ada proses Vite/listener port 8080 atau 5173 yang aktif pada saat audit VPS.
+- **Diagnosis**: Browser kemungkinan mengakses server/checkout lama atau tidak ada dev server aktif pada mapping port; masalah belum terbukti berasal dari file PNG.
+- **Mitigasi**: Ditambahkan label runtime `ASSET BUILD: PNG PROTOTYPE` di Game scene untuk membedakan build terbaru secara visual.
+
 ---
 
 ## 🔑 2. CATATAN PENTING & KEPUTUSAN DESAIN (DESIGN DECISIONS)

@@ -95,6 +95,11 @@ Berikut adalah riwayat percakapan dan evolusi pengerjaan project secara kronolog
 - **Status**: Prototype-approved untuk uji pipeline dan integrasi, belum dianggap final art.
 - **Verifikasi**: `npm run assets:check` memvalidasi 4 asset runtime (2 existing + 2 prototype baru).
 
+### Gameplay Integration of First Asset Batch — 29 September 2026
+- **Temuan**: Pengguna mengunjungi public development link dan masih melihat placeholder bundar/kotak. Asset sebelumnya baru dimuat/terdaftar, belum dipakai oleh gameplay objects.
+- **Perubahan**: Cup di `Game.js` sekarang menggunakan `container-paper-cup`; scoop Vanilla menggunakan `ingredient-vanilla-scoop`. Scoop Chocolate dan Strawberry masih memakai bentuk dasar.
+- **Status**: Asset contoh sekarang benar-benar terlihat di gameplay setelah dev server memuat perubahan/HMR.
+
 ---
 
 ## 🔑 2. CATATAN PENTING & KEPUTUSAN DESAIN (DESIGN DECISIONS)

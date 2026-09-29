@@ -60,7 +60,7 @@ Sebagian besar logika gameplay masih berada di `src/game/scenes/Game.js`. Pemisa
 - Gunakan `npm run assets:check` untuk memastikan file terdaftar tersedia, image terbaca, key unik, dan mendeteksi asset runtime yang belum didaftarkan.
 - Standar gaya, dimensi, penamaan, dan provenance ada di `public/assets/ASSET_GUIDELINES.md`.
 
-Tooling asset saat ini menggunakan `sharp` untuk membaca metadata/dimensi gambar dan `fast-glob` untuk menemukan file asset. Small approved batch pertama berisi prototype `container-paper-cup` dan `ingredient-vanilla-scoop` dalam format SVG crisp-edge.
+Tooling asset saat ini menggunakan `sharp` untuk membaca metadata/dimensi gambar dan `fast-glob` untuk menemukan file asset. Small approved batch pertama berisi prototype `container-paper-cup` dan `ingredient-vanilla-scoop` dalam format SVG crisp-edge. Cup dan vanilla scoop ini sudah dipakai di gameplay; Chocolate dan Strawberry masih placeholder bentuk dasar.
 
 ## Menjalankan project
 

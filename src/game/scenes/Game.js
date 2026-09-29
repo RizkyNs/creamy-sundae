@@ -225,8 +225,8 @@ export class Game extends Scene
         this.createIngredientButton(520, 460, 'STRAWBERRY', 0xffa6b6);
 
         // Cup Slot (inside display workstation)
-        this.cup = this.add.rectangle(350, 620, 150, 95, 0xffffff);
-        this.cup.setStrokeStyle(3, 0x6b3e26);
+        this.cup = this.add.image(350, 620, 'container-paper-cup');
+        this.cup.setDisplaySize(150, 150);
 
         this.add.text(350, 620, 'CUP', {
             fontFamily: 'Arial Black',
@@ -950,17 +950,13 @@ export class Game extends Scene
 
         const config = flavorConfigs[flavor] || flavorConfigs.vanilla;
 
-        const scoop = this.add.circle(
-            spawnX,
-            spawnY,
-            33,
-            config.color
-        );
+        const scoop = flavor === 'vanilla'
+            ? this.add.image(spawnX, spawnY, 'ingredient-vanilla-scoop').setDisplaySize(66, 66)
+            : this.add.circle(spawnX, spawnY, 33, config.color);
 
-        scoop.setStrokeStyle(
-            3,
-            config.stroke
-        );
+        if (flavor !== 'vanilla') {
+            scoop.setStrokeStyle(3, config.stroke);
+        }
 
         scoop.setInteractive();
 

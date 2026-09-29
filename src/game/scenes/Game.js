@@ -648,8 +648,18 @@ export class Game extends Scene
         );
         button.setStrokeStyle(3, 0x6b3e26);
 
+        const flavor = label.toLowerCase();
+        const flavorAssetKeys = {
+            vanilla: 'ingredient-vanilla-scoop',
+            chocolate: 'ingredient-chocolate-scoop',
+            strawberry: 'ingredient-strawberry-scoop'
+        };
+        const flavorIcon = this.add.image(x, y - 8, flavorAssetKeys[flavor]);
+        flavorIcon.setDisplaySize(46, 46);
+        flavorIcon.setDepth(2);
+
         const textColor = (label === 'VANILLA' || label === 'STRAWBERRY') ? '#4a2810' : '#ffffff';
-        const text = this.add.text(x, y, label, {
+        const text = this.add.text(x, y + 27, label, {
             fontFamily: 'Arial Black',
             fontSize: 14,
             color: textColor,
@@ -675,7 +685,6 @@ export class Game extends Scene
 
         button.on('pointerdown', () =>
         {
-            const flavor = label.toLowerCase();
             this.createScoop(flavor, x, y);
         });
     }
@@ -998,7 +1007,7 @@ export class Game extends Scene
                 // Masukkan scoop ke cup
                 scoop.x = cupX;
                 // Keep the scoop in front of the cup rim and visibly stacked.
-                scoop.y = 598 - (this.cupContents.length * 28);
+                scoop.y = 575 - (this.cupContents.length * 28);
                 scoop.setDepth(3);
 
                 // Disable dragging once in cup

@@ -226,15 +226,16 @@ export class Game extends Scene
 
         // Cup Slot (inside display workstation)
         this.cup = this.add.image(350, 620, 'container-paper-cup');
-        this.cup.setDisplaySize(150, 150);
+        this.cup.setDisplaySize(130, 150);
+        this.cup.setDepth(1);
 
-        this.add.text(350, 620, 'CUP', {
+        this.add.text(350, 650, 'PAPER CUP', {
             fontFamily: 'Arial Black',
-            fontSize: 22,
+            fontSize: 13,
             color: '#d19a76'
         }).setOrigin(0.5);
 
-        this.cupStatusText = this.add.text(350, 680, '0 SCOOP', {
+        this.cupStatusText = this.add.text(350, 705, '0 SCOOP', {
             fontFamily: 'Arial Black',
             fontSize: 16,
             color: '#6b3e26'
@@ -951,7 +952,7 @@ export class Game extends Scene
         const config = flavorConfigs[flavor] || flavorConfigs.vanilla;
 
         const scoop = flavor === 'vanilla'
-            ? this.add.image(spawnX, spawnY, 'ingredient-vanilla-scoop').setDisplaySize(66, 66)
+            ? this.add.image(spawnX, spawnY, 'ingredient-vanilla-scoop').setDisplaySize(82, 82)
             : this.add.circle(spawnX, spawnY, 33, config.color);
 
         if (flavor !== 'vanilla') {

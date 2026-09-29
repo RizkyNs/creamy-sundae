@@ -25,7 +25,7 @@ export const GAME_ASSETS = {
     },
     paperCup: {
         key: 'container-paper-cup',
-        file: 'containers/container_paper_cup.svg',
+        file: 'containers/container_paper_cup.png',
         type: 'image',
         category: 'containers',
         status: 'prototype-approved',
@@ -34,7 +34,7 @@ export const GAME_ASSETS = {
     },
     vanillaScoop: {
         key: 'ingredient-vanilla-scoop',
-        file: 'ingredients/ingredient_vanilla_scoop.svg',
+        file: 'ingredients/ingredient_vanilla_scoop.png',
         type: 'image',
         category: 'ingredients',
         status: 'prototype-approved',

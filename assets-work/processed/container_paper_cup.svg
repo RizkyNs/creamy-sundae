@@ -1,7 +1,15 @@
-<svg xmlns="http://www.w3.org/2000/svg" width="64" height="64" viewBox="0 0 64 64" shape-rendering="crispEdges">
-  <path fill="#4a2810" d="M13 12h38v6h-3v31h-4v5H20v-5h-4V18h-3z"/>
-  <path fill="#fff5d6" d="M18 18h28v29H18z"/>
-  <path fill="#d19a76" d="M18 18h28v6H18zM22 47h20v5H22z"/>
-  <path fill="#f7d7a8" d="M22 29h20v4H22zM25 37h14v4H25z"/>
-  <path fill="#fffaf0" d="M22 25h4v4h-4zM22 34h4v3h-4z"/>
+<svg xmlns="http://www.w3.org/2000/svg" width="96" height="112" viewBox="0 0 96 112" shape-rendering="crispEdges">
+  <!-- bold rolled rim and tapered paper body -->
+  <path fill="#4a2810" d="M10 12h76v10h-5l-7 72-8 8H30l-8-8-7-72h-5z"/>
+  <path fill="#fff5d6" d="M17 23h62l-7 67-5 5H30l-5-5z"/>
+  <path fill="#d19a76" d="M10 12h76v10H10zM29 91h38l-4 7H33z"/>
+  <path fill="#f3d99d" d="M18 25h8l6 62h-7z"/>
+  <path fill="#fffaf0" d="M27 29h5v42h-5zM37 26h4v7h-4z"/>
+  <!-- cream-colored sundae badge -->
+  <path fill="#8b5a3c" d="M34 48h28v4h4v18h-4v4H34v-4h-4V52h4z"/>
+  <path fill="#ffdf9e" d="M36 52h24v16H36z"/>
+  <path fill="#d9657b" d="M41 57h4v4h-4zM51 61h4v4h-4z"/>
+  <path fill="#fff5d6" d="M47 53h4v4h-4z"/>
+  <!-- rim highlights -->
+  <path fill="#fffaf0" d="M17 15h18v3H17zM70 15h11v3H70z"/>
 </svg>

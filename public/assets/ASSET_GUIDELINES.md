@@ -18,7 +18,7 @@
 - Customer: 96x128 atau 128x160.
 - Semua frame satu animasi harus memiliki ukuran canvas yang sama dan anchor yang konsisten.
 - Daftarkan setiap asset runtime di `src/game/data/assets.js`.
-- Asset contoh pertama yang disetujui adalah `container-paper-cup` dan `ingredient-vanilla-scoop`; keduanya memakai SVG crisp-edge untuk menguji bentuk, palette, outline, registry, dan loader sebelum final PNG dibuat.
+- Asset contoh pertama yang disetujui adalah `container-paper-cup` dan `ingredient-vanilla-scoop`; keduanya berupa PNG pixel-art dengan outline tegas dan palette hangat.
 
 ## Provenance
 

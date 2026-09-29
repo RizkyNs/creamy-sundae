@@ -90,7 +90,7 @@ Berikut adalah riwayat percakapan dan evolusi pengerjaan project secara kronolog
 - **Batasan**: Identitas/role karakter, proporsi, ukuran sprite, dan animasi final belum dikunci. Asset pertama harus berupa small approved batch sebelum seluruh library dibuat.
 
 ### First Approved Asset Batch — 29 September 2026
-- **Asset**: Dibuat prototype SVG crisp-edge `container-paper-cup` dan `ingredient-vanilla-scoop` berdasarkan palette/outline dari style guide.
+- **Asset**: Dibuat prototype PNG pixel-art `container-paper-cup` dan `ingredient-vanilla-scoop` berdasarkan palette/outline dari style guide. SVG sumber tetap disimpan di `assets-work/processed/`.
 - **Pipeline**: Source kerja disimpan di `assets-work/processed/`, runtime copy berada di `public/assets/`, dan keduanya diregistrasikan di `src/game/data/assets.js`.
 - **Status**: Prototype-approved untuk uji pipeline dan integrasi, belum dianggap final art.
 - **Verifikasi**: `npm run assets:check` memvalidasi 4 asset runtime (2 existing + 2 prototype baru).

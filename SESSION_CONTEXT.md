@@ -164,6 +164,10 @@ Berikut adalah riwayat percakapan dan evolusi pengerjaan project secara kronolog
 - **Layout fix**: Dispenser display reduced to 190x142 at y=495; drink cup reduced to 58x72 at y=625; clear button/status repositioned to match.
 - **Interaction fix**: Removed duplicate drink icons from the button helper. Added a short colored liquid-stream tween from the selected nozzle toward the drink cup in `animateDrinkPour()`.
 
+### Triangular Flavor Button Layout — 30 September 2026
+- **User request/reference**: Arrange flavor buttons as a triangle: lower-left, lower-right, then upper-center.
+- **Implementation**: Vanilla moved to lower-left `(220, 505)`, Strawberry to lower-right `(480, 505)`, and Chocolate to upper-center `(350, 415)`. Cup and labels shifted down slightly to maintain separation from the lower buttons.
+
 ---
 
 ## 🔑 2. CATATAN PENTING & KEPUTUSAN DESAIN (DESIGN DECISIONS)

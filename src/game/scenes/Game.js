@@ -261,7 +261,10 @@ export class Game extends Scene
             color: '#6b3e26'
         }).setOrigin(0.5);
 
-        // Dispenser buttons
+        // Dispenser artwork and interactive drink buttons
+        this.sodaDispenserImage = this.add.image(810, 505, 'station-soda-dispenser');
+        this.sodaDispenserImage.setDisplaySize(240, 180);
+        this.sodaDispenserImage.setDepth(1);
         this.createDrinkButton(755, 460, 'COLA', 0x3d1d11);
         this.createDrinkButton(865, 460, 'LEMON', 0xfbc02d, '#333333');
 

@@ -154,6 +154,11 @@ Berikut adalah riwayat percakapan dan evolusi pengerjaan project secara kronolog
 - **Screenshot finding**: `NO DRINK` was centered at the same position as the drink cup image and became partially hidden by the cup.
 - **Fix**: Status text moved to y=690 below the 90px cup image. Cola/Lemon labels now use the same dark brown color for consistent readability.
 
+### Batch 1 Soda Dispenser — 30 September 2026
+- **Asset**: Added `station-soda-dispenser.png`, a 192x144 pixel-art dispenser body with three nozzle heads, flavor panels, tray, highlights, and feet.
+- **Integration**: Soda Fountain now displays the dispenser image behind the interactive Cola/Lemon buttons. Existing drink logic and cup texture states remain unchanged.
+- **Status**: This closes the initial Batch 1 station asset set; the dispenser is prototype-approved, not final art.
+
 ---
 
 ## 🔑 2. CATATAN PENTING & KEPUTUSAN DESAIN (DESIGN DECISIONS)

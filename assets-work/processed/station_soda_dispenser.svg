@@ -1,0 +1,21 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="192" height="144" viewBox="0 0 192 144" shape-rendering="crispEdges">
+  <path fill="#34283a" d="M8 22h176v104h-8v8H16v-8H8z"/>
+  <path fill="#6d536d" d="M16 30h160v88H16z"/>
+  <path fill="#9a7c91" d="M22 36h148v35H22z"/>
+  <path fill="#4b3a51" d="M28 42h42v24H28zM76 42h42v24H76zM124 42h40v24h-40z"/>
+  <path fill="#ef5b67" d="M34 47h30v14H34z"/>
+  <path fill="#f5d34f" d="M82 47h30v14H82z"/>
+  <path fill="#7bcf6a" d="M130 47h28v14h-28z"/>
+  <path fill="#f7e5c5" d="M38 50h22v7H38zM86 50h22v7H86zM134 50h20v7h-20z"/>
+  <!-- three nozzle heads -->
+  <path fill="#34283a" d="M39 68h14v9h-3v20H34V77h5zM87 68h14v9h-3v20H82V77h5zM135 68h14v9h-3v20h-16V77h5z"/>
+  <path fill="#d7c6d1" d="M42 71h8v7h-8zM90 71h8v7h-8zM138 71h8v7h-8z"/>
+  <path fill="#f5f0e9" d="M36 80h12v12H36zM84 80h12v12H84zM132 80h12v12h-12z"/>
+  <!-- drip tray -->
+  <path fill="#34283a" d="M27 103h138v12H27z"/>
+  <path fill="#d7c6d1" d="M34 105h124v5H34z"/>
+  <path fill="#b5d5d3" d="M52 111h88v5H52z"/>
+  <!-- highlights and feet -->
+  <path fill="#d9b8a0" d="M16 30h160v6H16zM16 118h160v4H16z"/>
+  <path fill="#34283a" d="M22 126h20v8H22zM150 126h20v8h-20z"/>
+</svg>

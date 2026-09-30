@@ -112,5 +112,14 @@ export const GAME_ASSETS = {
         status: 'prototype-approved',
         source: 'original-project-artwork',
         license: 'Creamy Sundae project asset'
+    },
+    sodaDispenser: {
+        key: 'station-soda-dispenser',
+        file: 'drinks/station_soda_dispenser.png',
+        type: 'image',
+        category: 'stations',
+        status: 'prototype-approved',
+        source: 'original-project-artwork',
+        license: 'Creamy Sundae project asset'
     }
 };

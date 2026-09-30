@@ -199,6 +199,7 @@ Semua fitur di bawah ini sudah diimplementasikan sebagai prototype di `Game.js` 
 - Batch asset kedua menambahkan `container-waffle-cone`, `topping-sprinkles`, `topping-cherry`, `drink-cola-cup`, dan `drink-lemon-cup` sebagai PNG prototype-approved. Icon minuman sudah tampil di station; cone/topping belum menjadi bagian dari order validator.
 - Total registry saat ini: 11 asset (2 template + 9 prototype project assets). Build/asset-check terbaru berhasil; nilai ini bukan klaim bahwa asset sudah final art.
 - Drink station now uses texture states `drink-empty-cup`, `drink-cola-cup`, and `drink-lemon-cup`; `dispenseDrink()` and `clearDrink()` update the lower-right cup image directly.
+- Batch 1 station set now includes `station-soda-dispenser.png`; the Soda Fountain displays it behind the interactive Cola/Lemon controls.
 - Cup gameplay berada pada y=610 dengan label `PAPER CUP` y=686 dan status scoop y=712. Scoop ditempatkan dekat rim di belakang cup body.
 - Tombol Serve menampilkan `BUILD ORDER` abu-abu selama order belum valid dan hanya menjadi `SERVE ORDER` hijau pada status `ORDER READY`.
 - Day Summary / Shop Upgrades modal menggunakan container depth 1000 agar selalu dirender dan menerima interaksi di atas semua gameplay objects.

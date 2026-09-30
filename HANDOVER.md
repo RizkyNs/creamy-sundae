@@ -197,6 +197,7 @@ Semua fitur di bawah ini sudah diimplementasikan sebagai prototype di `Game.js` 
 - Referensi visual Gemini yang diunggah user berada di `assets-work/prompts/` dan diperlakukan sebagai preference references, bukan asset final. Aturan hasil terjemahan visual ada di `assets-work/prompts/STYLE_GUIDE.md`.
 - Karakter pada referensi belum final; role, nama, proporsi, ukuran sprite, dan state animasi masih terbuka.
 - Batch asset kedua menambahkan `container-waffle-cone`, `topping-sprinkles`, `topping-cherry`, `drink-cola-cup`, dan `drink-lemon-cup` sebagai PNG prototype-approved. Icon minuman sudah tampil di station; cone/topping belum menjadi bagian dari order validator.
+- Total registry saat ini: 11 asset (2 template + 9 prototype project assets). Build/asset-check terbaru berhasil; nilai ini bukan klaim bahwa asset sudah final art.
 
 ## 📊 7. AUDIT STATUS & ROADMAP
 

@@ -227,25 +227,23 @@ export class Game extends Scene
         }).setOrigin(0.5);
 
         // 3 Flavor Tubs
-        // Triangular flavor layout: Vanilla lower-left, Strawberry lower-right,
-        // Chocolate centered above them.
-        this.createIngredientButton(220, 505, 'VANILLA', 0xfff5d6);
-        this.createIngredientButton(480, 505, 'STRAWBERRY', 0xffa6b6);
-        this.createIngredientButton(350, 415, 'CHOCOLATE', 0x8b5a3c);
+        this.createIngredientButton(180, 460, 'VANILLA', 0xfff5d6);
+        this.createIngredientButton(350, 460, 'CHOCOLATE', 0x8b5a3c);
+        this.createIngredientButton(520, 460, 'STRAWBERRY', 0xffa6b6);
 
         // Cup Slot (inside display workstation)
-        this.cup = this.add.image(350, 625, 'container-paper-cup');
+        this.cup = this.add.image(350, 610, 'container-paper-cup');
         this.cup.setDisplaySize(130, 150);
         // The cup body should cover the lower half of scoops placed inside it.
         this.cup.setDepth(3);
 
-        this.add.text(350, 697, 'PAPER CUP', {
+        this.add.text(350, 686, 'PAPER CUP', {
             fontFamily: 'Arial Black',
             fontSize: 13,
             color: '#d19a76'
         }).setOrigin(0.5);
 
-        this.cupStatusText = this.add.text(350, 722, '0 SCOOP', {
+        this.cupStatusText = this.add.text(350, 712, '0 SCOOP', {
             fontFamily: 'Arial Black',
             fontSize: 16,
             color: '#6b3e26'
@@ -1038,10 +1036,16 @@ export class Game extends Scene
             if (distance < 90)
             {
                 // Masukkan scoop ke cup
-                scoop.x = cupX;
+                const scoopPositions = [
+                    { x: cupX - 25, y: 590 },
+                    { x: cupX + 25, y: 590 },
+                    { x: cupX, y: 552 }
+                ];
+                const stackPosition = scoopPositions[Math.min(this.cupContents.length, scoopPositions.length - 1)];
+                scoop.x = stackPosition.x;
                 // Keep scoops behind the cup body: their tops remain visible
                 // above the rim while the cup masks the lower half naturally.
-                scoop.y = 548 - (this.cupContents.length * 18);
+                scoop.y = stackPosition.y;
                 scoop.setDepth(2);
 
                 // Disable dragging once in cup

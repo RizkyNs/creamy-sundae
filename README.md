@@ -64,6 +64,16 @@ Sebagian besar logika gameplay masih berada di `src/game/scenes/Game.js`. Pemisa
 
 Tooling asset saat ini menggunakan `sharp` untuk membaca metadata/dimensi gambar dan `fast-glob` untuk menemukan file asset. Small approved batch pertama berisi prototype PNG pixel-art `container-paper-cup` dan `ingredient-vanilla-scoop`. Cup dan vanilla scoop ini sudah dipakai di gameplay; Chocolate dan Strawberry masih placeholder bentuk dasar.
 
+## Screenshot visual analysis
+
+Analyze a local screenshot using the configured Zrouter vision model and an optional custom prompt:
+
+```bash
+npm run screenshot:analyze -- "assets-work/prompts/screenshot.jpg" "Periksa apakah scoop tertutup cup dan sarankan posisi yang lebih baik."
+```
+
+If no prompt is provided, the script asks for a general gameplay visual review. It reads `ZROUTER_API_KEY` from the environment or local ignored `.env`; the key is never printed. Supported files: JPG, PNG, WEBP, GIF up to 15 MB.
+
 ## Menjalankan project
 
 Dari `/root/creamy-sundae`:

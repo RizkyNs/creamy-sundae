@@ -125,6 +125,14 @@ Berikut adalah riwayat percakapan dan evolusi pengerjaan project secara kronolog
 - **Integrasi**: Icon Cola dan Lemon ditampilkan pada tombol Soda Fountain. Waffle cone dan topping sudah terdaftar tetapi menunggu sistem container/order berikutnya.
 - **Verifikasi dan commit**: Asset checker memvalidasi total 11 asset dan build berhasil. Commit `94faa11 feat: add cone topping and drink assets` dibuat; working tree bersih untuk file project. Referensi screenshot/user tetap lokal.
 
+### Screenshot Vision Workflow — 30 September 2026
+- **Problem**: OpenCode Read tool di sesi aktif tidak meneruskan image ke model, meski model yang sama mendukung vision lewat Zrouter API.
+- **Config**: `gpt-6-luna` dideklarasikan memiliki input modalities `text` dan `image` sesuai schema OpenCode.
+- **Fallback**: Ditambahkan `npm run screenshot:analyze -- <image-path> [prompt]`, yang mengirim image + prompt dinamis ke Zrouter multimodal endpoint.
+- **Secrets**: Script membaca `ZROUTER_API_KEY` dari environment atau `.env` lokal; key tidak ditulis ke config, tidak dimasukkan request log, dan tidak dicetak.
+- **Test aktual**: `Screenshot_20260929_211609_Chrome.jpg` berhasil dikirim dan dianalisis oleh `gpt-6-luna` melalui fallback CLI. Hasil mengidentifikasi tombol Chocolate/Strawberry tertutup lingkaran besar, cup/scoop terlalu rendah, dan merekomendasikan posisi scoop di area mulut cup.
+- **Usage**: Restart OpenCode diperlukan untuk menerapkan perubahan config dan menguji attachment langsung. Fallback CLI berhasil dijalankan dari root project; percobaan pertama melewati timeout 120 detik, pengulangan dengan 300 detik berhasil.
+
 ---
 
 ## 🔑 2. CATATAN PENTING & KEPUTUSAN DESAIN (DESIGN DECISIONS)

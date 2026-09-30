@@ -15,6 +15,10 @@
       "models": {
         "gpt-6-luna": {
           "name": "GPT-6 Luna — Cheap Default",
+          "modalities": {
+            "input": ["text", "image"],
+            "output": ["text"]
+          },
           "cost": {
             "input": 0.005,
             "output": 0.025,

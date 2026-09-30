@@ -234,7 +234,8 @@ export class Game extends Scene
         // Cup Slot (inside display workstation)
         this.cup = this.add.image(350, 640, 'container-paper-cup');
         this.cup.setDisplaySize(130, 150);
-        this.cup.setDepth(1);
+        // The cup body should cover the lower half of scoops placed inside it.
+        this.cup.setDepth(3);
 
         this.add.text(350, 695, 'PAPER CUP', {
             fontFamily: 'Arial Black',
@@ -1006,9 +1007,10 @@ export class Game extends Scene
             {
                 // Masukkan scoop ke cup
                 scoop.x = cupX;
-                // Keep the scoop in front of the cup rim and visibly stacked.
-                scoop.y = 575 - (this.cupContents.length * 28);
-                scoop.setDepth(3);
+                // Keep scoops behind the cup body: their tops remain visible
+                // above the rim while the cup masks the lower half naturally.
+                scoop.y = 558 - (this.cupContents.length * 24);
+                scoop.setDepth(2);
 
                 // Disable dragging once in cup
                 this.input.setDraggable(scoop, false);

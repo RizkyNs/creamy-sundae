@@ -116,6 +116,10 @@ Berikut adalah riwayat percakapan dan evolusi pengerjaan project secara kronolog
 - **Temuan screenshot**: Runtime sudah memakai asset scoop saat scoop dibuat, tetapi tombol flavor masih hanya menampilkan rectangle sehingga perubahan Chocolate/Strawberry tidak terlihat pada station sebelum diklik.
 - **Perubahan**: Tombol Vanilla, Chocolate, dan Strawberry sekarang menampilkan icon PNG scoop masing-masing. Scoop yang masuk cup dinaikkan lagi ke posisi `y = 575 - index * 28` dan tetap memakai depth 3 agar berada di depan bibir cup.
 
+### Cup/Scoop Layering Correction — 29 September 2026
+- **Temuan**: Posisi/depth sebelumnya membuat scoop terlihat menimpa badan cup.
+- **Perubahan**: Cup sekarang berada pada depth 3, scoop di depth 2 dengan posisi `y = 558 - index * 24`. Cup menutup bagian bawah scoop sehingga hanya bagian scoop di atas bibir cup yang terlihat.
+
 ---
 
 ## 🔑 2. CATATAN PENTING & KEPUTUSAN DESAIN (DESIGN DECISIONS)

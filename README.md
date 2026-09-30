@@ -24,7 +24,7 @@ Target jangka panjang visual gameplay adalah referensi gerai es krim tepi pantai
 7. Customer berikutnya muncul sampai antrean hari selesai.
 8. Rekap akhir hari memungkinkan memulai hari berikutnya.
 
-Rasa yang tersedia: Vanilla, Chocolate, dan Strawberry. Order dapat berupa scoop tunggal, minuman saja, atau kombinasi beberapa scoop dan minuman. Ketiga scoop flavor memakai prototype PNG pixel-art. Jika tiga scoop masuk ke cup, susunannya berbentuk segitiga: scoop pertama kiri bawah, scoop kedua kanan bawah, scoop ketiga atas tengah.
+Rasa yang tersedia: Vanilla, Chocolate, dan Strawberry. Order dapat berupa scoop tunggal, minuman saja, atau kombinasi beberapa scoop dan minuman. Ketiga scoop flavor memakai prototype PNG pixel-art. Jika tiga scoop masuk ke cup, susunannya berbentuk segitiga: scoop pertama kiri bawah, scoop kedua kanan bawah, scoop ketiga atas tengah; bagian atas ketiganya tetap terlihat di atas rim tanpa menutupi badan cup.
 
 Batch asset berikutnya sekarang tersedia di registry: waffle cone, sprinkles, cherry, asset gelas kosong/Cola/Lemon, dan body Soda Fountain. Tombol station serta gelas minuman memakai asset, dan pemilihan Cola/Lemon menampilkan animasi stream singkat; cone dan topping menunggu integrasi ke sistem order/container.
 

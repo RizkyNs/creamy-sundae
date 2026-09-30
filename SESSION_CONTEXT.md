@@ -168,6 +168,10 @@ Berikut adalah riwayat percakapan dan evolusi pengerjaan project secara kronolog
 - **Clarification**: Triangle layout applies to the three scoops inside the cup, not to the flavor buttons.
 - **Implementation**: Flavor buttons restored to Vanilla `(180, 460)`, Chocolate `(350, 460)`, Strawberry `(520, 460)`. Scoop placement is now first `(cupX-25, 590)`, second `(cupX+25, 590)`, and third `(cupX, 552)`.
 
+### Triangular Scoop Visibility Fix — 1 October 2026
+- **Screenshot finding**: The triangle coordinates were correct, but cup depth 3 covered the first and second scoops completely; only the top scoop was visible.
+- **Fix**: Stack positions moved to `(cupX-25, 570)`, `(cupX+25, 570)`, and `(cupX, 530)`. Placed scoops use depth 4 and crop the lower texture region (`96x62`) so their tops appear above the rim without covering the cup body.
+
 ---
 
 ## 🔑 2. CATATAN PENTING & KEPUTUSAN DESAIN (DESIGN DECISIONS)

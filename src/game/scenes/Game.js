@@ -270,7 +270,7 @@ export class Game extends Scene
         this.drinkCupImage.setDisplaySize(72, 90);
         this.drinkCupImage.setDepth(1);
 
-        this.drinkStatusText = this.add.text(810, 615, 'NO DRINK', {
+        this.drinkStatusText = this.add.text(810, 690, 'NO DRINK', {
             fontFamily: 'Arial Black',
             fontSize: 13,
             color: '#8b6045',
@@ -408,11 +408,11 @@ export class Game extends Scene
         if (flavor === 'cola') {
             this.drinkCupImage.setTexture('drink-cola-cup');
             this.drinkStatusText.setText('COLA');
-            this.drinkStatusText.setColor('#ffffff');
+            this.drinkStatusText.setColor('#6b3e26');
         } else if (flavor === 'lemon') {
             this.drinkCupImage.setTexture('drink-lemon-cup');
             this.drinkStatusText.setText('LEMON');
-            this.drinkStatusText.setColor('#333333');
+            this.drinkStatusText.setColor('#6b3e26');
         }
 
         console.log('Dispensed drink:', flavor);

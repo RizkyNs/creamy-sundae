@@ -150,6 +150,10 @@ Berikut adalah riwayat percakapan dan evolusi pengerjaan project secara kronolog
 - **Integration**: The lower-right drink slot now uses one Phaser image and switches texture to `drink-empty-cup`, `drink-cola-cup`, or `drink-lemon-cup` when `clearDrink()`/`dispenseDrink()` runs.
 - **Behavior**: Pressing Cola or Lemon immediately updates the visual cup state; clear and automatic order cleanup restore the empty cup.
 
+### Drink Status Label Layout Fix — 30 September 2026
+- **Screenshot finding**: `NO DRINK` was centered at the same position as the drink cup image and became partially hidden by the cup.
+- **Fix**: Status text moved to y=690 below the 90px cup image. Cola/Lemon labels now use the same dark brown color for consistent readability.
+
 ---
 
 ## 🔑 2. CATATAN PENTING & KEPUTUSAN DESAIN (DESIGN DECISIONS)

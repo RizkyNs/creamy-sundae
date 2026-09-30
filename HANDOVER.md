@@ -198,6 +198,8 @@ Semua fitur di bawah ini sudah diimplementasikan sebagai prototype di `Game.js` 
 - Karakter pada referensi belum final; role, nama, proporsi, ukuran sprite, dan state animasi masih terbuka.
 - Batch asset kedua menambahkan `container-waffle-cone`, `topping-sprinkles`, `topping-cherry`, `drink-cola-cup`, dan `drink-lemon-cup` sebagai PNG prototype-approved. Icon minuman sudah tampil di station; cone/topping belum menjadi bagian dari order validator.
 - Total registry saat ini: 11 asset (2 template + 9 prototype project assets). Build/asset-check terbaru berhasil; nilai ini bukan klaim bahwa asset sudah final art.
+- Cup gameplay berada pada y=610 dengan label `PAPER CUP` y=686 dan status scoop y=712. Scoop ditempatkan dekat rim di belakang cup body.
+- Tombol Serve menampilkan `BUILD ORDER` abu-abu selama order belum valid dan hanya menjadi `SERVE ORDER` hijau pada status `ORDER READY`.
 
 ## 📊 7. AUDIT STATUS & ROADMAP
 

@@ -165,30 +165,30 @@ export class Game extends Scene
             color: '#c28c65'
         }).setOrigin(0.5);
 
-        const serveButton = this.add.rectangle(820, 225, 180, 60, 0x4caf50);
-        const serveText = this.add.text(820, 225, 'SERVE ORDER', {
+        this.serveButton = this.add.rectangle(820, 225, 180, 60, 0x9e9e9e);
+        this.serveText = this.add.text(820, 225, 'BUILD ORDER', {
             fontFamily: 'Arial Black',
             fontSize: 18,
             color: '#ffffff'
         }).setOrigin(0.5);
 
-        serveButton.setInteractive({ useHandCursor: true });
+        this.serveButton.setInteractive({ useHandCursor: false });
 
-        serveButton.on('pointerover', () => {
-            serveButton.setScale(1.05);
-            serveText.setScale(1.05);
+        this.serveButton.on('pointerover', () => {
+            if (this.validationText.text === 'ORDER READY') {
+                this.serveButton.setScale(1.05);
+                this.serveText.setScale(1.05);
+            }
         });
 
-        serveButton.on('pointerout', () => {
-            serveButton.setScale(1);
-            serveText.setScale(1);
+        this.serveButton.on('pointerout', () => {
+            this.serveButton.setScale(1);
+            this.serveText.setScale(1);
         });
 
-        serveButton.on('pointerdown', () => {
+        this.serveButton.on('pointerdown', () => {
             if (this.validationText.text.startsWith('ORDER READY')) {
                 this.serveOrder();
-            } else {
-                this.cameras.main.shake(100, 0.01);
             }
         });
 
@@ -232,18 +232,18 @@ export class Game extends Scene
         this.createIngredientButton(520, 460, 'STRAWBERRY', 0xffa6b6);
 
         // Cup Slot (inside display workstation)
-        this.cup = this.add.image(350, 640, 'container-paper-cup');
+        this.cup = this.add.image(350, 610, 'container-paper-cup');
         this.cup.setDisplaySize(130, 150);
         // The cup body should cover the lower half of scoops placed inside it.
         this.cup.setDepth(3);
 
-        this.add.text(350, 695, 'PAPER CUP', {
+        this.add.text(350, 686, 'PAPER CUP', {
             fontFamily: 'Arial Black',
             fontSize: 13,
             color: '#d19a76'
         }).setOrigin(0.5);
 
-        this.cupStatusText = this.add.text(350, 730, '0 SCOOP', {
+        this.cupStatusText = this.add.text(350, 712, '0 SCOOP', {
             fontFamily: 'Arial Black',
             fontSize: 16,
             color: '#6b3e26'
@@ -942,6 +942,12 @@ export class Game extends Scene
 
         this.validationText.setText(status);
 
+        const orderReady = status === 'ORDER READY';
+        this.serveButton.setFillStyle(orderReady ? 0x4caf50 : 0x9e9e9e);
+        this.serveButton.input.cursor = orderReady ? 'pointer' : 'default';
+        this.serveText.setText(orderReady ? 'SERVE ORDER' : 'BUILD ORDER');
+        this.serveText.setColor('#ffffff');
+
         if (status === 'ORDER READY') {
             this.validationText.setColor('#4caf50');
         } else if (status === 'WRONG ORDER') {
@@ -1017,7 +1023,7 @@ export class Game extends Scene
                 scoop.x = cupX;
                 // Keep scoops behind the cup body: their tops remain visible
                 // above the rim while the cup masks the lower half naturally.
-                scoop.y = 558 - (this.cupContents.length * 24);
+                scoop.y = 548 - (this.cupContents.length * 18);
                 scoop.setDepth(2);
 
                 // Disable dragging once in cup

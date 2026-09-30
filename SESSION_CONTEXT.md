@@ -133,6 +133,12 @@ Berikut adalah riwayat percakapan dan evolusi pengerjaan project secara kronolog
 - **Test aktual**: `Screenshot_20260929_211609_Chrome.jpg` berhasil dikirim dan dianalisis oleh `gpt-6-luna` melalui fallback CLI. Hasil mengidentifikasi tombol Chocolate/Strawberry tertutup lingkaran besar, cup/scoop terlalu rendah, dan merekomendasikan posisi scoop di area mulut cup.
 - **Usage**: Restart OpenCode diperlukan untuk menerapkan perubahan config dan menguji attachment langsung. Fallback CLI berhasil dijalankan dari root project; percobaan pertama melewati timeout 120 detik, pengulangan dengan 300 detik berhasil.
 
+### Gameplay UI Cleanup — 30 September 2026
+- **Screenshot review**: Paper cup terlihat baik, tetapi label `PAPER CUP` bertumpuk dengan bagian bawah cup dan `0 SCOOP` terlalu dekat/bawah panel. Tombol `SERVE ORDER` tampak aktif meski order belum siap.
+- **Layout fix**: Cup dipindah dari y=640 ke y=610; label ke y=686 dan jumlah scoop ke y=712. Scoop isi diposisikan dekat bibir cup pada y=548 - index*18 dengan tetap berada di balik badan cup.
+- **Serve UX**: Tombol abu-abu bertuliskan `BUILD ORDER` selama resep belum valid; berubah hijau `SERVE ORDER` hanya pada status `ORDER READY`. Hover tidak membesarkan tombol saat disabled.
+- **Verifikasi**: Build dan asset checker harus dijalankan sebelum commit.
+
 ---
 
 ## 🔑 2. CATATAN PENTING & KEPUTUSAN DESAIN (DESIGN DECISIONS)

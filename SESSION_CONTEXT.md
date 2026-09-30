@@ -159,6 +159,11 @@ Berikut adalah riwayat percakapan dan evolusi pengerjaan project secara kronolog
 - **Integration**: Soda Fountain now displays the dispenser image behind the interactive Cola/Lemon buttons. Existing drink logic and cup texture states remain unchanged.
 - **Status**: This closes the initial Batch 1 station asset set; the dispenser is prototype-approved, not final art.
 
+### Soda Fountain Composition and Pour Feedback — 30 September 2026
+- **Screenshot finding**: Dispenser body was too large relative to the cup, old Cola/Lemon cup icons remained above the machine, and selecting a drink had no pour feedback.
+- **Layout fix**: Dispenser display reduced to 190x142 at y=495; drink cup reduced to 58x72 at y=625; clear button/status repositioned to match.
+- **Interaction fix**: Removed duplicate drink icons from the button helper. Added a short colored liquid-stream tween from the selected nozzle toward the drink cup in `animateDrinkPour()`.
+
 ---
 
 ## 🔑 2. CATATAN PENTING & KEPUTUSAN DESAIN (DESIGN DECISIONS)

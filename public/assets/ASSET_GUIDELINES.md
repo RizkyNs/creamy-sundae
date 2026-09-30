@@ -19,6 +19,7 @@
 - Semua frame satu animasi harus memiliki ukuran canvas yang sama dan anchor yang konsisten.
 - Daftarkan setiap asset runtime di `src/game/data/assets.js`.
 - Asset prototype-approved saat ini: containers, tiga flavor scoop, toppings, drink cup states, dan `station-soda-dispenser`; semuanya berupa PNG pixel-art dengan outline tegas dan palette hangat.
+- Dispenser asset saat ini adalah prototype body; pour stream masih berupa feedback tween sederhana dan belum merupakan final animation frame/sprite sheet.
 
 ## Provenance
 

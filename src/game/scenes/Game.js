@@ -262,18 +262,18 @@ export class Game extends Scene
         }).setOrigin(0.5);
 
         // Dispenser artwork and interactive drink buttons
-        this.sodaDispenserImage = this.add.image(810, 505, 'station-soda-dispenser');
-        this.sodaDispenserImage.setDisplaySize(240, 180);
+        this.sodaDispenserImage = this.add.image(810, 495, 'station-soda-dispenser');
+        this.sodaDispenserImage.setDisplaySize(190, 142);
         this.sodaDispenserImage.setDepth(1);
         this.createDrinkButton(755, 460, 'COLA', 0x3d1d11);
         this.createDrinkButton(865, 460, 'LEMON', 0xfbc02d, '#333333');
 
         // Drink Cup Slot
-        this.drinkCupImage = this.add.image(810, 615, 'drink-empty-cup');
-        this.drinkCupImage.setDisplaySize(72, 90);
+        this.drinkCupImage = this.add.image(810, 625, 'drink-empty-cup');
+        this.drinkCupImage.setDisplaySize(58, 72);
         this.drinkCupImage.setDepth(1);
 
-        this.drinkStatusText = this.add.text(810, 690, 'NO DRINK', {
+        this.drinkStatusText = this.add.text(810, 685, 'NO DRINK', {
             fontFamily: 'Arial Black',
             fontSize: 13,
             color: '#8b6045',
@@ -281,8 +281,8 @@ export class Game extends Scene
         }).setOrigin(0.5);
 
         // Clear Drink Button
-        const clearDrinkBtn = this.add.rectangle(885, 615, 26, 26, 0xef5350);
-        const clearDrinkTxt = this.add.text(885, 615, '✕', {
+        const clearDrinkBtn = this.add.rectangle(885, 625, 26, 26, 0xef5350);
+        const clearDrinkTxt = this.add.text(885, 625, '✕', {
             fontFamily: 'Arial Black',
             fontSize: 14,
             color: '#ffffff'
@@ -371,14 +371,6 @@ export class Game extends Scene
         button.setStrokeStyle(2, 0x6b3e26);
 
         const drink = label.toLowerCase();
-        const drinkAssetKeys = {
-            cola: 'drink-cola-cup',
-            lemon: 'drink-lemon-cup'
-        };
-        const drinkIcon = this.add.image(x, y - 27, drinkAssetKeys[drink]);
-        drinkIcon.setDisplaySize(32, 40);
-        drinkIcon.setDepth(2);
-
         const text = this.add.text(x, y, label, {
             fontFamily: 'Arial Black',
             fontSize: 13,
@@ -407,6 +399,7 @@ export class Game extends Scene
     dispenseDrink (flavor)
     {
         this.drinkContent = flavor;
+        this.animateDrinkPour(flavor);
 
         if (flavor === 'cola') {
             this.drinkCupImage.setTexture('drink-cola-cup');
@@ -420,6 +413,26 @@ export class Game extends Scene
 
         console.log('Dispensed drink:', flavor);
         this.validateRecipe();
+    }
+
+    animateDrinkPour (flavor)
+    {
+        const streamColor = flavor === 'cola' ? 0x3d1d11 : 0xfbc02d;
+        const nozzleX = flavor === 'cola' ? 755 : 850;
+        const stream = this.add.rectangle(nozzleX, 525, 7, 5, streamColor);
+        stream.setDepth(2);
+
+        this.tweens.add({
+            targets: stream,
+            y: 590,
+            height: 48,
+            alpha: { from: 1, to: 0.2 },
+            duration: 420,
+            ease: 'Linear',
+            onComplete: () => {
+                stream.destroy();
+            }
+        });
     }
 
     clearDrink ()

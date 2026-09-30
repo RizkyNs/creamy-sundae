@@ -180,6 +180,10 @@ Berikut adalah riwayat percakapan dan evolusi pengerjaan project secara kronolog
 - **Follow-up finding**: A complete cup texture above the scoops hid the lower-left and lower-right scoops, making the triangle disappear.
 - **Fix**: The cup now uses a back layer at depth 1, triangular scoops at depth 2, and a cropped front cup/rim overlay at depth 3. This preserves the visible triangle while keeping scoop bottoms inside the cup.
 
+### Three-Scoop Visibility Bug Fix — 1 October 2026
+- **Screenshot finding**: With three scoops present, the cup-front overlay hid the first two lower scoops, leaving only the pink top scoop visible; this made the contents look stacked incorrectly.
+- **Fix**: Removed the duplicate cup-front layer. The cup body remains at depth 3, while each scoop uses a separate cropped upper cap at depth 4. Positions are left `(cupX-30, 558)`, right `(cupX+30, 558)`, and top `(cupX, 518)`.
+
 ---
 
 ## 🔑 2. CATATAN PENTING & KEPUTUSAN DESAIN (DESIGN DECISIONS)

@@ -234,15 +234,8 @@ export class Game extends Scene
         // Cup Slot (inside display workstation)
         this.cup = this.add.image(350, 610, 'container-paper-cup');
         this.cup.setDisplaySize(130, 150);
-        // Back layer: scoops are rendered between this and the cup front layer.
-        this.cup.setDepth(1);
-
-        // Front layer: rim and body mask the lower part of the scoops while
-        // leaving the triangular tops visible above the rim.
-        this.cupFront = this.add.image(350, 610, 'container-paper-cup');
-        this.cupFront.setDisplaySize(130, 150);
-        this.cupFront.setCrop(0, 12, 96, 100);
-        this.cupFront.setDepth(3);
+        // The cup body stays behind the visible scoop caps.
+        this.cup.setDepth(3);
 
         this.add.text(350, 686, 'PAPER CUP', {
             fontFamily: 'Arial Black',
@@ -1044,17 +1037,18 @@ export class Game extends Scene
             {
                 // Masukkan scoop ke cup
                 const scoopPositions = [
-                    { x: cupX - 25, y: 545 },
-                    { x: cupX + 25, y: 545 },
-                    { x: cupX, y: 505 }
+                    { x: cupX - 30, y: 558 },
+                    { x: cupX + 30, y: 558 },
+                    { x: cupX, y: 518 }
                 ];
                 const stackPosition = scoopPositions[Math.min(this.cupContents.length, scoopPositions.length - 1)];
                 scoop.x = stackPosition.x;
-                // Keep scoops behind the cup: the tops rise above the rim while
-                // the cup body naturally masks their lower portions.
+                // Show only the upper scoop cap above the rim. The cropped
+                // cap is in front of the cup, while its hidden lower portion
+                // never covers the cup body.
                 scoop.y = stackPosition.y;
-                scoop.clearCrop();
-                scoop.setDepth(2);
+                scoop.setCrop(0, 0, 96, 58);
+                scoop.setDepth(4);
 
                 // Disable dragging once in cup
                 this.input.setDraggable(scoop, false);

@@ -18,7 +18,7 @@
 - Customer: 96x128 atau 128x160.
 - Semua frame satu animasi harus memiliki ukuran canvas yang sama dan anchor yang konsisten.
 - Daftarkan setiap asset runtime di `src/game/data/assets.js`.
-- Asset prototype-approved saat ini: `container-paper-cup`, `container-waffle-cone`, tiga flavor scoop, `topping-sprinkles`, `topping-cherry`, `drink-cola-cup`, dan `drink-lemon-cup`; semuanya berupa PNG pixel-art dengan outline tegas dan palette hangat.
+- Asset prototype-approved saat ini: `container-paper-cup`, `container-waffle-cone`, tiga flavor scoop, `topping-sprinkles`, `topping-cherry`, serta state gelas `drink-empty-cup`, `drink-cola-cup`, dan `drink-lemon-cup`; semuanya berupa PNG pixel-art dengan outline tegas dan palette hangat.
 
 ## Provenance
 

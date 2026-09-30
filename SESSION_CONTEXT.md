@@ -145,6 +145,11 @@ Berikut adalah riwayat percakapan dan evolusi pengerjaan project secara kronolog
 - **Fix**: Set `daySummaryContainer` depth to 1000 after adding all modal children, ensuring it renders above gameplay objects and blocks interaction behind the overlay.
 - **Visual direction clarification**: User confirmed the uploaded screen/UI image is the long-term target gameplay look, not final art. Style guide now records the seaside shop, awning, central glass display, soda station, counter inventory, and top HUD as the target direction.
 
+### Drink Cup Asset States — 30 September 2026
+- **Asset**: Added `drink-empty-cup.png` alongside the existing Cola and Lemon cup assets.
+- **Integration**: The lower-right drink slot now uses one Phaser image and switches texture to `drink-empty-cup`, `drink-cola-cup`, or `drink-lemon-cup` when `clearDrink()`/`dispenseDrink()` runs.
+- **Behavior**: Pressing Cola or Lemon immediately updates the visual cup state; clear and automatic order cleanup restore the empty cup.
+
 ---
 
 ## 🔑 2. CATATAN PENTING & KEPUTUSAN DESAIN (DESIGN DECISIONS)

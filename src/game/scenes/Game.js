@@ -266,11 +266,9 @@ export class Game extends Scene
         this.createDrinkButton(865, 460, 'LEMON', 0xfbc02d, '#333333');
 
         // Drink Cup Slot
-        this.drinkCupBg = this.add.rectangle(810, 615, 80, 90, 0xffffff);
-        this.drinkCupBg.setStrokeStyle(3, 0x6b3e26);
-
-        this.drinkCupFill = this.add.rectangle(810, 620, 70, 75, 0x3d1d11);
-        this.drinkCupFill.setVisible(false);
+        this.drinkCupImage = this.add.image(810, 615, 'drink-empty-cup');
+        this.drinkCupImage.setDisplaySize(72, 90);
+        this.drinkCupImage.setDepth(1);
 
         this.drinkStatusText = this.add.text(810, 615, 'NO DRINK', {
             fontFamily: 'Arial Black',
@@ -406,14 +404,13 @@ export class Game extends Scene
     dispenseDrink (flavor)
     {
         this.drinkContent = flavor;
-        this.drinkCupFill.setVisible(true);
 
         if (flavor === 'cola') {
-            this.drinkCupFill.setFillStyle(0x3d1d11);
+            this.drinkCupImage.setTexture('drink-cola-cup');
             this.drinkStatusText.setText('COLA');
             this.drinkStatusText.setColor('#ffffff');
         } else if (flavor === 'lemon') {
-            this.drinkCupFill.setFillStyle(0xfbc02d);
+            this.drinkCupImage.setTexture('drink-lemon-cup');
             this.drinkStatusText.setText('LEMON');
             this.drinkStatusText.setColor('#333333');
         }
@@ -425,7 +422,7 @@ export class Game extends Scene
     clearDrink ()
     {
         this.drinkContent = null;
-        this.drinkCupFill.setVisible(false);
+        this.drinkCupImage.setTexture('drink-empty-cup');
         this.drinkStatusText.setText('NO DRINK');
         this.drinkStatusText.setColor('#8b6045');
         console.log('Drink cleared');

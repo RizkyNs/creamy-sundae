@@ -26,7 +26,7 @@ Target jangka panjang visual gameplay adalah referensi gerai es krim tepi pantai
 
 Rasa yang tersedia: Vanilla, Chocolate, dan Strawberry. Order dapat berupa scoop tunggal, minuman saja, atau kombinasi beberapa scoop dan minuman. Ketiga scoop flavor sekarang memakai prototype PNG pixel-art; scoop akan ditampilkan di depan bibir cup saat sudah dimasukkan.
 
-Batch asset berikutnya sekarang tersedia di registry: waffle cone, sprinkles, cherry, serta icon cup Cola dan Lemon. Icon Cola/Lemon sudah ditampilkan pada tombol station minuman; cone dan topping menunggu integrasi ke sistem order/container.
+Batch asset berikutnya sekarang tersedia di registry: waffle cone, sprinkles, cherry, serta asset gelas kosong, Cola, dan Lemon. Tombol station dan gelas minuman memakai asset; cone dan topping menunggu integrasi ke sistem order/container.
 
 Serve action stays visually disabled (`BUILD ORDER`) until recipe validation reaches `ORDER READY`. The cup label/status and scoop position are arranged to fit inside the display panel.
 

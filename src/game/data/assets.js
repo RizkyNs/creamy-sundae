@@ -103,5 +103,14 @@ export const GAME_ASSETS = {
         status: 'prototype-approved',
         source: 'original-project-artwork',
         license: 'Creamy Sundae project asset'
+    },
+    emptyDrink: {
+        key: 'drink-empty-cup',
+        file: 'drinks/drink_empty_cup.png',
+        type: 'image',
+        category: 'drinks',
+        status: 'prototype-approved',
+        source: 'original-project-artwork',
+        license: 'Creamy Sundae project asset'
     }
 };

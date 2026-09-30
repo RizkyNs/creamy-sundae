@@ -172,6 +172,10 @@ Berikut adalah riwayat percakapan dan evolusi pengerjaan project secara kronolog
 - **Screenshot finding**: The triangle coordinates were correct, but cup depth 3 covered the first and second scoops completely; only the top scoop was visible.
 - **Fix**: Stack positions moved to `(cupX-25, 570)`, `(cupX+25, 570)`, and `(cupX, 530)`. Placed scoops use depth 4 and crop the lower texture region (`96x62`) so their tops appear above the rim without covering the cup body.
 
+### Scoop/Cup Layering Correction — 1 October 2026
+- **Follow-up finding**: The crop/depth workaround made the scoop textures render over the cup body.
+- **Final layering approach**: Removed the crop, restored scoops to depth 2 behind the cup at depth 3, and raised positions to `(cupX-25, 545)`, `(cupX+25, 545)`, and `(cupX, 505)`. The cup now masks the lower scoop portions naturally while the triangle tops remain visible.
+
 ---
 
 ## 🔑 2. CATATAN PENTING & KEPUTUSAN DESAIN (DESIGN DECISIONS)

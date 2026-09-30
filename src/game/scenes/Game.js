@@ -1037,17 +1037,17 @@ export class Game extends Scene
             {
                 // Masukkan scoop ke cup
                 const scoopPositions = [
-                    { x: cupX - 25, y: 570 },
-                    { x: cupX + 25, y: 570 },
-                    { x: cupX, y: 530 }
+                    { x: cupX - 25, y: 545 },
+                    { x: cupX + 25, y: 545 },
+                    { x: cupX, y: 505 }
                 ];
                 const stackPosition = scoopPositions[Math.min(this.cupContents.length, scoopPositions.length - 1)];
                 scoop.x = stackPosition.x;
-                // Show the tops in front of the rim while cropping the lower
-                // part so the scoop does not cover the cup body.
+                // Keep scoops behind the cup: the tops rise above the rim while
+                // the cup body naturally masks their lower portions.
                 scoop.y = stackPosition.y;
-                scoop.setCrop(0, 0, 96, 62);
-                scoop.setDepth(4);
+                scoop.clearCrop();
+                scoop.setDepth(2);
 
                 // Disable dragging once in cup
                 this.input.setDraggable(scoop, false);

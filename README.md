@@ -24,6 +24,8 @@ Prototype saat ini menggunakan bentuk dasar Phaser (`rectangle`, `circle`, dan `
 
 Rasa yang tersedia: Vanilla, Chocolate, dan Strawberry. Order dapat berupa scoop tunggal, minuman saja, atau kombinasi beberapa scoop dan minuman. Ketiga scoop flavor sekarang memakai prototype PNG pixel-art; scoop akan ditampilkan di depan bibir cup saat sudah dimasukkan.
 
+Batch asset berikutnya sekarang tersedia di registry: waffle cone, sprinkles, cherry, serta icon cup Cola dan Lemon. Icon Cola/Lemon sudah ditampilkan pada tombol station minuman; cone dan topping menunggu integrasi ke sistem order/container.
+
 ## Status project
 
 Sudah tersedia: main menu, layout counter, cup dan scoop drag-and-drop, tiga flavor, station minuman, order dan validasi resep, serve order, uang dan tip, customer queue, patience, siklus hari dengan rekapitulasi, serta modal shop upgrades di akhir hari.

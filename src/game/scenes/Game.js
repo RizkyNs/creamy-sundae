@@ -369,6 +369,15 @@ export class Game extends Scene
         const button = this.add.rectangle(x, y, 80, 45, color);
         button.setStrokeStyle(2, 0x6b3e26);
 
+        const drink = label.toLowerCase();
+        const drinkAssetKeys = {
+            cola: 'drink-cola-cup',
+            lemon: 'drink-lemon-cup'
+        };
+        const drinkIcon = this.add.image(x, y - 27, drinkAssetKeys[drink]);
+        drinkIcon.setDisplaySize(32, 40);
+        drinkIcon.setDepth(2);
+
         const text = this.add.text(x, y, label, {
             fontFamily: 'Arial Black',
             fontSize: 13,
@@ -390,8 +399,7 @@ export class Game extends Scene
         });
 
         button.on('pointerdown', () => {
-            const flavor = label.toLowerCase();
-            this.dispenseDrink(flavor);
+            this.dispenseDrink(drink);
         });
     }
 

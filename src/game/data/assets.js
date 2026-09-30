@@ -58,5 +58,50 @@ export const GAME_ASSETS = {
         status: 'prototype-approved',
         source: 'original-project-artwork',
         license: 'Creamy Sundae project asset'
+    },
+    waffleCone: {
+        key: 'container-waffle-cone',
+        file: 'containers/container_waffle_cone.png',
+        type: 'image',
+        category: 'containers',
+        status: 'prototype-approved',
+        source: 'original-project-artwork',
+        license: 'Creamy Sundae project asset'
+    },
+    sprinkles: {
+        key: 'topping-sprinkles',
+        file: 'toppings/topping_sprinkles.png',
+        type: 'image',
+        category: 'toppings',
+        status: 'prototype-approved',
+        source: 'original-project-artwork',
+        license: 'Creamy Sundae project asset'
+    },
+    cherry: {
+        key: 'topping-cherry',
+        file: 'toppings/topping_cherry.png',
+        type: 'image',
+        category: 'toppings',
+        status: 'prototype-approved',
+        source: 'original-project-artwork',
+        license: 'Creamy Sundae project asset'
+    },
+    colaDrink: {
+        key: 'drink-cola-cup',
+        file: 'drinks/drink_cola_cup.png',
+        type: 'image',
+        category: 'drinks',
+        status: 'prototype-approved',
+        source: 'original-project-artwork',
+        license: 'Creamy Sundae project asset'
+    },
+    lemonDrink: {
+        key: 'drink-lemon-cup',
+        file: 'drinks/drink_lemon_cup.png',
+        type: 'image',
+        category: 'drinks',
+        status: 'prototype-approved',
+        source: 'original-project-artwork',
+        license: 'Creamy Sundae project asset'
     }
 };

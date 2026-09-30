@@ -196,6 +196,7 @@ Semua fitur di bawah ini sudah diimplementasikan sebagai prototype di `Game.js` 
 - Asset registry saat ini berisi `bg.png` (1024x768), `logo.png` (500x108), serta prototype-approved `container-paper-cup` (PNG 96x112) dan tiga flavor scoop (PNG 96x96), yang sudah digunakan di gameplay. Scoop kini di-depth ke depan cup saat masuk. Asset final, sprite sheet, dan animasi belum dibuat.
 - Referensi visual Gemini yang diunggah user berada di `assets-work/prompts/` dan diperlakukan sebagai preference references, bukan asset final. Aturan hasil terjemahan visual ada di `assets-work/prompts/STYLE_GUIDE.md`.
 - Karakter pada referensi belum final; role, nama, proporsi, ukuran sprite, dan state animasi masih terbuka.
+- Batch asset kedua menambahkan `container-waffle-cone`, `topping-sprinkles`, `topping-cherry`, `drink-cola-cup`, dan `drink-lemon-cup` sebagai PNG prototype-approved. Icon minuman sudah tampil di station; cone/topping belum menjadi bagian dari order validator.
 
 ## 📊 7. AUDIT STATUS & ROADMAP
 

@@ -120,6 +120,10 @@ Berikut adalah riwayat percakapan dan evolusi pengerjaan project secara kronolog
 - **Temuan**: Posisi/depth sebelumnya membuat scoop terlihat menimpa badan cup.
 - **Perubahan**: Cup sekarang berada pada depth 3, scoop di depth 2 dengan posisi `y = 558 - index * 24`. Cup menutup bagian bawah scoop sehingga hanya bagian scoop di atas bibir cup yang terlihat.
 
+### Second Asset Batch — 29 September 2026
+- **Asset**: Dibuat prototype PNG `container-waffle-cone`, `topping-sprinkles`, `topping-cherry`, `drink-cola-cup`, dan `drink-lemon-cup` dengan source SVG di `assets-work/processed/`.
+- **Integrasi**: Icon Cola dan Lemon ditampilkan pada tombol Soda Fountain. Waffle cone dan topping sudah terdaftar tetapi menunggu sistem container/order berikutnya.
+
 ---
 
 ## 🔑 2. CATATAN PENTING & KEPUTUSAN DESAIN (DESIGN DECISIONS)

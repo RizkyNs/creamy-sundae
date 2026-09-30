@@ -234,8 +234,15 @@ export class Game extends Scene
         // Cup Slot (inside display workstation)
         this.cup = this.add.image(350, 610, 'container-paper-cup');
         this.cup.setDisplaySize(130, 150);
-        // The cup body should cover the lower half of scoops placed inside it.
-        this.cup.setDepth(3);
+        // Back layer: scoops are rendered between this and the cup front layer.
+        this.cup.setDepth(1);
+
+        // Front layer: rim and body mask the lower part of the scoops while
+        // leaving the triangular tops visible above the rim.
+        this.cupFront = this.add.image(350, 610, 'container-paper-cup');
+        this.cupFront.setDisplaySize(130, 150);
+        this.cupFront.setCrop(0, 12, 96, 100);
+        this.cupFront.setDepth(3);
 
         this.add.text(350, 686, 'PAPER CUP', {
             fontFamily: 'Arial Black',

@@ -176,6 +176,10 @@ Berikut adalah riwayat percakapan dan evolusi pengerjaan project secara kronolog
 - **Follow-up finding**: The crop/depth workaround made the scoop textures render over the cup body.
 - **Final layering approach**: Removed the crop, restored scoops to depth 2 behind the cup at depth 3, and raised positions to `(cupX-25, 545)`, `(cupX+25, 545)`, and `(cupX, 505)`. The cup now masks the lower scoop portions naturally while the triangle tops remain visible.
 
+### Cup Split-Layer Correction — 1 October 2026
+- **Follow-up finding**: A complete cup texture above the scoops hid the lower-left and lower-right scoops, making the triangle disappear.
+- **Fix**: The cup now uses a back layer at depth 1, triangular scoops at depth 2, and a cropped front cup/rim overlay at depth 3. This preserves the visible triangle while keeping scoop bottoms inside the cup.
+
 ---
 
 ## 🔑 2. CATATAN PENTING & KEPUTUSAN DESAIN (DESIGN DECISIONS)

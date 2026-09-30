@@ -8,6 +8,7 @@ These files are design references only. They are not runtime game assets and mus
   - Reference type: gameplay/shop screen layout.
   - File format: JPEG.
   - Resolution: 1080×608.
+  - Direction: long-term target for the shop counter, coastal backdrop, ice-cream display, soda station, inventory layout, and top HUD.
   - Status: preference reference; not approved production art.
 
 ## Character references

@@ -11,6 +11,8 @@ Creamy Sundae adalah prototype game 2D casual cooking/time-management tentang me
 
 Prototype saat ini menggunakan bentuk dasar Phaser (`rectangle`, `circle`, dan `text`) agar gameplay dapat divalidasi sebelum aset pixel art final dibuat.
 
+Target jangka panjang visual gameplay adalah referensi gerai es krim tepi pantai di `assets-work/prompts/screen or UI reference/`. Saat ini referensi tersebut menjadi arah desain untuk backdrop, awning, display kaca, soda station, inventory counter, dan HUD; prototype belum mengimplementasikan seluruh tampilannya.
+
 ## Gameplay yang tersedia
 
 1. Customer muncul dengan order.

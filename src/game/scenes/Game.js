@@ -600,6 +600,9 @@ export class Game extends Scene
             nextDayBtn,
             btnText
         ]);
+
+        // Keep the summary modal above every gameplay object and interactive zone.
+        this.daySummaryContainer.setDepth(1000);
     }
 
     updateUpgradeButton (key, cost, button, buttonText)

@@ -139,6 +139,12 @@ Berikut adalah riwayat percakapan dan evolusi pengerjaan project secara kronolog
 - **Serve UX**: Tombol abu-abu bertuliskan `BUILD ORDER` selama resep belum valid; berubah hijau `SERVE ORDER` hanya pada status `ORDER READY`. Hover tidak membesarkan tombol saat disabled.
 - **Verifikasi**: Build dan asset checker harus dijalankan sebelum commit.
 
+### End-of-Day Modal Layering Bug — 30 September 2026
+- **Screenshot finding**: Ingredient scoop icons and the paper cup were drawn over the Day Summary / Shop Upgrades modal.
+- **Cause**: Modal was a container created after game objects but had no explicit high depth; child assets with depth values rendered above it.
+- **Fix**: Set `daySummaryContainer` depth to 1000 after adding all modal children, ensuring it renders above gameplay objects and blocks interaction behind the overlay.
+- **Visual direction clarification**: User confirmed the uploaded screen/UI image is the long-term target gameplay look, not final art. Style guide now records the seaside shop, awning, central glass display, soda station, counter inventory, and top HUD as the target direction.
+
 ---
 
 ## 🔑 2. CATATAN PENTING & KEPUTUSAN DESAIN (DESIGN DECISIONS)

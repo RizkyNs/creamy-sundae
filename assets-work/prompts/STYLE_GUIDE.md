@@ -90,7 +90,19 @@ Guidelines:
 
 ## 7. UI and screen direction
 
-The screen reference is used for hierarchy and mood, while the current game layout remains the implementation source of truth until a deliberate UI refactor is approved.
+The target long-term gameplay screen is the uploaded reference `screen or UI reference/Main screen atau lebih tepatnya game screen.jpg`. This is a visual direction, not a pixel-perfect layout specification. The existing prototype screen remains useful for validating the order/make/serve loop while the art and counter are migrated in deliberate steps.
+
+### Long-term target screen
+
+- Cozy seaside ice-cream stand with a bright beach visible behind the service counter.
+- A scalloped awning and warm wooden framing establish the shop silhouette.
+- A glass ice-cream display is the central visual anchor, with distinct flavor tubs and a visible scoop tool.
+- Waffle cones, paper cups, prepared sundaes, and drink containers are arranged as readable service inventory along the counter.
+- Soda dispensers sit in a distinct station zone.
+- A compact player/profile and progression HUD sits at the top, with money/currency separated from the working area.
+- Audrey is the player/menu mascot reference; customer identities and roles remain separate until explicitly decided.
+
+The target reference includes a beach, shop architecture, and inventory composition that are not implemented yet. Build toward it through staged asset batches and layout updates; do not claim the current prototype already matches it.
 
 ### UI priorities
 
@@ -99,6 +111,7 @@ The screen reference is used for hierarchy and mood, while the current game layo
 3. Validation status and Serve action must be visually dominant when relevant.
 4. Money, day, and patience should remain visible without competing with the order.
 5. Decorative elements must never cover interactive targets or reduce text contrast.
+6. Modal scenes/components must render above all game-world visuals and block both clicks and drags behind the overlay.
 
 ### UI treatment
 

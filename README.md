@@ -109,3 +109,4 @@ npm run dev -- --host 0.0.0.0 --port 8080
 - `AGENTS.md` — aturan kerja, status milestone, dan roadmap.
 - `HANDOVER.md` — kondisi teknis dan panduan melanjutkan project.
 - `SESSION_CONTEXT.md` — kronologi perubahan dan audit status terbaru.
+- `.opencode/skills/creamy-sundae-assets/SKILL.md` — workflow portable untuk membuat, memproses, mendaftarkan, dan memverifikasi asset.

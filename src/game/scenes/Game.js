@@ -1035,27 +1035,19 @@ export class Game extends Scene
 
             if (distance < 90)
             {
-                // Masukkan scoop ke cup
-                const scoopPositions = [
-                    { x: cupX - 30, y: 558 },
-                    { x: cupX + 30, y: 558 },
-                    { x: cupX, y: 518 }
-                ];
-                const stackPosition = scoopPositions[Math.min(this.cupContents.length, scoopPositions.length - 1)];
-                scoop.x = stackPosition.x;
-                // Show only the upper scoop cap above the rim. The cropped
-                // cap is in front of the cup, while its hidden lower portion
-                // never covers the cup body.
-                scoop.y = stackPosition.y;
-                scoop.setCrop(0, 0, 96, 58);
-                scoop.setDepth(4);
-
                 // Disable dragging once in cup
                 this.input.setDraggable(scoop, false);
+
+                // Show only the upper scoop cap above the rim.
+                scoop.setCrop(0, 0, 96, 58);
+                scoop.setDepth(4);
 
                 // Simpan data scoop
                 this.cupContents.push(flavor);
                 this.cupScoopObjects.push(scoop);
+
+                // Atur posisi dinamis berdasarkan jumlah scoop
+                this.updateCupScoopLayout();
 
                 // Update status cup
                 this.cupStatusText.setText(
@@ -1073,6 +1065,46 @@ export class Game extends Scene
             {
                 // Scoop dilepas di luar cup
                 scoop.destroy();
+            }
+        });
+    }
+
+    updateCupScoopLayout ()
+    {
+        const cupX = 350;
+        const count = this.cupScoopObjects.length;
+        let positions = [];
+
+        if (count === 1)
+        {
+            positions = [
+                { x: cupX, y: 558, depth: 4 }
+            ];
+        }
+        else if (count === 2)
+        {
+            positions = [
+                { x: cupX - 30, y: 558, depth: 4 },
+                { x: cupX + 30, y: 558, depth: 4 }
+            ];
+        }
+        else
+        {
+            // 3 atau lebih scoop: dua di bawah (kiri & kanan), ketiga di atas (tengah)
+            positions = [
+                { x: cupX - 30, y: 558, depth: 4 },
+                { x: cupX + 30, y: 558, depth: 4 },
+                { x: cupX, y: 518, depth: 5 }
+            ];
+        }
+
+        this.cupScoopObjects.forEach((scoopObj, index) =>
+        {
+            if (positions[index])
+            {
+                scoopObj.x = positions[index].x;
+                scoopObj.y = positions[index].y;
+                scoopObj.setDepth(positions[index].depth);
             }
         });
     }

@@ -204,11 +204,12 @@ Semua fitur di bawah ini sudah diimplementasikan sebagai prototype di `Game.js` 
 - Cup gameplay berada pada y=610 dengan label `PAPER CUP` y=686 dan status scoop y=712. Scoop ditempatkan dekat rim di belakang cup body.
 - Tombol Serve menampilkan `BUILD ORDER` abu-abu selama order belum valid dan hanya menjadi `SERVE ORDER` hijau pada status `ORDER READY`.
 - Day Summary / Shop Upgrades modal menggunakan container depth 1000 agar selalu dirender dan menerima interaksi di atas semua gameplay objects.
+- Dynamic Scoop Stacking: Scoop di dalam cup tertata secara dinamis via `updateCupScoopLayout()`: 1 scoop di tengah bawah (`cupX`, `y = 558`), 2 scoop di kiri-kanan bawah (`cupX - 30`, `cupX + 30`, `y = 558`), 3 scoop dalam formasi piramida (dua di bawah dan satu di atas tengah `cupX`, `y = 518`).
 - Target long-term UI mengacu pada preferensi game screen pantai yang dicatat di `assets-work/prompts/STYLE_GUIDE.md`; layout final belum sepenuhnya diimplementasikan.
 
 ## 📊 7. AUDIT STATUS & ROADMAP
 
-Audit dokumentasi terakhir: 28 September 2026. Shop upgrades kemudian diimplementasikan pada sesi yang sama. `npm run build` harus dijalankan sebelum commit fitur tersebut.
+Audit dokumentasi terakhir: 5 Oktober 2026. Penataan scoop es krim secara dinamis (1, 2, dan 3 scoop) telah selesai diimplementasikan di `Game.js` dan terverifikasi build.
 
 ## 🗺️ 8. ROADMAP & TARGET PENGERJAAN BERIKUTNYA
 

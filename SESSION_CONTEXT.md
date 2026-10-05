@@ -184,6 +184,14 @@ Berikut adalah riwayat percakapan dan evolusi pengerjaan project secara kronolog
 - **Screenshot finding**: With three scoops present, the cup-front overlay hid the first two lower scoops, leaving only the pink top scoop visible; this made the contents look stacked incorrectly.
 - **Fix**: Removed the duplicate cup-front layer. The cup body remains at depth 3, while each scoop uses a separate cropped upper cap at depth 4. Positions are left `(cupX-30, 558)`, right `(cupX+30, 558)`, and top `(cupX, 518)`.
 
+### Dynamic Scoop Stacking Layout — 5 October 2026
+- **User Request**: Membuat sistem penataan dinamis untuk scoop es krim di dalam cup:
+  - 1 scoop: otomatis tengah (`cupX = 350`, `y = 558`).
+  - 2 scoop: otomatis terbagi kanan dan kiri (`cupX - 30`, `cupX + 30`, `y = 558`).
+  - 3 scoop: formasi piramida (dua di bawah: kiri & kanan `y = 558`, satu di puncak tengah `cupX, y = 518`).
+- **Implementasi**: Menambahkan method `updateCupScoopLayout()` di `Game.js` yang secara dinamis mereposisi seluruh game object scoop di dalam cup setiap kali ada scoop baru yang dimasukkan.
+- **Verifikasi**: `npm run build` sukses.
+
 ---
 
 ## 🔑 2. CATATAN PENTING & KEPUTUSAN DESAIN (DESIGN DECISIONS)

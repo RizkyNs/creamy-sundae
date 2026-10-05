@@ -844,12 +844,12 @@ Current task
 
 The completed feature in this work session is:
 
-Shop upgrades
+Dynamic Scoop Stacking Layout
 
-Implement shop upgrade system:
-1. Upgrade scene or modal accessible after day summary.
-2. Purchasable upgrades with earned money (e.g. Extra patience boost, faster tip multiplier, decorations).
-3. Apply upgrade effects to gameplay loop.
+Implement dynamic scoop positioning inside cup:
+1. 1 Scoop: Centered horizontally at the lower tier (`cupX`, `y = 558`).
+2. 2 Scoops: Side-by-side at the lower tier (`cupX - 30`, `cupX + 30`, `y = 558`). Existing scoop shifts dynamically.
+3. 3 Scoops: Pyramid formation (`cupX - 30`, `cupX + 30` at `y = 558` and top-center `cupX` at `y = 518`).
 
 Implementation status:
 
@@ -925,6 +925,7 @@ Vite
 ✅ Vanilla button
 ✅ Draggable Vanilla scoop
 ✅ cupContents state
+✅ Dynamic scoop stacking layout (1, 2, 3 scoops auto-arrange)
 ✅ Order state
 ✅ Recipe validation
 ✅ Serve

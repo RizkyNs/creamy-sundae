@@ -110,3 +110,4 @@ npm run dev -- --host 0.0.0.0 --port 8080
 - `HANDOVER.md` — kondisi teknis dan panduan melanjutkan project.
 - `SESSION_CONTEXT.md` — kronologi perubahan dan audit status terbaru.
 - `.opencode/skills/creamy-sundae-assets/SKILL.md` — workflow portable untuk membuat, memproses, mendaftarkan, dan memverifikasi asset.
+- `npm run assets:generate` — membuat draft PNG cloud melalui Pollinations ke `assets-work/raw/` tanpa API key.

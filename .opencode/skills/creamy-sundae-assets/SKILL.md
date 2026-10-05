@@ -96,6 +96,14 @@ If an image-generation API or MCP tool is available:
 5. Process the image to the required canvas and nearest-neighbor scale.
 6. Record generator/source and license/terms in the manifest or companion metadata.
 
+For the repository's keyless Pollinations draft path, use:
+
+```bash
+npm run assets:generate -- customer_01 "original cozy pixel art ice cream shop customer, transparent background, no text, no watermark"
+```
+
+The command saves a timestamp/seeded PNG to ignored `assets-work/raw/`. Pollinations output is a raw draft and may have a background, artifacts, text, or inconsistent anatomy; it must not be copied directly to `public/assets/` without review and processing.
+
 If no image-generation tool is available, do not claim procedural SVG/PNG artwork is AI-generated. Clearly label it as original project artwork or prototype procedural artwork.
 
 ## Customer state assets

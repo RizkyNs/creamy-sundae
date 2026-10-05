@@ -17,6 +17,23 @@ Asset runtime yang sudah disetujui harus dipindahkan ke `public/assets/`, didaft
 npm run assets:check
 ```
 
+## Draft generation with Pollinations
+
+Pollinations can be used as a keyless cloud draft generator:
+
+```bash
+npm run assets:generate -- customer_01 "original cozy pixel art ice cream shop customer, transparent background, no text, no watermark"
+```
+
+Output masuk ke `assets-work/raw/`, yang di-ignore Git. Atur ukuran atau seed secara opsional:
+
+```bash
+POLLINATIONS_WIDTH=128 POLLINATIONS_HEIGHT=160 POLLINATIONS_SEED=42 \
+  npm run assets:generate -- customer_01 "your prompt"
+```
+
+Hasil Pollinations adalah draft mentah. Periksa background, watermark, anatomi, pixel density, dan konsistensi sebelum diproses ke `reviewed/`, `processed/`, lalu `public/assets/`.
+
 Jangan menaruh API key, secret, atau asset berlisensi tidak jelas di folder ini.
 
 Referensi visual yang sudah diunggah dicatat di `prompts/REFERENCE_INDEX.md`. Folder referensi tetap menjadi bahan desain dan tidak otomatis dianggap sebagai asset runtime.

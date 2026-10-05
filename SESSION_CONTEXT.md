@@ -164,6 +164,10 @@ Berikut adalah riwayat percakapan dan evolusi pengerjaan project secara kronolog
 - **Integration**: Replaced the customer circle placeholder with a portrait. Patience >50% shows neutral, 25–50% shows impatient, below 25% shows angry, and successful serving shows happy.
 - **Scope**: This is one style-test customer prototype, not a final character specification or the full NPC roster.
 
+### Customer Art Upgrade — 1 October 2026
+- **Reason**: The first customer PNGs were too geometric/basic, and the checked-out `Game.js` still used the circle placeholder.
+- **Change**: Regenerated all four customer states on a 128x160 canvas with additional hair, facial, clothing, highlight, and shadow clusters; integrated `customerVisual` as an image with patience/serve texture changes.
+
 ### Soda Fountain Composition and Pour Feedback — 30 September 2026
 - **Screenshot finding**: Dispenser body was too large relative to the cup, old Cola/Lemon cup icons remained above the machine, and selecting a drink had no pour feedback.
 - **Layout fix**: Dispenser display reduced to 190x142 at y=495; drink cup reduced to 58x72 at y=625; clear button/status repositioned to match.

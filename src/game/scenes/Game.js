@@ -94,8 +94,9 @@ export class Game extends Scene
             color: '#6b3e26'
         }).setOrigin(0.5);
 
-        // Customer Avatar Placeholder
-        this.customerVisual = this.add.circle(140, 175, 45, 0xf1c27d);
+        // Customer portrait with expression states.
+        this.customerVisual = this.add.image(140, 175, 'customer-01-neutral');
+        this.customerVisual.setDisplaySize(82, 104);
 
         this.customerNameText = this.add.text(140, 235, 'Customer', {
             fontFamily: 'Arial',
@@ -791,6 +792,13 @@ export class Game extends Scene
         {
             this.patienceBarFill.setFillStyle(0xf44336); // Red
         }
+
+        const expression = ratio > 0.5
+            ? 'customer-01-neutral'
+            : ratio > 0.25
+                ? 'customer-01-impatient'
+                : 'customer-01-angry';
+        this.customerVisual.setTexture(expression);
     }
 
     customerLeavesAngrily ()

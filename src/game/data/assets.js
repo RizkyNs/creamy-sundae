@@ -121,5 +121,41 @@ export const GAME_ASSETS = {
         status: 'prototype-approved',
         source: 'original-project-artwork',
         license: 'Creamy Sundae project asset'
+    },
+    customerNeutral: {
+        key: 'customer-01-neutral',
+        file: 'customers/customer_01_neutral.png',
+        type: 'image',
+        category: 'customers',
+        status: 'prototype-approved',
+        source: 'original-project-artwork',
+        license: 'Creamy Sundae project asset'
+    },
+    customerHappy: {
+        key: 'customer-01-happy',
+        file: 'customers/customer_01_happy.png',
+        type: 'image',
+        category: 'customers',
+        status: 'prototype-approved',
+        source: 'original-project-artwork',
+        license: 'Creamy Sundae project asset'
+    },
+    customerImpatient: {
+        key: 'customer-01-impatient',
+        file: 'customers/customer_01_impatient.png',
+        type: 'image',
+        category: 'customers',
+        status: 'prototype-approved',
+        source: 'original-project-artwork',
+        license: 'Creamy Sundae project asset'
+    },
+    customerAngry: {
+        key: 'customer-01-angry',
+        file: 'customers/customer_01_angry.png',
+        type: 'image',
+        category: 'customers',
+        status: 'prototype-approved',
+        source: 'original-project-artwork',
+        license: 'Creamy Sundae project asset'
     }
 };

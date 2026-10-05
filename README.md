@@ -28,6 +28,8 @@ Rasa yang tersedia: Vanilla, Chocolate, dan Strawberry. Order dapat berupa scoop
 
 Batch asset berikutnya sekarang tersedia di registry: waffle cone, sprinkles, cherry, asset gelas kosong/Cola/Lemon, dan body Soda Fountain. Tombol station serta gelas minuman memakai asset, dan pemilihan Cola/Lemon menampilkan animasi stream singkat; cone dan topping menunggu integrasi ke sistem order/container.
 
+Customer prototype `customer-01` memiliki empat expression state (neutral, happy, impatient, angry). Potret mengikuti sisa patience dan berubah happy saat order berhasil disajikan.
+
 Serve action stays visually disabled (`BUILD ORDER`) until recipe validation reaches `ORDER READY`. The cup label/status and scoop position are arranged to fit inside the display panel.
 
 ## Status project

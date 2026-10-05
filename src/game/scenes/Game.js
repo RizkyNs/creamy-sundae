@@ -803,7 +803,7 @@ export class Game extends Scene
 
         // Flash red & shake camera
         this.cameras.main.shake(200, 0.015);
-        this.customerVisual.setFillStyle(0xf44336);
+        this.customerVisual.setTexture('customer-01-angry');
 
         // Clear cup contents & drink if player had prepared something
         this.clearDrink();
@@ -815,7 +815,7 @@ export class Game extends Scene
         this.validationText.setColor('#f44336');
 
         this.time.delayedCall(1000, () => {
-            this.customerVisual.setFillStyle(0xf1c27d);
+            this.customerVisual.setTexture('customer-01-neutral');
             this.currentCustomerIndex++;
             this.showNextCustomer();
         });
@@ -843,6 +843,7 @@ export class Game extends Scene
     serveOrder ()
     {
         this.patienceActive = false;
+        this.customerVisual.setTexture('customer-01-happy');
 
         // Dynamic price calculation
         // Scoops: $2.50 for 1st scoop, +$1.50 per additional scoop. $0 if no scoop.

@@ -159,6 +159,11 @@ Berikut adalah riwayat percakapan dan evolusi pengerjaan project secara kronolog
 - **Integration**: Soda Fountain now displays the dispenser image behind the interactive Cola/Lemon buttons. Existing drink logic and cup texture states remain unchanged.
 - **Status**: This closes the initial Batch 1 station asset set; the dispenser is prototype-approved, not final art.
 
+### Customer Prototype Expression Set — 1 October 2026
+- **Assets**: Added four 96x128 PNG expression states for `customer-01`: neutral, happy, impatient, angry. Editable SVG source files are in `assets-work/processed/`.
+- **Integration**: Replaced the customer circle placeholder with a portrait. Patience >50% shows neutral, 25–50% shows impatient, below 25% shows angry, and successful serving shows happy.
+- **Scope**: This is one style-test customer prototype, not a final character specification or the full NPC roster.
+
 ### Soda Fountain Composition and Pour Feedback — 30 September 2026
 - **Screenshot finding**: Dispenser body was too large relative to the cup, old Cola/Lemon cup icons remained above the machine, and selecting a drink had no pour feedback.
 - **Layout fix**: Dispenser display reduced to 190x142 at y=495; drink cup reduced to 58x72 at y=625; clear button/status repositioned to match.

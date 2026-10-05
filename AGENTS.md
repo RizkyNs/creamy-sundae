@@ -939,6 +939,7 @@ Vite
 ✅ Asset pipeline foundation (manifest, loader, checker, style guide)
 ✅ First approved asset batch (prototype paper cup and three flavor scoops, integrated in gameplay)
 ✅ Second asset batch (prototype waffle cone, toppings, and drink icons)
+✅ Customer prototype with four expression states, integrated with patience/serve feedback
 ✅ VPS Linux development environment
 ✅ VPS build environment
 

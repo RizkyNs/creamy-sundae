@@ -1049,7 +1049,7 @@ export class Game extends Scene
 
                 // Show only the upper scoop cap above the rim.
                 scoop.setCrop(0, 0, 96, 58);
-                scoop.setDepth(4);
+                scoop.setDepth(2);
 
                 // Simpan data scoop
                 this.cupContents.push(flavor);
